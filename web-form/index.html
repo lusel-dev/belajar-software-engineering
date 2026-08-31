@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Input Data - MySkill Project</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: #ffffff;
+      width: 100%;
+      max-width: 450px;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #444;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: border-color 0.3s;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    .error-msg {
+      color: #e74c3c;
+      font-size: 12px;
+      margin-top: 4px;
+      display: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #5a67d8;
+    }
+
+    /* Card Hasil Output */
+    .result-card {
+      margin-top: 25px;
+      padding: 15px;
+      background: #f8f9fa;
+      border-left: 4px solid #667eea;
+      border-radius: 6px;
+      display: none;
+    }
+
+    .result-card h3 {
+      margin-bottom: 10px;
+      color: #333;
+      font-size: 16px;
+    }
+
+    .result-card p {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Form Data Diri</h2>
+    <form id="userForm">
+      
+      <div class="form-group">
+        <label for="nama">Nama Lengkap</label>
+        <input type="text" id="nama" placeholder="Masukkan nama lengkap">
+        <div class="error-msg" id="errorNama">Nama tidak boleh kosong!</div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="contoh@email.com">
+        <div class="error-msg" id="errorEmail">Email tidak boleh kosong!</div>
+      </div>
+
+      <div class="form-group">
+        <label for="alamat">Alamat</label>
+        <textarea id="alamat" rows="3" placeholder="Masukkan alamat lengkap"></textarea>
+        <div class="error-msg" id="errorAlamat">Alamat tidak boleh kosong!</div>
+      </div>
+
+      <button type="submit">Submit Data</button>
+    </form>
+
+    <!-- Tampilan Data Hasil Submit -->
+    <div class="result-card" id="resultCard">
+      <h3>Hasil Data Input:</h3>
+      <p><strong>Nama:</strong> <span id="outNama"></span></p>
+      <p><strong>Email:</strong> <span id="outEmail"></span></p>
+      <p><strong>Alamat:</strong> <span id="outAlamat"></span></p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('userForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Mencegah reload halaman
+
+      // Ambil Nilai Input
+      const nama = document.getElementById('nama').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const alamat = document.getElementById('alamat').value.trim();
+
+      // Elemen Error
+      const errorNama = document.getElementById('errorNama');
+      const errorEmail = document.getElementById('errorEmail');
+      const errorAlamat = document.getElementById('errorAlamat');
+
+      let isValid = true;
+
+      // Validasi Nama
+      if (nama === '') {
+        errorNama.style.display = 'block';
+        isValid = false;
+      } else {
+        errorNama.style.display = 'none';
+      }
+
+      // Validasi Email
+      if (email === '') {
+        errorEmail.style.display = 'block';
+        isValid = false;
+      } else {
+        errorEmail.style.display = 'none';
+      }
+
+      // Validasi Alamat
+      if (alamat === '') {
+        errorAlamat.style.display = 'block';
+        isValid = false;
+      } else {
+        errorAlamat.style.display = 'none';
+      }
+
+      // Jika Semua Validasi Lolos
+      if (isValid) {
+        document.getElementById('outNama').textContent = nama;
+        document.getElementById('outEmail').textContent = email;
+        document.getElementById('outAlamat').textContent = alamat;
+
+        // Tampilkan Card Hasil
+        document.getElementById('resultCard').style.display = 'block';
+      } else {
+        // Sembunyikan Hasil Jika Masih Ada Error
+        document.getElementById('resultCard').style.display = 'none';
+      }
+    });
+  </script>
+
+</body>
+</html>
