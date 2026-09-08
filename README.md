@@ -37,3 +37,26 @@ Perintah `nslookup` digunakan untuk memetakan nama domain `www.example.com` ke I
 
 ### 📝 Kesimpulan
 Kedua domain memberikan respon sukses (*Reply*) tanpa kehilangan paket data. Perintah `nslookup` membuktikan bahwa sebuah nama domain dipetakan ke alamat IP publik di internet.
+
+---
+
+## ⚙️ The next Step : Backend Development & Laravel Basics
+
+Catatan dan pemahaman konsep dasar pengembangan sisi server (*Backend*) dan pengenalan Framework Laravel.
+
+### 📌 1. Konsep Dasar CRUD
+CRUD adalah 4 operasi utama dalam pengelolaan data di basis data:
+* **Create:** Menambahkan data baru (contoh: *tambah produk*).
+* **Read:** Menampilkan data (contoh: *melihat daftar produk*).
+* **Update:** Memperbarui/mengedit data yang ada.
+* **Delete:** Menghapus data dari sistem.
+
+### 🧩 2. Arsitektur MVC pada Laravel
+Laravel menggunakan pola **MVC (Model-View-Controller)** untuk memisahkan tanggung jawab kode:
+saya membayangkannya seperti di restoran kurang lebihnya
+
+* **Model (`Product.php`):** Asisten Koki / Kasir (Tugasnya khusus berhubungan langsung dengan Gudang Bahan / Database)
+* **View (`.blade.php`):** Buku Menu & Meja Makan (Ini adalah apa yang dilihat oleh pelanggan (user). Tempat user memesan makanan (isi form) atau melihat makanan yang dihidangkan (daftar produk))
+* **Controller (`ProductController.php`):** Koki Dapur (Otak Utamanya) (Koki yang memproses pesanan. Koki mengecek: "Apakah pesanan nama dan detailnya sudah diisi lengkap?" (validasi). Kalau lengkap, koki menyuruh asistennya menyimpan bahan makanan)
+* **Route (`web.php`):** Pelayan Restoran (Tugasnya hanya mengantar pesanan. Kalau user mengeklik tombol "Tambah Produk", pelayan (route) membawa pesanan itu ke dapur)
+---
