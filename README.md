@@ -26,7 +26,7 @@ Perintah `ping` digunakan untuk mengecek respons balik dan latensi koneksi ke se
 
 ---
 
-### 🔍 2. Pencarian Informasi DNS (`nslookup`)
+### 🔍 modul 2. Pencarian Informasi DNS (`nslookup`)
 Perintah `nslookup` digunakan untuk memetakan nama domain `www.example.com` ke IP Address aslinya.
 
 * **DNS Server:** `rns-sht-01.hypernet.co.id` (`114.129.22.33`)
@@ -40,7 +40,7 @@ Kedua domain memberikan respon sukses (*Reply*) tanpa kehilangan paket data. Per
 
 ---
 
-## ⚙️ The next Step : Backend Development & Laravel Basics
+## ⚙️ modul 3 The next Step : Backend Development & Laravel Basics
 
 Catatan dan pemahaman konsep dasar pengembangan sisi server (*Backend*) dan pengenalan Framework Laravel.
 
@@ -60,3 +60,21 @@ saya membayangkannya seperti di restoran kurang lebihnya
 * **Controller (`ProductController.php`):** Koki Dapur (Otak Utamanya) (Koki yang memproses pesanan. Koki mengecek: "Apakah pesanan nama dan detailnya sudah diisi lengkap?" (validasi). Kalau lengkap, koki menyuruh asistennya menyimpan bahan makanan)
 * **Route (`web.php`):** Pelayan Restoran (Tugasnya hanya mengantar pesanan. Kalau user mengeklik tombol "Tambah Produk", pelayan (route) membawa pesanan itu ke dapur)
 ---
+---
+
+## 🔗 modul 4 REST API & Frontend Integration (Laravel + React)
+
+Catatan dan pemahaman mengenai arsitektur web modern yang memisahkan antara Frontend dan Backend (*Decoupled Architecture*).
+
+### 📌 1. Peran API (Application Programming Interface)
+* **API** berfungsi sebagai penghubung/perantara agar aplikasi Frontend dan Backend bisa saling berkomunikasi secara aman.
+* Backend tidak lagi mengirimkan tampilan HTML, melainkan mengirimkan data mentah berformat **JSON**.
+
+### 🛠️ 2. Pembagian Tugas Sistem (Laravel & React.js)
+* **Backend (Laravel API):**
+  * Bertugas mengelola basis data MySQL dan menyediakan *endpoint* URL (seperti `/api/products`).
+  * Mengolah logika *CRUD* (Create, Read, Update, Delete) dan merespons dengan data JSON.
+* **Frontend (React.js):**
+  * Berdiri sendiri sebagai aplikasi klien.
+  * Menggunakan pustaka **Axios** untuk mengambil/mengirim data ke API Laravel.
+  * Menampilkan data secara dinamis ke bentuk antarmuka pengguna (UI).
