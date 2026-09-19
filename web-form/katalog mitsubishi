@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Katalog Mobil Mitsubishi</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f9; text-align: center; padding: 20px; }
+    .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .btn-group { margin-bottom: 20px; }
+    button { padding: 10px 14px; margin: 4px; border: none; background: #cc0000; color: white; border-radius: 6px; cursor: pointer; font-weight: bold; }
+    button:hover { background: #990000; }
+    .card-mobil { border: 1px solid #ddd; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: left; }
+    .card-mobil img { width: 100%; height: 250px; object-fit: cover; border-radius: 8px; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>🚗 Katalog Mitsubishi</h2>
+    <p>Pilih mobil untuk melihat spesifikasi dan fotonya:</p>
+
+    <div class="btn-group">
+      <button onclick="pilihMobil('xpander_ultimate')">Xpander Ultimate</button>
+      <button onclick="pilihMobil('xpander_cross')">Xpander Cross</button>
+      <button onclick="pilihMobil('pajero_sport')">Pajero Sport</button>
+      <button onclick="pilihMobil('l300')">L300</button>
+      <button onclick="pilihMobil('destinator')">Destinator</button>
+      <button onclick="pilihMobil('xforce')">Xforce</button>
+    </div>
+
+    <div id="brosur" class="card-mobil" style="display: none;">
+      <img id="fotoMobil" src="" alt="Foto Mobil">
+      <h3 id="namaMobil"></h3>
+      <p><strong>Tipe:</strong> <span id="tipeMobil"></span></p>
+      <p><strong>Mesin:</strong> <span id="mesinMobil"></span></p>
+      <p><strong>Fitur Unggulan:</strong> <span id="fiturMobil"></span></p>
+    </div>
+  </div>
+
+  <script>
+    // Data JSON dimasukkan langsung sebagai objek JavaScript
+    const dataJSON = {
+      "xpander_ultimate": {
+        "nama": "Xpander Ultimate",
+        "tipe": "MPV Family",
+        "mesin": "1.5L MIVEC DOHC 16-Valve",
+        "fitur": "CVT Transmission, Electronic Parking Brake, Wireless Charger",
+        "gambar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvJJLUnSeScE1PRPaEtNyp7H0y3sSiOzqIcosVZ4_Eyw&s=10"
+      },
+      "xpander_cross": {
+        "nama": "Xpander Cross",
+        "tipe": "Crossover MPV",
+        "mesin": "1.5L MIVEC DOHC 16-Valve",
+        "fitur": "Active Yaw Control (AYC), Ground Clearance Tinggi, Roof Rail",
+        "gambar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNtio5qySYEsJ9hOoKlw8iwiMTOA9k0DBnWunYnEmnCA&s=10"
+      },
+      "pajero_sport": {
+        "nama": "Pajero Sport",
+        "tipe": "SUV Ladder Frame",
+        "mesin": "2.4L MIVEC Turbo Diesel",
+        "fitur": "Super Select 4WD-II, Adaptive Cruise Control, Sunroof",
+        "gambar": "https://imgcdn.oto.com/medium/gallery/exterior/28/2364/mitsubishi-pajero-sport-70257.jpg"
+      },
+      "l300": {
+        "nama": "L300",
+        "tipe": "Commercial Pick-Up",
+        "mesin": "2.2L Euro 4 Diesel",
+        "fitur": "Kargo Luas, Mesin Bertenaga, Daya Angkut Besar",
+        "gambar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRugCsshVuiAnVrXE4QdsDdMOURhfv8jLTv8_N5-JkWXA&s=10"
+      },
+      "destinator": {
+        "nama": "Destinator",
+        "tipe": "Concept SUV / Premium Crossover",
+        "mesin": "Advanced Powertrain System",
+        "fitur": "Futuristic Dashboard, All-Wheel Control, Dynamic Design",
+        "gambar": "https://www.gaikindo.or.id/wp-content/uploads/2025/10/destinator.png"
+      },
+      "xforce": {
+        "nama": "Xforce",
+        "tipe": "Compact SUV",
+        "mesin": "1.5L DOHC 16-Valve MIVEC",
+        "fitur": "Drive Mode (Normal, Wet, Gravel, Mud), Dynamic Sound Yamaha",
+        "gambar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVb2e5IB9gPIF7E0JLUB9IPf3MxbmEscN0P1F-plGaLA&s=10"
+      }
+    };
+
+    function pilihMobil(keyMobil) {
+      // Mengambil data dari variabel lokal tanpa perlu fetch() file terpisah
+      const mobil = dataJSON[keyMobil];
+
+      document.getElementById('fotoMobil').src = mobil.gambar;
+      document.getElementById('namaMobil').innerText = mobil.nama;
+      document.getElementById('tipeMobil').innerText = mobil.tipe;
+      document.getElementById('mesinMobil').innerText = mobil.mesin;
+      document.getElementById('fiturMobil').innerText = mobil.fitur;
+
+      document.getElementById('brosur').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
