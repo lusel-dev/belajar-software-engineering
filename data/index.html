@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Katalog Mitsubishi - Interactive Catalog</title>
+  <style>
+    * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: #f4f6f8; margin: 0; padding: 20px; color: #333; }
+    .container { max-width: 950px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    
+    header { text-align: center; border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 20px; }
+    header h1 { margin: 0; color: #d00000; font-size: 24px; letter-spacing: 1px; }
+    
+    .filter-group { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 25px; }
+    .btn-filter { padding: 10px 18px; border: 1px solid #ddd; background: #fff; border-radius: 20px; cursor: pointer; font-weight: 600; transition: all 0.2s; }
+    .btn-filter.active { background: #d00000; color: #fff; border-color: #d00000; }
+
+    .grid-mobil { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .card { border: 1px solid #eee; border-radius: 10px; overflow: hidden; background: #fff; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 6px 15px rgba(0,0,0,0.1); }
+    .card img { width: 100%; height: 180px; object-fit: cover; background: #f9f9f9; }
+    .card-body { padding: 15px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    
+    .badge { display: inline-block; background: #e6f4ea; color: #137333; font-size: 12px; font-weight: bold; padding: 4px 8px; border-radius: 4px; margin-bottom: 8px; }
+    .harga-box { font-size: 17px; font-weight: bold; color: #d00000; margin: 6px 0; display: block; }
+
+    .color-section { margin: 10px 0; background: #fafafa; padding: 10px; border-radius: 6px; border: 1px solid #f0f0f0; }
+    .color-title { font-size: 12px; color: #444; font-weight: 600; margin-bottom: 6px; }
+    .white-note { font-size: 11px; color: #d00000; font-weight: 600; display: block; margin-top: 2px; }
+    .color-dots { display: flex; gap: 8px; align-items: center; }
+    .color-dot { width: 20px; height: 20px; border-radius: 50%; border: 2px solid #ccc; cursor: pointer; transition: transform 0.2s, border-color 0.2s; }
+    .color-dot:hover { transform: scale(1.2); }
+    .color-dot.active { border-color: #d00000; transform: scale(1.15); box-shadow: 0 0 5px rgba(208, 0, 0, 0.4); }
+
+    .btn-group-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+    .btn { padding: 10px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; text-align: center; font-size: 12px; }
+    .btn-full { grid-column: span 2; }
+    .btn-detail { background: #222; color: #fff; }
+    .btn-pdf { background: #1565C0; color: #fff; }
+    .btn-kredit { background: #E65100; color: #fff; }
+    .btn-wa { background: #25D366; color: #fff; text-decoration: none; font-size: 13px; }
+
+    .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 99; }
+    .modal-content { background: #fff; border-radius: 12px; max-width: 650px; width: 100%; max-height: 85vh; overflow-y: auto; padding: 25px; }
+    .modal-content-small { max-width: 420px; }
+
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 5px; color: #444; }
+    .form-group input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; }
+    
+    .spec-table { width: 100%; border-collapse: collapse; margin-bottom: 15px; font-size: 13px; }
+    .spec-table td, .spec-table th { padding: 8px 12px; border-bottom: 1px solid #eee; text-align: left; }
+    .spec-table th { background: #f8f8f8; color: #d00000; font-size: 14px; }
+    .spec-table td:first-child { font-weight: 600; color: #555; width: 40%; }
+    
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1 id="catalog-title">MITSUBISHI CATALOG</h1>
+      <p style="margin: 5px 0 0; color: #666; font-size: 14px;">Pilih varian & spesifikasi sesuai kebutuhan Anda</p>
+    </header>
+
+    <div class="filter-group" id="filter-container">
+      <button class="btn-filter active" onclick="setFilter('ALL', this)">Semua Varian</button>
+    </div>
+
+    <div id="grid-mobil" class="grid-mobil"></div>
+  </div>
+
+  <!-- MODAL FORM LEAD GENERATION -->
+  <div id="modal-form-lead" class="modal-overlay hidden" onclick="tutupModalForm()">
+    <div class="modal-content modal-content-small" onclick="event.stopPropagation()">
+      <h3 id="form-title" style="margin-top: 0; color: #d00000;">Permintaan Data</h3>
+      <p style="font-size: 13px; color: #666; margin-top: -8px;">Lengkapi data diri singkat Anda untuk dikirimkan via WhatsApp resmi Sales.</p>
+
+      <form onsubmit="kirimFormKeWA(event)">
+        <input type="hidden" id="form-tipe-request" value="" />
+        <input type="hidden" id="form-varian-mobil" value="" />
+
+        <div class="form-group">
+          <label>Varian Mobil Pilihan</label>
+          <input type="text" id="form-display-mobil" disabled style="background: #eee;" />
+        </div>
+
+        <div class="form-group">
+          <label>Nama Lengkap Anda *</label>
+          <input type="text" id="form-nama-user" placeholder="Contoh: Budi Santoso" required />
+        </div>
+
+        <div class="form-group">
+          <label>Kota / Kabupaten Domisili *</label>
+          <input type="text" id="form-kota-user" placeholder="Contoh: Jakarta Barat" required />
+        </div>
+
+        <div style="display: flex; gap: 8px; margin-top: 20px;">
+          <button type="submit" class="btn btn-wa" style="flex: 2;">Kirim via WhatsApp</button>
+          <button type="button" class="btn" style="background: #ccc; color: #333; flex: 1;" onclick="tutupModalForm()">Batal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL SPESIFIKASI BROSUR -->
+  <div id="modal-detail" class="modal-overlay hidden" onclick="tutupModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <h2 id="modal-nama" style="margin-top: 0; color: #d00000;"></h2>
+      <p style="font-size: 18px; font-weight: bold; color: #d00000; margin-top: -10px;">
+        Harga OTR Dasar: <span id="modal-harga"></span>
+      </p>
+
+      <table class="spec-table">
+        <thead><tr><th colspan="2">📐 DIMENSION & CHASSIS</th></tr></thead>
+        <tbody>
+          <tr><td>Panjang x Lebar x Tinggi</td><td id="m-dimensi"></td></tr>
+          <tr><td>Ground Clearance</td><td id="m-gc"></td></tr>
+          <tr><td>Kapasitas Penumpang</td><td>7 Penumpang</td></tr>
+          <tr><td>Transmisi</td><td id="m-transmisi"></td></tr>
+          <tr><td>Suspensi (Depan / Belakang)</td><td>MacPherson Strut with Coil Spring / Torsion Beam</td></tr>
+          <tr><td>Sistem Rem (Depan / Belakang)</td><td>Disc Brake / Drum Brake</td></tr>
+          <tr><td>Cruise Control</td><td id="m-cruise"></td></tr>
+        </tbody>
+      </table>
+
+      <table class="spec-table">
+        <thead><tr><th colspan="2">⚙️ ENGINE & PERFORMANCE</th></tr></thead>
+        <tbody>
+          <tr><td>Tipe Mesin</td><td>1.5L MIVEC DOHC 16-Valve</td></tr>
+          <tr><td>Isi Silinder (Displacement)</td><td>1499 cc</td></tr>
+          <tr><td>Daya Maksimum</td><td>77 kW (105 PS) / 6.000 rpm</td></tr>
+          <tr><td>Torsi Maksimum</td><td>141 Nm / 4.000 rpm</td></tr>
+          <tr><td>Kapasitas Tangki BBM</td><td>45 Liter (Euro 4 Standard)</td></tr>
+        </tbody>
+      </table>
+
+      <table class="spec-table">
+        <thead><tr><th colspan="2">🚘 EXTERIOR & INTERIOR</th></tr></thead>
+        <tbody>
+          <tr><td>Velg & Ukuran Ban</td><td id="m-velg"></td></tr>
+          <tr><td>Lampu Utama (Headlamp)</td><td id="m-lampu"></td></tr>
+          <tr><td>Lampu Kabut (Fog Lamp)</td><td id="m-foglamp"></td></tr>
+          <tr><td>Tipe Antena</td><td id="m-antena"></td></tr>
+          <tr><td>Dashboard & Door Trim</td><td id="m-dashboard"></td></tr>
+          <tr><td>Setir (Steering Wheel)</td><td id="m-setir"></td></tr>
+          <tr><td>Audio Head Unit</td><td id="m-headunit"></td></tr>
+          <tr><td>Sistem AC</td><td id="m-ac"></td></tr>
+          <tr><td>Rem Parkir (Parking Brake)</td><td id="m-rem-parkir"></td></tr>
+          <tr><td>Wireless Charger</td><td id="m-wireless-charger"></td></tr>
+        </tbody>
+      </table>
+
+      <table class="spec-table">
+        <thead><tr><th colspan="2">🛡️ SAFETY & SECURITY</th></tr></thead>
+        <tbody>
+          <tr><td>Active Yaw Control (AYC)</td><td id="m-ayc"></td></tr>
+          <tr><td>Sistem Airbag</td><td id="m-airbag"></td></tr>
+          <tr><td>Kamera Parkir / Monitor</td><td id="m-kamera"></td></tr>
+          <tr><td>Fitur Pengereman (ABS, EBD, BA)</td><td>Tersedia (Available)</td></tr>
+          <tr><td>Active Stability Control (ASC) & HSA</td><td>Tersedia (Available)</td></tr>
+          <tr><td>Keyless Operating System (KOS)</td><td id="m-kos"></td></tr>
+        </tbody>
+      </table>
+
+      <div class="btn-group-grid" style="margin-top: 20px;">
+        <button id="modal-btn-wa" class="btn btn-wa btn-full">Konsultasi via WhatsApp</button>
+        <button class="btn btn-full" style="background: #ccc; color: #333;" onclick="tutupModal()">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const nomorWaSales = "6285169669017";
+    const dataJsonUrl = "xpander.json";
+
+    let masterWarna = [];
+    let dataVariants = [];
+    let currentFilter = 'ALL';
+
+    fetch(dataJsonUrl)
+      .then(response => response.json())
+      .then(data => {
+        masterWarna = data.masterWarna;
+        dataVariants = data.variants;
+        document.getElementById('catalog-title').innerText = `MITSUBISHI ${data.modelName.toUpperCase()} CATALOG`;
+        renderFilterButtons();
+        renderKatalog();
+      })
+      .catch(error => console.error("Gagal memuat data JSON:", error));
+
+    function renderFilterButtons() {
+      const container = document.getElementById('filter-container');
+      const uniqueTypes = [...new Set(dataVariants.map(item => item.nama.split(' ')[1]))];
+      
+      let html = `<button class="btn-filter active" onclick="setFilter('ALL', this)">Semua Varian (${dataVariants.length})</button>`;
+      uniqueTypes.forEach(type => {
+        html += `<button class="btn-filter" onclick="setFilter('${type}', this)">Varian ${type}</button>`;
+      });
+      container.innerHTML = html;
+    }
+
+    function renderKatalog() {
+      const container = document.getElementById('grid-mobil');
+      container.innerHTML = '';
+
+      const filteredData = currentFilter === 'ALL' 
+        ? dataVariants 
+        : dataVariants.filter(item => item.nama.toLowerCase().includes(currentFilter.toLowerCase()));
+
+      filteredData.forEach(mobil => {
+        const isUltimate = mobil.id.includes('ultimate');
+        const opsiWarnaMobil = isUltimate ? masterWarna : masterWarna.slice(0, 3);
+
+        const cardHTML = `
+          <div class="card">
+            <img id="img-${mobil.id}" src="${mobil.gambar}" alt="${mobil.nama}" />
+            <div class="card-body">
+              <div>
+                <span class="badge">Transmisi ${mobil.transmisi}</span>
+                <h3 style="margin: 5px 0; font-size: 16px;">${mobil.nama}</h3>
+                <span class="harga-box" id="price-box-${mobil.id}">${mobil.hargaStr}</span>
+                
+                <div class="color-section">
+                  <div class="color-title">
+                    Warna: <span id="color-name-${mobil.id}">Quartz White Pearl</span>
+                    <span id="white-note-${mobil.id}" class="white-note">+ Rp 1.500.000 (Khusus Putih)</span>
+                  </div>
+                  <div class="color-dots">
+                    ${opsiWarnaMobil.map((w, idx) => `
+                      <div 
+                        class="color-dot ${idx === 0 ? 'active' : ''}" 
+                        style="background-color: ${w.hex};" 
+                        title="${w.nama}"
+                        onclick="gantiWarna('${mobil.id}', '${w.gambar}', '${w.nama}',${w.extra}, ${mobil.hargaBase}, '${mobil.nama}', this)"
+                      ></div>
+                    `).join('')}
+                  </div>
+                </div>
+
+                <p style="font-size: 13px; color: #666; margin: 5px 0 0;">Velg: ${mobil.velg}</p>
+              </div>
+
+              <div class="btn-group-grid">
+                <button class="btn btn-detail btn-full" onclick="bukaModal('${mobil.id}')">Spesifikasi Brosur</button>
+                <button class="btn btn-pdf" onclick="bukaModalForm('brosur', '${mobil.nama}')">📄 Brosur PDF</button>
+                <button class="btn btn-kredit" onclick="bukaModalForm('kredit', '${mobil.nama}')">🧮 Simulasi Kredit</button>
+                <button id="btn-wa-${mobil.id}" class="btn btn-wa btn-full" onclick="hubungiSales('${mobil.nama}', 'Rp ${(mobil.hargaBase + 1500000).toLocaleString('id-ID')}', 'Quartz White Pearl')">Tanya Sales via WA</button>
+              </div>
+            </div>
+          </div>
+        `;
+        container.innerHTML += cardHTML;
+      });
+    }
+
+    function gantiWarna(idMobil, urlGambarBaru, namaWarna, biayaExtra, hargaDasar, namaVarian, elDot) {
+      const imgTarget = document.getElementById(`img-${idMobil}`);
+      const textTarget = document.getElementById(`color-name-${idMobil}`);
+      const noteTarget = document.getElementById(`white-note-${idMobil}`);
+      const priceTarget = document.getElementById(`price-box-${idMobil}`);
+      const btnWaTarget = document.getElementById(`btn-wa-${idMobil}`);
+
+      const totalHarga = hargaDasar + biayaExtra;
+      const totalHargaFormatted = "Rp " + totalHarga.toLocaleString('id-ID');
+
+      if (imgTarget) imgTarget.src = urlGambarBaru;
+      if (textTarget) textTarget.innerText = namaWarna;
+      if (priceTarget) priceTarget.innerText = totalHargaFormatted;
+
+      if (noteTarget) {
+        noteTarget.style.display = biayaExtra > 0 ? "block" : "none";
+      }
+
+      if (btnWaTarget) {
+        btnWaTarget.onclick = () => hubungiSales(namaVarian, totalHargaFormatted, namaWarna);
+      }
+
+      const parentDots = elDot.parentElement;
+      parentDots.querySelectorAll('.color-dot').forEach(dot => dot.classList.remove('active'));
+      elDot.classList.add('active');
+    }
+
+    function bukaModalForm(jenisRequest, namaVarian) {
+      document.getElementById('form-tipe-request').value = jenisRequest;
+      document.getElementById('form-varian-mobil').value = namaVarian;
+      document.getElementById('form-display-mobil').value = namaVarian;
+
+      const titleEl = document.getElementById('form-title');
+      titleEl.innerText = jenisRequest === 'brosur' ? "Download Brosur PDF" : "Minta Simulasi Kredit";
+
+      document.getElementById('modal-form-lead').classList.remove('hidden');
+    }
+
+    function tutupModalForm() {
+      document.getElementById('modal-form-lead').classList.add('hidden');
+    }
+
+    function kirimFormKeWA(e) {
+      e.preventDefault();
+      const jenis = document.getElementById('form-tipe-request').value;
+      const varian = document.getElementById('form-varian-mobil').value;
+      const nama = document.getElementById('form-nama-user').value;
+      const kota = document.getElementById('form-kota-user').value;
+
+      let pesan = jenis === 'brosur'
+        ? `Halo Lusel, saya ${nama} dari ${kota}. Boleh minta dikirimkan file Brosur PDF resmi untuk ${varian}? Terima kasih!`
+        : `Halo Lusel, saya ${nama} dari ${kota}. Saya berminat dengan ${varian}, boleh tolong dibuatkan perincian Simulasi Kredit DP/Angsurannya? Terima kasih!`;
+
+      window.open(`https://wa.me/${nomorWaSales}?text=${encodeURIComponent(pesan)}`, '_blank');
+      tutupModalForm();
+    }
+
+    function setFilter(varian, element) {
+      currentFilter = varian;
+      document.querySelectorAll('.btn-filter').forEach(btn => btn.classList.remove('active'));
+      element.classList.add('active');
+      renderKatalog();
+    }
+
+    function hubungiSales(namaVarian, harga, warna) {
+      const text = encodeURIComponent(`Halo Lusel, saya ingin bertanya tentang ketersediaan unit dan promo ${namaVarian} warna ${warna} (${harga}). Boleh minta simulasinya?`);
+      window.open(`https://wa.me/${nomorWaSales}?text=${text}`, '_blank');
+    }
+
+    function bukaModal(idMobil) {
+      const mobil = dataVariants.find(item => item.id === idMobil);
+      if (!mobil) return;
+
+      document.getElementById('modal-nama').innerText = mobil.nama;
+      document.getElementById('modal-harga').innerText = mobil.hargaStr;
+      
+      document.getElementById('m-dimensi').innerText = mobil.dimensi;
+      document.getElementById('m-gc').innerText = mobil.gc;
+      document.getElementById('m-transmisi').innerText = mobil.transmisi;
+      document.getElementById('m-cruise').innerText = mobil.cruise;
+      document.getElementById('m-velg').innerText = mobil.velg;
+      document.getElementById('m-lampu').innerText = mobil.lampu;
+      document.getElementById('m-foglamp').innerText = mobil.foglamp;
+      document.getElementById('m-antena').innerText = mobil.antena;
+      document.getElementById('m-dashboard').innerText = mobil.dashboard;
+      document.getElementById('m-setir').innerText = mobil.setir;
+      document.getElementById('m-headunit').innerText = mobil.headunit;
+      document.getElementById('m-ac').innerText = mobil.ac;
+      document.getElementById('m-rem-parkir').innerText = mobil.remParkir;
+      document.getElementById('m-wireless-charger').innerText = mobil.wirelessCharger;
+      document.getElementById('m-ayc').innerText = mobil.ayc;
+      document.getElementById('m-airbag').innerText = mobil.airbag;
+      document.getElementById('m-kamera').innerText = mobil.kamera;
+      document.getElementById('m-kos').innerText = mobil.kos;
+
+      document.getElementById('modal-btn-wa').onclick = () => hubungiSales(mobil.nama, mobil.hargaStr, "Standar");
+
+      document.getElementById('modal-detail').classList.remove('hidden');
+    }
+
+    function tutupModal() {
+      document.getElementById('modal-detail').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
