@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Katalog Mitsubishi - Interactive Catalog</title>
+  <title>Katalog Interaktif Mitsubishi</title>
   <style>
     * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     body { background-color: #f4f6f8; margin: 0; padding: 20px; color: #333; }
@@ -11,10 +11,16 @@
     
     header { text-align: center; border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 20px; }
     header h1 { margin: 0; color: #d00000; font-size: 24px; letter-spacing: 1px; }
-    
-    .filter-group { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 25px; }
-    .btn-filter { padding: 10px 18px; border: 1px solid #ddd; background: #fff; border-radius: 20px; cursor: pointer; font-weight: 600; transition: all 0.2s; }
-    .btn-filter.active { background: #d00000; color: #fff; border-color: #d00000; }
+
+    /* Navigasi Pilihan Model Utama */
+    .model-selector { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; padding: 12px; background: #fafafa; border-radius: 10px; border: 1px solid #eaeaea; }
+    .btn-model { padding: 10px 20px; border: 2px solid #d00000; background: #fff; color: #d00000; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; transition: all 0.2s; }
+    .btn-model:hover, .btn-model.active { background: #d00000; color: #fff; }
+
+    /* Filter Sub-Varian */
+    .filter-group { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 25px; }
+    .btn-filter { padding: 8px 16px; border: 1px solid #ddd; background: #fff; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 13px; transition: all 0.2s; }
+    .btn-filter.active { background: #333; color: #fff; border-color: #333; }
 
     .grid-mobil { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
     .card { border: 1px solid #eee; border-radius: 10px; overflow: hidden; background: #fff; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s; }
@@ -61,13 +67,18 @@
 
   <div class="container">
     <header>
-      <h1 id="catalog-title">MITSUBISHI CATALOG</h1>
-      <p style="margin: 5px 0 0; color: #666; font-size: 14px;">Pilih varian & spesifikasi sesuai kebutuhan Anda</p>
+      <h1 id="catalog-title">KATALOG MITSUBISHI</h1>
+      <p style="margin: 5px 0 0; color: #666; font-size: 14px;">Pilih model & varian mobil pilihan keluarga Anda</p>
     </header>
 
-    <div class="filter-group" id="filter-container">
-      <button class="btn-filter active" onclick="setFilter('ALL', this)">Semua Varian</button>
+    <!-- TOMBOL NAVIGASI PILIH MODEL MOBIL -->
+    <div class="model-selector">
+      <button class="btn-model active" onclick="muatModel('xpander-all-variants.json', this)">🚘 All New Xpander</button>
+      <button class="btn-model" onclick="muatModel('xpander-cross.json', this)">🏔️ Xpander Cross</button>
     </div>
+
+    <!-- SUB-FILTER VARIAN PER MODEL -->
+    <div class="filter-group" id="filter-container"></div>
 
     <div id="grid-mobil" class="grid-mobil"></div>
   </div>
@@ -129,11 +140,11 @@
       <table class="spec-table">
         <thead><tr><th colspan="2">⚙️ ENGINE & PERFORMANCE</th></tr></thead>
         <tbody>
-          <tr><td>Tipe Mesin</td><td>1.5L MIVEC DOHC 16-Valve</td></tr>
+          <tr><td>Tipe Mesin</td><td>1.5L MIVEC DOHC 16-Valve (Euro 4)</td></tr>
           <tr><td>Isi Silinder (Displacement)</td><td>1499 cc</td></tr>
           <tr><td>Daya Maksimum</td><td>77 kW (105 PS) / 6.000 rpm</td></tr>
           <tr><td>Torsi Maksimum</td><td>141 Nm / 4.000 rpm</td></tr>
-          <tr><td>Kapasitas Tangki BBM</td><td>45 Liter (Euro 4 Standard)</td></tr>
+          <tr><td>Kapasitas Tangki BBM</td><td>45 Liter</td></tr>
         </tbody>
       </table>
 
@@ -141,13 +152,14 @@
         <thead><tr><th colspan="2">🚘 EXTERIOR & INTERIOR</th></tr></thead>
         <tbody>
           <tr><td>Velg & Ukuran Ban</td><td id="m-velg"></td></tr>
-          <tr><td>Lampu Utama (Headlamp)</td><td id="m-lampu"></td></tr>
-          <tr><td>Lampu Kabut (Fog Lamp)</td><td id="m-foglamp"></td></tr>
-          <tr><td>Tipe Antena</td><td id="m-antena"></td></tr>
-          <tr><td>Dashboard & Door Trim</td><td id="m-dashboard"></td></tr>
-          <tr><td>Setir (Steering Wheel)</td><td id="m-setir"></td></tr>
-          <tr><td>Audio Head Unit</td><td id="m-headunit"></td></tr>
-          <tr><td>Sistem AC</td><td id="m-ac"></td></tr>
+          <tr><td>Lampu Utama (Headlamp)</td><td>LED Projector</td></tr>
+          <tr><td>Lampu Kabut (Fog Lamp)</td><td>LED Fog Lamp</td></tr>
+          <tr><td>Meter Cluster Display</td><td>8 Inch LCD Meter Cluster</td></tr>
+          <tr><td>Dashboard & Door Trim</td><td>Two-tone (Black and Burgundy) with Soft Pad</td></tr>
+          <tr><td>Setir (Steering Wheel)</td><td>3-Spoke, Leather-wrapped Steering Wheel with Hands Free Switch</td></tr>
+          <tr><td>Bahan Jok (Seat Material)</td><td id="m-jok"></td></tr>
+          <tr><td>Audio Head Unit</td><td>10 inch Audio Touchscreen with Wireless Smartphone Connectivity</td></tr>
+          <tr><td>Sistem AC</td><td>Digital Type</td></tr>
           <tr><td>Rem Parkir (Parking Brake)</td><td id="m-rem-parkir"></td></tr>
           <tr><td>Wireless Charger</td><td id="m-wireless-charger"></td></tr>
         </tbody>
@@ -156,12 +168,12 @@
       <table class="spec-table">
         <thead><tr><th colspan="2">🛡️ SAFETY & SECURITY</th></tr></thead>
         <tbody>
-          <tr><td>Active Yaw Control (AYC)</td><td id="m-ayc"></td></tr>
-          <tr><td>Sistem Airbag</td><td id="m-airbag"></td></tr>
+          <tr><td>Active Yaw Control (AYC)</td><td>Tersedia (Available)</td></tr>
+          <tr><td>Sistem Airbag</td><td>6 SRS Airbags</td></tr>
           <tr><td>Kamera Parkir / Monitor</td><td id="m-kamera"></td></tr>
           <tr><td>Fitur Pengereman (ABS, EBD, BA)</td><td>Tersedia (Available)</td></tr>
           <tr><td>Active Stability Control (ASC) & HSA</td><td>Tersedia (Available)</td></tr>
-          <tr><td>Keyless Operating System (KOS)</td><td id="m-kos"></td></tr>
+          <tr><td>Keyless Operating System (KOS)</td><td>Tersedia (Available)</td></tr>
         </tbody>
       </table>
 
@@ -174,22 +186,29 @@
 
   <script>
     const nomorWaSales = "6285169669017";
-    const dataJsonUrl = "xpander-all-variants.json";
 
     let masterWarna = [];
     let dataVariants = [];
     let currentFilter = 'ALL';
 
-    fetch(dataJsonUrl)
-      .then(response => response.json())
-      .then(data => {
-        masterWarna = data.masterWarna;
-        dataVariants = data.variants;
-        document.getElementById('catalog-title').innerText = `MITSUBISHI ${data.modelName.toUpperCase()} CATALOG`;
-        renderFilterButtons();
-        renderKatalog();
-      })
-      .catch(error => console.error("Gagal memuat data JSON:", error));
+    function muatModel(jsonFileName, btnElement) {
+      if (btnElement) {
+        document.querySelectorAll('.btn-model').forEach(b => b.classList.remove('active'));
+        btnElement.classList.add('active');
+      }
+
+      fetch(jsonFileName)
+        .then(response => response.json())
+        .then(data => {
+          masterWarna = data.masterWarna;
+          dataVariants = data.variants;
+          currentFilter = 'ALL';
+          document.getElementById('catalog-title').innerText = `KATALOG MITSUBISHI ${data.modelName.toUpperCase()}`;
+          renderFilterButtons();
+          renderKatalog();
+        })
+        .catch(error => console.error("Gagal memuat data JSON:", error));
+    }
 
     function renderFilterButtons() {
       const container = document.getElementById('filter-container');
@@ -211,9 +230,6 @@
         : dataVariants.filter(item => item.nama.toLowerCase().includes(currentFilter.toLowerCase()));
 
       filteredData.forEach(mobil => {
-        const isUltimate = mobil.id.includes('ultimate');
-        const opsiWarnaMobil = isUltimate ? masterWarna : masterWarna.slice(0, 3);
-
         const cardHTML = `
           <div class="card">
             <img id="img-${mobil.id}" src="${mobil.gambar}" alt="${mobil.nama}" />
@@ -229,7 +245,7 @@
                     <span id="white-note-${mobil.id}" class="white-note">+ Rp 1.500.000 (Khusus Putih)</span>
                   </div>
                   <div class="color-dots">
-                    ${opsiWarnaMobil.map((w, idx) => `
+                    ${masterWarna.map((w, idx) => `
                       <div 
                         class="color-dot ${idx === 0 ? 'active' : ''}" 
                         style="background-color: ${w.hex};" 
@@ -337,19 +353,12 @@
       document.getElementById('m-transmisi').innerText = mobil.transmisi;
       document.getElementById('m-cruise').innerText = mobil.cruise;
       document.getElementById('m-velg').innerText = mobil.velg;
-      document.getElementById('m-lampu').innerText = mobil.lampu;
-      document.getElementById('m-foglamp').innerText = mobil.foglamp;
-      document.getElementById('m-antena').innerText = mobil.antena;
-      document.getElementById('m-dashboard').innerText = mobil.dashboard;
-      document.getElementById('m-setir').innerText = mobil.setir;
-      document.getElementById('m-headunit').innerText = mobil.headunit;
-      document.getElementById('m-ac').innerText = mobil.ac;
-      document.getElementById('m-rem-parkir').innerText = mobil.remParkir;
-      document.getElementById('m-wireless-charger').innerText = mobil.wirelessCharger;
-      document.getElementById('m-ayc').innerText = mobil.ayc;
-      document.getElementById('m-airbag').innerText = mobil.airbag;
-      document.getElementById('m-kamera').innerText = mobil.kamera;
-      document.getElementById('m-kos').innerText = mobil.kos;
+      
+      // Mengisi spesifikasi dinamis jika ada field khusus jok / kamera
+      if (document.getElementById('m-jok')) document.getElementById('m-jok').innerText = mobil.jok || "High Grade Material";
+      if (document.getElementById('m-rem-parkir')) document.getElementById('m-rem-parkir').innerText = mobil.remParkir || "Standard";
+      if (document.getElementById('m-wireless-charger')) document.getElementById('m-wireless-charger').innerText = mobil.wirelessCharger || "Not Available";
+      if (document.getElementById('m-kamera')) document.getElementById('m-kamera').innerText = mobil.kamera || "Rear View Camera";
 
       document.getElementById('modal-btn-wa').onclick = () => hubungiSales(mobil.nama, mobil.hargaStr, "Standar");
 
@@ -359,6 +368,9 @@
     function tutupModal() {
       document.getElementById('modal-detail').classList.add('hidden');
     }
+
+    // Default memuat All New Xpander saat pertama dibuka
+    muatModel('xpander-all-variants.json', null);
   </script>
 </body>
 </html>
