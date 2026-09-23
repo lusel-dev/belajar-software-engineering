@@ -1,0 +1,68 @@
+{
+  "modelName": "Xpander Cross",
+  "surchargeWhite": 1500000,
+  "masterWarna": [
+    {
+      "kode": "white",
+      "hex": "#ffffff",
+      "nama": "Quartz White Pearl",
+      "gambar": "https://www.sunstarmotor.id/wp-content/uploads/New-Xpander-Cross-2025-5.jpg",
+      "extra": 1500000
+    },
+    {
+      "kode": "black",
+      "hex": "#111111",
+      "nama": "Jet Black Mica",
+      "gambar": "https://www.sunstarmotor.id/wp-content/uploads/elementor/thumbs/New-Xpander-Cross-2025-3-r62i8yycptfo9qgrix32tt2zrc4rc7fd8uh4f7bbts.jpg",
+      "extra": 0
+    },
+    {
+      "kode": "silver",
+      "hex": "#c0c0c0",
+      "nama": "Blade Silver Metallic",
+      "gambar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUU8lU5W85L7_eu8IX7EBC58uFGyjBG8_qyC8XNNnSjw&s=10",
+      "extra": 0
+    },
+    {
+      "kode": "gray",
+      "hex": "#555555",
+      "nama": "Graphite Gray Metallic",
+      "gambar": "https://www.sunstarmotor.id/wp-content/uploads/elementor/thumbs/New-Xpander-Cross-2025-4-r62i8zw6wngylcfedfhpeaugcq04jwj3kz4lwh9xnk.jpg",
+      "extra": 0
+    }
+  ],
+  "variants": [
+    {
+      "id": "xpander-cross-premium-cvt",
+      "nama": "Xpander Cross CVT Premium Package",
+      "hargaBase": 374000000,
+      "hargaStr": "Rp 374.000.000",
+      "transmisi": "CVT",
+      "dimensi": "4595 x 1790 x 1750 mm",
+      "gc": "220 mm",
+      "cruise": "Available",
+      "velg": "Two-tone Alloy Wheel (205/55 R17)",
+      "jok": "Synthetic Leather Seat with Heat Guard",
+      "remParkir": "Electric Parking Brake with Brake Auto Hold",
+      "wirelessCharger": "Available",
+      "kamera": "Multi Around Monitor (360 Camera)",
+      "gambar": "https://imgcdn.oto.com/large/gallery/exterior/28/2643/mitsubishi-xpander-cross-front-angle-low-view-950575.jpg"
+    },
+    {
+      "id": "xpander-cross-mt",
+      "nama": "Xpander Cross M/T",
+      "hargaBase": 348000000,
+      "hargaStr": "Rp 348.000.000",
+      "transmisi": "5 Speed M/T",
+      "dimensi": "4595 x 1790 x 1750 mm",
+      "gc": "220 mm",
+      "cruise": "Not Available",
+      "velg": "Two-tone Alloy Wheel (205/55 R17)",
+      "jok": "High Grade Fabric",
+      "remParkir": "Lever Type with Leather-wrapped",
+      "wirelessCharger": "Not Available",
+      "kamera": "Rear View Camera",
+      "gambar": "https://imgcdn.oto.com/large/gallery/exterior/28/2643/mitsubishi-xpander-cross-front-angle-low-view-950575.jpg"
+    }
+  ]
+}
