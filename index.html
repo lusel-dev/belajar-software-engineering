@@ -215,106 +215,130 @@
     }
 
     function renderFilterButtons() {
-      const container = document.getElementById('filter-container');
-      const uniqueTypes = [...new Set(dataVariants.map(item => {
-        const words = item.nama.split(' ');
-        return words[1] || words[0];
-      }))];
-      
-      let html = `<button class="btn-filter active" onclick="setFilter('ALL', this)">Semua Varian (${dataVariants.length})</button>`;
-      uniqueTypes.forEach(type => {
-        html += `<button class="btn-filter" onclick="setFilter('${type}', this)">Varian ${type}</button>`;
-      });
-      container.innerHTML = html;
+  const container = document.getElementById('filter-container');
+  
+  // Ambil tipe unik dengan cara melewati nama model utamanya
+  const uniqueTypes = [...new Set(dataVariants.map(item => {
+    const name = item.nama.toLowerCase();
+    if (name.includes('dakar')) return 'Dakar';
+    if (name.includes('exceed')) return 'Exceed';
+    if (name.includes('glx')) return 'GLX';
+    if (name.includes('ultimate')) return 'Ultimate';
+    if (name.includes('cross')) return 'Cross';
+    
+    // Fallback jika tidak ada kata kunci khusus
+    const words = item.nama.split(' ');
+    return words[1] || words[0];
+  }))];
+  
+  let html = `<button class="btn-filter active" onclick="setFilter('ALL', this)">Semua Varian (${dataVariants.length})</button>`;
+  uniqueTypes.forEach(type => {
+    html += `<button class="btn-filter" onclick="setFilter('${type}', this)">Varian ${type}</button>`;
+  });
+  container.innerHTML = html;
+}
+
+function renderKatalog() {
+  const container = document.getElementById('grid-mobil');
+  container.innerHTML = '';
+
+  const filteredData = currentFilter === 'ALL' 
+    ? dataVariants 
+    : dataVariants.filter(item => item.nama.toLowerCase().includes(currentFilter.toLowerCase()) || item.id.toLowerCase().includes(currentFilter.toLowerCase()));
+
+  filteredData.forEach(mobil => {
+    // 1. Inisialisasi state jika belum ada
+    if (!selectedState[mobil.id]) {
+      selectedState[mobil.id] = { 
+        extraWarna: masterWarna[0]?.extra || 0, 
+        extraPkg: 0, 
+        namaWarna: masterWarna[0]?.nama || 'Quartz White Pearl', 
+        namaPkg: 'Standar' 
+      };
     }
 
-    function renderKatalog() {
-      const container = document.getElementById('grid-mobil');
-      container.innerHTML = '';
+    // 2. Deteksi Badge Kategori (4x4, Hybrid, atau ICE)
+    const is4x4 = mobil.nama.toLowerCase().includes('4x4');
+    const isHev = mobil.id.includes('hev');
+    
+    let badgeClass = 'badge';
+    let badgeText = `⛽ Transmisi ${mobil.transmisi ? mobil.transmisi.split(' ')[0] : 'AT/MT'}`;
+    
+    if (is4x4) {
+      badgeClass = 'badge badge-4x4';
+      badgeText = '🏔️ Super Select 4WD';
+    } else if (isHev) {
+      badgeClass = 'badge badge-hev';
+      badgeText = '⚡ Hybrid System (HEV)';
+    }
 
-      const filteredData = currentFilter === 'ALL' 
-        ? dataVariants 
-        : dataVariants.filter(item => item.nama.toLowerCase().includes(currentFilter.toLowerCase()) || item.id.toLowerCase().includes(currentFilter.toLowerCase()));
+    // 3. Tampilan Info Mesin Ringkas
+    const infoMesinRingkas = isHev 
+      ? '<b>Mesin:</b> 1.6L Hybrid + Motor Listrik (Torsi 255 Nm)' 
+      : `<b>Mesin:</b> ${mobil.mesin || '2.4L MIVEC Turbo Diesel / 1.5L MIVEC'}`;
 
-      filteredData.forEach(mobil => {
-        if (!selectedState[mobil.id]) {
-          selectedState[mobil.id] = { 
-            extraWarna: masterWarna[0]?.extra || 0, 
-            extraPkg: 0, 
-            namaWarna: masterWarna[0]?.nama || 'Quartz White Pearl', 
-            namaPkg: 'Standar' 
-          };
-        }
+    // 4. Filter Warna (Mencegah error jika masterWarna kosong)
+    const isExceed = mobil.id.includes('exceed');
+    const warnaTersedia = isExceed 
+      ? masterWarna.filter(w => !w.requiresPremium)
+      : masterWarna;
 
-        const isHev = mobil.id.includes('hev');
-        const isExceed = mobil.id.includes('exceed');
-        
-        const badgeClass = isHev ? 'badge badge-hev' : 'badge';
-        const badgeText = isHev ? '⚡ Hybrid System (HEV)' : `⛽ Transmisi ${mobil.transmisi.split(' ')[0]}`;
-        const infoMesinRingkas = isHev 
-          ? '<b>Mesin:</b> 1.6L Hybrid + Motor Listrik (Torsi 255 Nm)' 
-          : `<b>Mesin:</b> ${mobil.mesin || '1.5L MIVEC DOHC 16-Valve'}`;
+    // 5. Render HTML Kartu Mobil
+    const cardHTML = `
+      <div class="card">
+        <img id="img-${mobil.id}" src="${mobil.gambar}" alt="${mobil.nama}" />
+        <div class="card-body">
+          <div>
+            <span class="${badgeClass}">${badgeText}</span>
+            <h3 style="margin: 5px 0; font-size: 16px;">${mobil.nama}</h3>
+            <span class="harga-box" id="price-box-${mobil.id}">${hitungHargaStr(mobil.hargaBase, selectedState[mobil.id].extraWarna, selectedState[mobil.id].extraPkg)}</span>
+            
+            <div style="font-size: 12px; background: #f0f4f8; padding: 6px 10px; border-radius: 6px; margin: 8px 0; color: #2c3e50;">
+              ${infoMesinRingkas}
+            </div>
 
-        const warnaTersedia = isExceed 
-          ? masterWarna.filter(w => !w.requiresPremium)
-          : masterWarna;
-
-        const cardHTML = `
-          <div class="card">
-            <img id="img-${mobil.id}" src="${mobil.gambar}" alt="${mobil.nama}" />
-            <div class="card-body">
-              <div>
-                <span class="${badgeClass}">${badgeText}</span>
-                <h3 style="margin: 5px 0; font-size: 16px;">${mobil.nama}</h3>
-                <span class="harga-box" id="price-box-${mobil.id}">${hitungHargaStr(mobil.hargaBase, selectedState[mobil.id].extraWarna, selectedState[mobil.id].extraPkg)}</span>
-                
-                <div style="font-size: 12px; background: #f0f4f8; padding: 6px 10px; border-radius: 6px; margin: 8px 0; color: #2c3e50;">
-                  ${infoMesinRingkas}
+            ${mobil.hasPackage ? `
+              <div class="pkg-section">
+                <div class="pkg-title">Pilihan Paket:</div>
+                <div class="pkg-options">
+                  <button class="btn-pkg ${selectedState[mobil.id].extraPkg === 0 ? 'active' : ''}" onclick="pilihPaket('${mobil.id}', 0, 'Standar', ${mobil.hargaBase}, '${mobil.nama}', this)">Standard</button>
+                  <button class="btn-pkg ${selectedState[mobil.id].extraPkg === 30000000 ? 'active' : ''}" onclick="pilihPaket('${mobil.id}', 30000000, 'Premium Package', ${mobil.hargaBase}, '${mobil.nama}', this)">Premium (+30 Juta)</button>
                 </div>
-
-                ${mobil.hasPackage ? `
-                  <div class="pkg-section">
-                    <div class="pkg-title">Pilihan Paket:</div>
-                    <div class="pkg-options">
-                      <button class="btn-pkg ${selectedState[mobil.id].extraPkg === 0 ? 'active' : ''}" onclick="pilihPaket('${mobil.id}', 0, 'Standar', ${mobil.hargaBase}, '${mobil.nama}', this)">Standard</button>
-                      <button class="btn-pkg ${selectedState[mobil.id].extraPkg === 30000000 ? 'active' : ''}" onclick="pilihPaket('${mobil.id}', 30000000, 'Premium Package', ${mobil.hargaBase}, '${mobil.nama}', this)">Premium (+30 Juta)</button>
-                    </div>
-                  </div>
-                ` : ''}
-
-                <div class="color-section">
-                  <div class="color-title">
-                    Warna: <span id="color-name-${mobil.id}">${selectedState[mobil.id].namaWarna}</span>
-                    <span id="white-note-${mobil.id}" class="white-note" style="${selectedState[mobil.id].extraWarna > 0 ? '' : 'display:none;'}">+ Rp 1.500.000 (Khusus Putih)</span>
-                  </div>
-                  <div class="color-dots">
-                    ${warnaTersedia.map((w, idx) => `
-                      <div 
-                        class="color-dot ${w.nama === selectedState[mobil.id].namaWarna ? 'active' : ''}" 
-                        style="background-color: ${w.hex};" 
-                        title="${w.nama}"
-                        onclick="gantiWarna('${mobil.id}', '${w.gambar}', '${w.nama}', ${w.extra},${mobil.hargaBase}, '${mobil.nama}', this,${w.requiresPremium || false})"
-                      ></div>
-                    `).join('')}
-                  </div>
-                </div>
-
-                <p style="font-size: 13px; color: #666; margin: 5px 0 0;">Velg: ${mobil.velg}</p>
               </div>
+            ` : ''}
 
-              <div class="btn-group-grid">
-                <button class="btn btn-detail btn-full" onclick="bukaModal('${mobil.id}')">Spesifikasi Brosur</button>
-                <button class="btn btn-pdf" onclick="bukaModalForm('brosur', '${mobil.nama}')">📄 Brosur PDF</button>
-                <button class="btn btn-kredit" onclick="bukaModalForm('kredit', '${mobil.nama}')">🧮 Simulasi Kredit</button>
-                <button id="btn-wa-${mobil.id}" class="btn btn-wa btn-full" onclick="hubungiSales('${mobil.nama}', '${hitungHargaStr(mobil.hargaBase, selectedState[mobil.id].extraWarna, selectedState[mobil.id].extraPkg)}', '${selectedState[mobil.id].namaWarna}')">Tanya Sales via WA</button>
+            <div class="color-section">
+              <div class="color-title">
+                Warna: <span id="color-name-${mobil.id}">${selectedState[mobil.id].namaWarna}</span>
+                <span id="white-note-${mobil.id}" class="white-note" style="${selectedState[mobil.id].extraWarna > 0 ? '' : 'display:none;'}">+ Rp ${selectedState[mobil.id].extraWarna.toLocaleString('id-ID')}</span>
+              </div>
+              <div class="color-dots">
+                ${warnaTersedia.map((w) => `
+                  <div 
+                    class="color-dot ${w.nama === selectedState[mobil.id].namaWarna ? 'active' : ''}" 
+                    style="background-color: ${w.hex};" 
+                    title="${w.nama}"
+                    onclick="gantiWarna('${mobil.id}', '${w.gambar}', '${w.nama}', ${w.extra},${mobil.hargaBase}, '${mobil.nama}', this,${w.requiresPremium || false})"
+                  ></div>
+                `).join('')}
               </div>
             </div>
-          </div>
-        `;
-        container.innerHTML += cardHTML;
-      });
-    }
 
+            <p style="font-size: 13px; color: #666; margin: 5px 0 0;">Velg: ${mobil.velg || '-'}</p>
+          </div>
+
+          <div class="btn-group-grid">
+            <button class="btn btn-detail btn-full" onclick="bukaModal('${mobil.id}')">Spesifikasi Brosur</button>
+            <button class="btn btn-pdf" onclick="bukaModalForm('brosur', '${mobil.nama}')">📄 Brosur PDF</button>
+            <button class="btn btn-kredit" onclick="bukaModalForm('kredit', '${mobil.nama}')">🧮 Simulasi Kredit</button>
+            <button id="btn-wa-${mobil.id}" class="btn btn-wa btn-full" onclick="hubungiSales('${mobil.nama}', '${hitungHargaStr(mobil.hargaBase, selectedState[mobil.id].extraWarna, selectedState[mobil.id].extraPkg)}', '${selectedState[mobil.id].namaWarna}')">Tanya Sales via WA</button>
+          </div>
+        </div>
+      </div>
+    `;
+    container.innerHTML += cardHTML;
+  });
+}
     function hitungHargaStr(base, extraWarna, extraPkg) {
       return "Rp " + (base + extraWarna + extraPkg).toLocaleString('id-ID');
     }
