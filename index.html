@@ -85,6 +85,7 @@
       <button class="btn-model" onclick="muatModel('xforce.json', this)">⚡ Mitsubishi Xforce</button>
       <button class="btn-model" onclick="muatModel('pajero-sport.json', this)">🦁 Pajero Sport</button>
       <button class="btn-model" onclick="muatModel('destinator.json', this)">🧭 Mitsubishi Destinator</button>
+      <button class="btn-model" onclick="muatModel('l300.json', this)">🚚 Colt L300</button>
     </div>
 
     <!-- SUB-FILTER VARIAN PER MODEL -->
@@ -232,6 +233,8 @@
 
       const uniqueTypes = [...new Set(dataVariants.map(item => {
         const name = item.nama.toLowerCase();
+        if (name.includes('pick up')) return 'Pick Up';
+        if (name.includes('chassis')) return 'Chassis';
         if (name.includes('ultimate')) return 'Ultimate';
         if (name.includes('exceed')) return 'Exceed';
         if (name.includes('gls')) return 'GLS';
@@ -268,19 +271,23 @@
           selectedState[mobil.id] = { 
             extraWarna: masterWarna[0]?.extra || 0, 
             extraPkg: 0, 
-            namaWarna: masterWarna[0]?.nama || 'Quartz White Pearl', 
+            namaWarna: masterWarna[0]?.nama || 'Black Solid', 
             namaPkg: 'Standar' 
           };
         }
 
         const is4x4 = mobil.nama.toLowerCase().includes('4x4');
         const isHev = mobil.id.includes('hev');
+        const isL300 = mobil.id.includes('l300');
         const isTurbo = mobil.mesin && mobil.mesin.toLowerCase().includes('turbo');
         
         let badgeClass = 'badge';
         let badgeText = `⛽ Transmisi ${mobil.transmisi ? mobil.transmisi.split(' ')[0] : 'AT/MT'}`;
         
-        if (is4x4) {
+        if (isL300) {
+          badgeClass = 'badge badge-turbo';
+          badgeText = '🚚 Euro 4 Diesel Turbo Intercooler';
+        } else if (is4x4) {
           badgeClass = 'badge badge-4x4';
           badgeText = '🏔️ Super Select 4WD';
         } else if (isHev) {
