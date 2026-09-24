@@ -31,6 +31,7 @@
     .badge { display: inline-block; background: #e6f4ea; color: #137333; font-size: 12px; font-weight: bold; padding: 4px 8px; border-radius: 4px; margin-bottom: 8px; }
     .badge-hev { background: #e3f2fd; color: #0d47a1; }
     .badge-4x4 { background: #fee2e2; color: #991b1b; }
+    .badge-turbo { background: #fff3cd; color: #856404; }
     .harga-box { font-size: 17px; font-weight: bold; color: #d00000; margin: 6px 0; display: block; }
 
     .color-section, .pkg-section { margin: 10px 0; background: #fafafa; padding: 10px; border-radius: 6px; border: 1px solid #f0f0f0; }
@@ -83,6 +84,7 @@
       <button class="btn-model" onclick="muatModel('xpander-cross.json', this)">🏔️ Xpander Cross</button>
       <button class="btn-model" onclick="muatModel('xforce.json', this)">⚡ Mitsubishi Xforce</button>
       <button class="btn-model" onclick="muatModel('pajero-sport.json', this)">🦁 Pajero Sport</button>
+      <button class="btn-model" onclick="muatModel('destinator.json', this)">🧭 Mitsubishi Destinator</button>
     </div>
 
     <!-- SUB-FILTER VARIAN PER MODEL -->
@@ -206,7 +208,6 @@
         .then(response => response.json())
         .then(data => {
           masterWarna = data.masterWarna || [];
-          // Auto-detect: baca data.variants ATAU data.dataMobil jika penamaan di JSON berbeda
           dataVariants = data.variants || data.dataMobil || [];
           currentFilter = 'ALL';
           
@@ -229,13 +230,13 @@
         return;
       }
 
-      // Ambil kata kunci unik untuk sub-filter
       const uniqueTypes = [...new Set(dataVariants.map(item => {
         const name = item.nama.toLowerCase();
-        if (name.includes('dakar')) return 'Dakar';
-        if (name.includes('exceed')) return 'Exceed';
-        if (name.includes('glx')) return 'GLX';
         if (name.includes('ultimate')) return 'Ultimate';
+        if (name.includes('exceed')) return 'Exceed';
+        if (name.includes('gls')) return 'GLS';
+        if (name.includes('dakar')) return 'Dakar';
+        if (name.includes('glx')) return 'GLX';
         if (name.includes('cross')) return 'Cross';
         
         const words = item.nama.split(' ');
@@ -274,6 +275,7 @@
 
         const is4x4 = mobil.nama.toLowerCase().includes('4x4');
         const isHev = mobil.id.includes('hev');
+        const isTurbo = mobil.mesin && mobil.mesin.toLowerCase().includes('turbo');
         
         let badgeClass = 'badge';
         let badgeText = `⛽ Transmisi ${mobil.transmisi ? mobil.transmisi.split(' ')[0] : 'AT/MT'}`;
@@ -284,11 +286,14 @@
         } else if (isHev) {
           badgeClass = 'badge badge-hev';
           badgeText = '⚡ Hybrid System (HEV)';
+        } else if (isTurbo) {
+          badgeClass = 'badge badge-turbo';
+          badgeText = '🏎️ 1.5L Turbo Engine';
         }
 
         const infoMesinRingkas = isHev 
           ? '<b>Mesin:</b> 1.6L Hybrid + Motor Listrik (Torsi 255 Nm)' 
-          : `<b>Mesin:</b> ${mobil.mesin || '2.4L MIVEC Turbo Diesel / 1.5L MIVEC'}`;
+          : `<b>Mesin:</b> ${mobil.mesin || '1.5L MIVEC'}`;
 
         const isExceed = mobil.id.includes('exceed');
         const warnaTersedia = isExceed 
@@ -473,10 +478,10 @@
       document.getElementById('m-velg').innerText = mobil.velg || "-";
       
       if (document.getElementById('m-drivemode')) document.getElementById('m-drivemode').innerText = mobil.drivemode || "Standard";
-      if (document.getElementById('m-mesin')) document.getElementById('m-mesin').innerText = mobil.mesin || "2.4L MIVEC Turbo Diesel";
-      if (document.getElementById('m-cc')) document.getElementById('m-cc').innerText = mobil.cc || "2442 cc";
-      if (document.getElementById('m-power-engine')) document.getElementById('m-power-engine').innerText = mobil.powerEngine || "181 PS";
-      if (document.getElementById('m-torque-engine')) document.getElementById('m-torque-engine').innerText = mobil.torqueEngine || "430 Nm";
+      if (document.getElementById('m-mesin')) document.getElementById('m-mesin').innerText = mobil.mesin || "-";
+      if (document.getElementById('m-cc')) document.getElementById('m-cc').innerText = mobil.cc || "-";
+      if (document.getElementById('m-power-engine')) document.getElementById('m-power-engine').innerText = mobil.powerEngine || "-";
+      if (document.getElementById('m-torque-engine')) document.getElementById('m-torque-engine').innerText = mobil.torqueEngine || "-";
       if (document.getElementById('m-electric')) document.getElementById('m-electric').innerText = mobil.electric || "Tidak Tersedia";
       if (document.getElementById('m-roof')) document.getElementById('m-roof').innerText = mobil.roof || "Standard Roof";
       if (document.getElementById('m-metercluster')) document.getElementById('m-metercluster').innerText = mobil.metercluster || "-";
@@ -485,8 +490,8 @@
       if (document.getElementById('m-jok')) document.getElementById('m-jok').innerText = mobil.jok || "High Grade Material";
       if (document.getElementById('m-ac')) document.getElementById('m-ac').innerText = mobil.ac || "Digital Type";
       if (document.getElementById('m-fitur-mewah')) document.getElementById('m-fitur-mewah').innerText = mobil.fiturmewah || "-";
-      if (document.getElementById('m-airbags')) document.getElementById('m-airbags').innerText = mobil.airbags || "7 SRS Airbags";
-      if (document.getElementById('m-rem-parkir')) document.getElementById('m-rem-parkir').innerText = mobil.remParkir || mobil.parkingBrake || "Electric Parking Brake";
+      if (document.getElementById('m-airbags')) document.getElementById('m-airbags').innerText = mobil.airbags || "-";
+      if (document.getElementById('m-rem-parkir')) document.getElementById('m-rem-parkir').innerText = mobil.remParkir || mobil.parkingBrake || "Electronic Parking Brake";
       if (document.getElementById('m-kamera')) document.getElementById('m-kamera').innerText = mobil.kamera || "Rear View Camera";
       if (document.getElementById('m-diamond-sense')) document.getElementById('m-diamond-sense').innerText = mobil.diamondsense || "Tersedia";
 
