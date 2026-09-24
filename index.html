@@ -30,6 +30,7 @@
     
     .badge { display: inline-block; background: #e6f4ea; color: #137333; font-size: 12px; font-weight: bold; padding: 4px 8px; border-radius: 4px; margin-bottom: 8px; }
     .badge-hev { background: #e3f2fd; color: #0d47a1; }
+    .badge-4x4 { background: #fee2e2; color: #991b1b; }
     .harga-box { font-size: 17px; font-weight: bold; color: #d00000; margin: 6px 0; display: block; }
 
     .color-section, .pkg-section { margin: 10px 0; background: #fafafa; padding: 10px; border-radius: 6px; border: 1px solid #f0f0f0; }
@@ -77,12 +78,12 @@
     </header>
 
     <!-- TOMBOL NAVIGASI PILIH MODEL MOBIL -->
-<div class="model-selector">
-  <button class="btn-model active" onclick="muatModel('xpander-all-variants.json', this)">🚘 All New Xpander</button>
-  <button class="btn-model" onclick="muatModel('xpander-cross.json', this)">🏔️ Xpander Cross</button>
-  <button class="btn-model" onclick="muatModel('xforce.json', this)">⚡ Mitsubishi Xforce</button>
-  <button class="btn-model" onclick="muatModel('pajero-sport.json', this)">🦁 Pajero Sport</button>
-</div>
+    <div class="model-selector">
+      <button class="btn-model active" onclick="muatModel('xpander-all-variants.json', this)">🚘 All New Xpander</button>
+      <button class="btn-model" onclick="muatModel('xpander-cross.json', this)">🏔️ Xpander Cross</button>
+      <button class="btn-model" onclick="muatModel('xforce.json', this)">⚡ Mitsubishi Xforce</button>
+      <button class="btn-model" onclick="muatModel('pajero-sport.json', this)">🦁 Pajero Sport</button>
+    </div>
 
     <!-- SUB-FILTER VARIAN PER MODEL -->
     <div class="filter-group" id="filter-container"></div>
@@ -204,141 +205,152 @@
       fetch(jsonFileName)
         .then(response => response.json())
         .then(data => {
-          masterWarna = data.masterWarna;
-          dataVariants = data.variants;
+          masterWarna = data.masterWarna || [];
+          // Auto-detect: baca data.variants ATAU data.dataMobil jika penamaan di JSON berbeda
+          dataVariants = data.variants || data.dataMobil || [];
           currentFilter = 'ALL';
-          document.getElementById('catalog-title').innerText = `KATALOG MITSUBISHI ${data.modelName.toUpperCase()}`;
+          
+          const modelTitle = data.modelName || 'MITSUBISHI';
+          document.getElementById('catalog-title').innerText = `KATALOG MITSUBISHI ${modelTitle.toUpperCase()}`;
+          
           renderFilterButtons();
           renderKatalog();
         })
-        .catch(error => console.error("Gagal memuat data JSON:", error));
+        .catch(error => {
+          console.error("Gagal memuat data JSON:", error);
+          alert(`Gagal memuat file ${jsonFileName}. Pastikan nama file sudah sesuai.`);
+        });
     }
 
     function renderFilterButtons() {
-  const container = document.getElementById('filter-container');
-  
-  // Ambil tipe unik dengan cara melewati nama model utamanya
-  const uniqueTypes = [...new Set(dataVariants.map(item => {
-    const name = item.nama.toLowerCase();
-    if (name.includes('dakar')) return 'Dakar';
-    if (name.includes('exceed')) return 'Exceed';
-    if (name.includes('glx')) return 'GLX';
-    if (name.includes('ultimate')) return 'Ultimate';
-    if (name.includes('cross')) return 'Cross';
-    
-    // Fallback jika tidak ada kata kunci khusus
-    const words = item.nama.split(' ');
-    return words[1] || words[0];
-  }))];
-  
-  let html = `<button class="btn-filter active" onclick="setFilter('ALL', this)">Semua Varian (${dataVariants.length})</button>`;
-  uniqueTypes.forEach(type => {
-    html += `<button class="btn-filter" onclick="setFilter('${type}', this)">Varian ${type}</button>`;
-  });
-  container.innerHTML = html;
-}
+      const container = document.getElementById('filter-container');
+      if (!dataVariants || dataVariants.length === 0) {
+        container.innerHTML = '';
+        return;
+      }
 
-function renderKatalog() {
-  const container = document.getElementById('grid-mobil');
-  container.innerHTML = '';
-
-  const filteredData = currentFilter === 'ALL' 
-    ? dataVariants 
-    : dataVariants.filter(item => item.nama.toLowerCase().includes(currentFilter.toLowerCase()) || item.id.toLowerCase().includes(currentFilter.toLowerCase()));
-
-  filteredData.forEach(mobil => {
-    // 1. Inisialisasi state jika belum ada
-    if (!selectedState[mobil.id]) {
-      selectedState[mobil.id] = { 
-        extraWarna: masterWarna[0]?.extra || 0, 
-        extraPkg: 0, 
-        namaWarna: masterWarna[0]?.nama || 'Quartz White Pearl', 
-        namaPkg: 'Standar' 
-      };
+      // Ambil kata kunci unik untuk sub-filter
+      const uniqueTypes = [...new Set(dataVariants.map(item => {
+        const name = item.nama.toLowerCase();
+        if (name.includes('dakar')) return 'Dakar';
+        if (name.includes('exceed')) return 'Exceed';
+        if (name.includes('glx')) return 'GLX';
+        if (name.includes('ultimate')) return 'Ultimate';
+        if (name.includes('cross')) return 'Cross';
+        
+        const words = item.nama.split(' ');
+        return words[1] || words[0];
+      }))];
+      
+      let html = `<button class="btn-filter active" onclick="setFilter('ALL', this)">Semua Varian (${dataVariants.length})</button>`;
+      uniqueTypes.forEach(type => {
+        html += `<button class="btn-filter" onclick="setFilter('${type}', this)">Varian ${type}</button>`;
+      });
+      container.innerHTML = html;
     }
 
-    // 2. Deteksi Badge Kategori (4x4, Hybrid, atau ICE)
-    const is4x4 = mobil.nama.toLowerCase().includes('4x4');
-    const isHev = mobil.id.includes('hev');
-    
-    let badgeClass = 'badge';
-    let badgeText = `⛽ Transmisi ${mobil.transmisi ? mobil.transmisi.split(' ')[0] : 'AT/MT'}`;
-    
-    if (is4x4) {
-      badgeClass = 'badge badge-4x4';
-      badgeText = '🏔️ Super Select 4WD';
-    } else if (isHev) {
-      badgeClass = 'badge badge-hev';
-      badgeText = '⚡ Hybrid System (HEV)';
-    }
+    function renderKatalog() {
+      const container = document.getElementById('grid-mobil');
+      container.innerHTML = '';
 
-    // 3. Tampilan Info Mesin Ringkas
-    const infoMesinRingkas = isHev 
-      ? '<b>Mesin:</b> 1.6L Hybrid + Motor Listrik (Torsi 255 Nm)' 
-      : `<b>Mesin:</b> ${mobil.mesin || '2.4L MIVEC Turbo Diesel / 1.5L MIVEC'}`;
+      if (!dataVariants || dataVariants.length === 0) {
+        container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #888;">Data varian tidak ditemukan.</p>';
+        return;
+      }
 
-    // 4. Filter Warna (Mencegah error jika masterWarna kosong)
-    const isExceed = mobil.id.includes('exceed');
-    const warnaTersedia = isExceed 
-      ? masterWarna.filter(w => !w.requiresPremium)
-      : masterWarna;
+      const filteredData = currentFilter === 'ALL' 
+        ? dataVariants 
+        : dataVariants.filter(item => item.nama.toLowerCase().includes(currentFilter.toLowerCase()) || item.id.toLowerCase().includes(currentFilter.toLowerCase()));
 
-    // 5. Render HTML Kartu Mobil
-    const cardHTML = `
-      <div class="card">
-        <img id="img-${mobil.id}" src="${mobil.gambar}" alt="${mobil.nama}" />
-        <div class="card-body">
-          <div>
-            <span class="${badgeClass}">${badgeText}</span>
-            <h3 style="margin: 5px 0; font-size: 16px;">${mobil.nama}</h3>
-            <span class="harga-box" id="price-box-${mobil.id}">${hitungHargaStr(mobil.hargaBase, selectedState[mobil.id].extraWarna, selectedState[mobil.id].extraPkg)}</span>
-            
-            <div style="font-size: 12px; background: #f0f4f8; padding: 6px 10px; border-radius: 6px; margin: 8px 0; color: #2c3e50;">
-              ${infoMesinRingkas}
-            </div>
+      filteredData.forEach(mobil => {
+        if (!selectedState[mobil.id]) {
+          selectedState[mobil.id] = { 
+            extraWarna: masterWarna[0]?.extra || 0, 
+            extraPkg: 0, 
+            namaWarna: masterWarna[0]?.nama || 'Quartz White Pearl', 
+            namaPkg: 'Standar' 
+          };
+        }
 
-            ${mobil.hasPackage ? `
-              <div class="pkg-section">
-                <div class="pkg-title">Pilihan Paket:</div>
-                <div class="pkg-options">
-                  <button class="btn-pkg ${selectedState[mobil.id].extraPkg === 0 ? 'active' : ''}" onclick="pilihPaket('${mobil.id}', 0, 'Standar', ${mobil.hargaBase}, '${mobil.nama}', this)">Standard</button>
-                  <button class="btn-pkg ${selectedState[mobil.id].extraPkg === 30000000 ? 'active' : ''}" onclick="pilihPaket('${mobil.id}', 30000000, 'Premium Package', ${mobil.hargaBase}, '${mobil.nama}', this)">Premium (+30 Juta)</button>
+        const is4x4 = mobil.nama.toLowerCase().includes('4x4');
+        const isHev = mobil.id.includes('hev');
+        
+        let badgeClass = 'badge';
+        let badgeText = `⛽ Transmisi ${mobil.transmisi ? mobil.transmisi.split(' ')[0] : 'AT/MT'}`;
+        
+        if (is4x4) {
+          badgeClass = 'badge badge-4x4';
+          badgeText = '🏔️ Super Select 4WD';
+        } else if (isHev) {
+          badgeClass = 'badge badge-hev';
+          badgeText = '⚡ Hybrid System (HEV)';
+        }
+
+        const infoMesinRingkas = isHev 
+          ? '<b>Mesin:</b> 1.6L Hybrid + Motor Listrik (Torsi 255 Nm)' 
+          : `<b>Mesin:</b> ${mobil.mesin || '2.4L MIVEC Turbo Diesel / 1.5L MIVEC'}`;
+
+        const isExceed = mobil.id.includes('exceed');
+        const warnaTersedia = isExceed 
+          ? masterWarna.filter(w => !w.requiresPremium)
+          : masterWarna;
+
+        const cardHTML = `
+          <div class="card">
+            <img id="img-${mobil.id}" src="${mobil.gambar}" alt="${mobil.nama}" />
+            <div class="card-body">
+              <div>
+                <span class="${badgeClass}">${badgeText}</span>
+                <h3 style="margin: 5px 0; font-size: 16px;">${mobil.nama}</h3>
+                <span class="harga-box" id="price-box-${mobil.id}">${hitungHargaStr(mobil.hargaBase, selectedState[mobil.id].extraWarna, selectedState[mobil.id].extraPkg)}</span>
+                
+                <div style="font-size: 12px; background: #f0f4f8; padding: 6px 10px; border-radius: 6px; margin: 8px 0; color: #2c3e50;">
+                  ${infoMesinRingkas}
                 </div>
-              </div>
-            ` : ''}
 
-            <div class="color-section">
-              <div class="color-title">
-                Warna: <span id="color-name-${mobil.id}">${selectedState[mobil.id].namaWarna}</span>
-                <span id="white-note-${mobil.id}" class="white-note" style="${selectedState[mobil.id].extraWarna > 0 ? '' : 'display:none;'}">+ Rp ${selectedState[mobil.id].extraWarna.toLocaleString('id-ID')}</span>
+                ${mobil.hasPackage ? `
+                  <div class="pkg-section">
+                    <div class="pkg-title">Pilihan Paket:</div>
+                    <div class="pkg-options">
+                      <button class="btn-pkg ${selectedState[mobil.id].extraPkg === 0 ? 'active' : ''}" onclick="pilihPaket('${mobil.id}', 0, 'Standar', ${mobil.hargaBase}, '${mobil.nama}', this)">Standard</button>
+                      <button class="btn-pkg ${selectedState[mobil.id].extraPkg === 30000000 ? 'active' : ''}" onclick="pilihPaket('${mobil.id}', 30000000, 'Premium Package', ${mobil.hargaBase}, '${mobil.nama}', this)">Premium (+30 Juta)</button>
+                    </div>
+                  </div>
+                ` : ''}
+
+                <div class="color-section">
+                  <div class="color-title">
+                    Warna: <span id="color-name-${mobil.id}">${selectedState[mobil.id].namaWarna}</span>
+                    <span id="white-note-${mobil.id}" class="white-note" style="${selectedState[mobil.id].extraWarna > 0 ? '' : 'display:none;'}">+ Rp ${selectedState[mobil.id].extraWarna.toLocaleString('id-ID')}</span>
+                  </div>
+                  <div class="color-dots">
+                    ${warnaTersedia.map((w) => `
+                      <div 
+                        class="color-dot ${w.nama === selectedState[mobil.id].namaWarna ? 'active' : ''}" 
+                        style="background-color: ${w.hex};" 
+                        title="${w.nama}"
+                        onclick="gantiWarna('${mobil.id}', '${w.gambar}', '${w.nama}', ${w.extra},${mobil.hargaBase}, '${mobil.nama}', this,${w.requiresPremium || false})"
+                      ></div>
+                    `).join('')}
+                  </div>
+                </div>
+
+                <p style="font-size: 13px; color: #666; margin: 5px 0 0;">Velg: ${mobil.velg || '-'}</p>
               </div>
-              <div class="color-dots">
-                ${warnaTersedia.map((w) => `
-                  <div 
-                    class="color-dot ${w.nama === selectedState[mobil.id].namaWarna ? 'active' : ''}" 
-                    style="background-color: ${w.hex};" 
-                    title="${w.nama}"
-                    onclick="gantiWarna('${mobil.id}', '${w.gambar}', '${w.nama}', ${w.extra},${mobil.hargaBase}, '${mobil.nama}', this,${w.requiresPremium || false})"
-                  ></div>
-                `).join('')}
+
+              <div class="btn-group-grid">
+                <button class="btn btn-detail btn-full" onclick="bukaModal('${mobil.id}')">Spesifikasi Brosur</button>
+                <button class="btn btn-pdf" onclick="bukaModalForm('brosur', '${mobil.nama}')">📄 Brosur PDF</button>
+                <button class="btn btn-kredit" onclick="bukaModalForm('kredit', '${mobil.nama}')">🧮 Simulasi Kredit</button>
+                <button id="btn-wa-${mobil.id}" class="btn btn-wa btn-full" onclick="hubungiSales('${mobil.nama}', '${hitungHargaStr(mobil.hargaBase, selectedState[mobil.id].extraWarna, selectedState[mobil.id].extraPkg)}', '${selectedState[mobil.id].namaWarna}')">Tanya Sales via WA</button>
               </div>
             </div>
-
-            <p style="font-size: 13px; color: #666; margin: 5px 0 0;">Velg: ${mobil.velg || '-'}</p>
           </div>
+        `;
+        container.innerHTML += cardHTML;
+      });
+    }
 
-          <div class="btn-group-grid">
-            <button class="btn btn-detail btn-full" onclick="bukaModal('${mobil.id}')">Spesifikasi Brosur</button>
-            <button class="btn btn-pdf" onclick="bukaModalForm('brosur', '${mobil.nama}')">📄 Brosur PDF</button>
-            <button class="btn btn-kredit" onclick="bukaModalForm('kredit', '${mobil.nama}')">🧮 Simulasi Kredit</button>
-            <button id="btn-wa-${mobil.id}" class="btn btn-wa btn-full" onclick="hubungiSales('${mobil.nama}', '${hitungHargaStr(mobil.hargaBase, selectedState[mobil.id].extraWarna, selectedState[mobil.id].extraPkg)}', '${selectedState[mobil.id].namaWarna}')">Tanya Sales via WA</button>
-          </div>
-        </div>
-      </div>
-    `;
-    container.innerHTML += cardHTML;
-  });
-}
     function hitungHargaStr(base, extraWarna, extraPkg) {
       return "Rp " + (base + extraWarna + extraPkg).toLocaleString('id-ID');
     }
@@ -461,10 +473,10 @@ function renderKatalog() {
       document.getElementById('m-velg').innerText = mobil.velg || "-";
       
       if (document.getElementById('m-drivemode')) document.getElementById('m-drivemode').innerText = mobil.drivemode || "Standard";
-      if (document.getElementById('m-mesin')) document.getElementById('m-mesin').innerText = mobil.mesin || "1.5L MIVEC DOHC 16-Valve";
-      if (document.getElementById('m-cc')) document.getElementById('m-cc').innerText = mobil.cc || "1499 cc";
-      if (document.getElementById('m-power-engine')) document.getElementById('m-power-engine').innerText = mobil.powerEngine || "105 PS";
-      if (document.getElementById('m-torque-engine')) document.getElementById('m-torque-engine').innerText = mobil.torqueEngine || "141 Nm";
+      if (document.getElementById('m-mesin')) document.getElementById('m-mesin').innerText = mobil.mesin || "2.4L MIVEC Turbo Diesel";
+      if (document.getElementById('m-cc')) document.getElementById('m-cc').innerText = mobil.cc || "2442 cc";
+      if (document.getElementById('m-power-engine')) document.getElementById('m-power-engine').innerText = mobil.powerEngine || "181 PS";
+      if (document.getElementById('m-torque-engine')) document.getElementById('m-torque-engine').innerText = mobil.torqueEngine || "430 Nm";
       if (document.getElementById('m-electric')) document.getElementById('m-electric').innerText = mobil.electric || "Tidak Tersedia";
       if (document.getElementById('m-roof')) document.getElementById('m-roof').innerText = mobil.roof || "Standard Roof";
       if (document.getElementById('m-metercluster')) document.getElementById('m-metercluster').innerText = mobil.metercluster || "-";
@@ -473,8 +485,8 @@ function renderKatalog() {
       if (document.getElementById('m-jok')) document.getElementById('m-jok').innerText = mobil.jok || "High Grade Material";
       if (document.getElementById('m-ac')) document.getElementById('m-ac').innerText = mobil.ac || "Digital Type";
       if (document.getElementById('m-fitur-mewah')) document.getElementById('m-fitur-mewah').innerText = mobil.fiturmewah || "-";
-      if (document.getElementById('m-airbags')) document.getElementById('m-airbags').innerText = mobil.airbags || "4 SRS Airbags";
-      if (document.getElementById('m-rem-parkir')) document.getElementById('m-rem-parkir').innerText = mobil.remParkir || "Electric Parking Brake with Auto Hold";
+      if (document.getElementById('m-airbags')) document.getElementById('m-airbags').innerText = mobil.airbags || "7 SRS Airbags";
+      if (document.getElementById('m-rem-parkir')) document.getElementById('m-rem-parkir').innerText = mobil.remParkir || mobil.parkingBrake || "Electric Parking Brake";
       if (document.getElementById('m-kamera')) document.getElementById('m-kamera').innerText = mobil.kamera || "Rear View Camera";
       if (document.getElementById('m-diamond-sense')) document.getElementById('m-diamond-sense').innerText = mobil.diamondsense || "Tersedia";
 
