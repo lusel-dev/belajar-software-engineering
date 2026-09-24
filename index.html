@@ -22,7 +22,39 @@
     .btn-filter { padding: 8px 16px; border: 1px solid #ddd; background: #fff; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 13px; transition: all 0.2s; }
     .btn-filter.active { background: #333; color: #fff; border-color: #333; }
 
-    .grid-mobil { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    ./* Layout standar untuk Laptop / Desktop */
+.grid-mobil { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+  gap: 20px; 
+}
+
+/* KODE BARU: Khusus tampilan layar HP (Lebar maksimal 600px) */
+@media (max-width: 600px) {
+  body {
+    padding: 10px; /* Kurangi margin luar agar lebih luas */
+  }
+  .container {
+    padding: 12px;
+  }
+  .grid-mobil {
+    grid-template-columns: repeat(2, 1fr); /* Paksa jadi 2 kolom */
+    gap: 10px; /* Kurangi jarak antar kartu */
+  }
+  .card img {
+    height: 120px; /* Sesuaikan tinggi gambar agar tetap proporsional */
+  }
+  .card-body {
+    padding: 10px;
+  }
+  .harga-box {
+    font-size: 14px; /* Ukuran teks harga sedikit diperkecil */
+  }
+  .btn {
+    font-size: 11px;
+    padding: 8px 4px;
+  }
+}
     .card { border: 1px solid #eee; border-radius: 10px; overflow: hidden; background: #fff; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s; }
     .card:hover { transform: translateY(-4px); box-shadow: 0 6px 15px rgba(0,0,0,0.1); }
     .card img { width: 100%; height: 180px; object-fit: cover; background: #f9f9f9; }
