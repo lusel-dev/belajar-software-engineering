@@ -22,37 +22,86 @@
     .btn-filter { padding: 8px 16px; border: 1px solid #ddd; background: #fff; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 13px; transition: all 0.2s; }
     .btn-filter.active { background: #333; color: #fff; border-color: #333; }
 
-    ./* Layout standar untuk Laptop / Desktop */
+    /* =================================================== */
+/* 1. TAMPILAN UTAMA / DESKTOP (Layar > 768px)         */
+/* =================================================== */
 .grid-mobil { 
   display: grid; 
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+  /* Membagi otomatis menjadi 3 kolom yang seimbang di Desktop */
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); 
   gap: 20px; 
 }
 
-/* KODE BARU: Khusus tampilan layar HP (Lebar maksimal 600px) */
+.card img { 
+  width: 100%; 
+  height: 180px; 
+  object-fit: cover; 
+  background: #f9f9f9; 
+}
+
+.card-body { 
+  padding: 15px; 
+  flex-grow: 1; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-between; 
+}
+
+
+/* =================================================== */
+/* 2. TAMPILAN TABLET / LAPTOP KECIL (769px - 1024px)  */
+/* =================================================== */
+@media (max-width: 1024px) {
+  .grid-mobil {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 15px;
+  }
+}
+
+
+/* =================================================== */
+/* 3. TAMPILAN KHUSUS HP / MOBILE (Maksimal 600px)     */
+/* =================================================== */
 @media (max-width: 600px) {
   body {
-    padding: 10px; /* Kurangi margin luar agar lebih luas */
+    padding: 8px; /* Mengurangi ruang kosong samping layar HP */
   }
+  
   .container {
     padding: 12px;
+    border-radius: 8px;
   }
+  
   .grid-mobil {
-    grid-template-columns: repeat(2, 1fr); /* Paksa jadi 2 kolom */
-    gap: 10px; /* Kurangi jarak antar kartu */
+    /* Paksa presisi 2 kolom berdampingan di HP */
+    grid-template-columns: repeat(2, 1fr) !important; 
+    gap: 8px;
   }
+  
   .card img {
-    height: 120px; /* Sesuaikan tinggi gambar agar tetap proporsional */
+    height: 110px; /* Foto disesuaikan agar tidak terlalu tinggi di HP */
   }
+  
   .card-body {
-    padding: 10px;
+    padding: 8px;
   }
+  
+  .card h3 {
+    font-size: 13px !important; /* Judul varian disesuaikan */
+    margin: 3px 0 !important;
+  }
+  
   .harga-box {
-    font-size: 14px; /* Ukuran teks harga sedikit diperkecil */
+    font-size: 13px !important;
   }
+  
+  .btn-group-grid {
+    gap: 4px;
+  }
+  
   .btn {
-    font-size: 11px;
-    padding: 8px 4px;
+    font-size: 10px !important;
+    padding: 6px 2px !important;
   }
 }
     .card { border: 1px solid #eee; border-radius: 10px; overflow: hidden; background: #fff; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s; }
