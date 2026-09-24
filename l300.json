@@ -1,0 +1,73 @@
+{
+  "modelName": "Colt L300",
+  "masterWarna": [
+    {
+      "kode": "black",
+      "hex": "#111111",
+      "nama": "Black Solid",
+      "gambar": "https://www.sunstarmotor.id/wp-content/uploads/elementor/thumbs/l300-web-catalogue-front-600x600-1-rbxboqy98cpovdhsx65rf8y8x8mhhe0756tx2bmkdc.jpg",
+      "extra": 0,
+      "requiresPremium": false
+    }
+  ],
+  "variants": [
+    {
+      "id": "l300-pick-up-flat-deck",
+      "nama": "Colt L300 Pick Up Flat Deck",
+      "hargaBase": 260000000,
+      "hargaStr": "Rp 260.000.000",
+      "hasPackage": false,
+      "transmisi": "5-Speed Manual (Column Shift)",
+      "dimensi": "4370 x 1695 x 1935 mm",
+      "gc": "195 mm",
+      "mesin": "4N14 2.2L Intercooled Turbocharged Common Rail DOHC 16-Valve (Euro 4)",
+      "cc": "2268 cc",
+      "powerEngine": "99.25 PS (73 kW) / 3.500 rpm",
+      "torqueEngine": "200 Nm / 1.000-3.500 rpm",
+      "electric": "Tidak Tersedia (Diesel Euro 4)",
+      "drivemode": "Standard 2WD Rear Wheel Drive",
+      "velg": "185 R14-8PR Steel Wheel",
+      "roof": "Standard Cabin",
+      "metercluster": "Combination Analog Display dengan Tripmeter",
+      "headunit": "Audio Head Unit AM/FM & USB Player",
+      "audiosound": "2 Speakers",
+      "jok": "Vinyl Seat Material (Kapasitas 3 Penumpang)",
+      "ac": "Blower Fan System",
+      "fiturmewah": "Ukuran Kargo Lebih Panjang (2.630 mm), Assist Grip, Assist Key",
+      "airbags": "Tidak Tersedia",
+      "kamera": "Tidak Tersedia",
+      "cruise": "Tidak Tersedia",
+      "diamondsense": "LSPV (Load Sensing Proportioning Valve) & Rem Cakram Depan",
+      "gambar": "https://storage.googleapis.com/gcmkscsp001/public/media-assets/dc2deddb-4503-4882-9a53-f3e2cb5faeba/conversions/1707736813-screenshot-2024-02-12-181356jpg-optimized.webp?GoogleAccessId=bsidevops%40gp-prod-mmksi-web-01.iam.gserviceaccount.com&Expires=1790796300&Signature=qYRQNSY5NwjHMuS875WGuMY%2ByzQHO7%2BfWYqT0mQM%2F%2FC%2FLQFZCHEVnyrbVdDYT%2BaoWgy2gqrtnYwxh6loGqGqWTLQj72eSXjFnkdnVLzIIxLcSkuNW9r6ppM0heY0PpnJKIHLPZXti%2BKcO984opTCItx1YixAECxiYdV5ehZSomHFHl8KcaJXuK9WQQ4sb3skw%2BEYvhzpEV09yI7Diq7kX1t8ORuIJYM1HNx%2FCxldxc%2FY%2BoVzPtHGVDPTVTXEIsmVb89j3EkSfTqG9L9k2SVD2LlYizRSCp00mYAjPN%2F%2FAUhOkGxM5ZHAroZdWPQ3%2BkHoNd%2Bb1hvPLCEjbkxLO9l75w%3D%3D"
+    },
+    {
+      "id": "l300-cab-chassis",
+      "nama": "Colt L300 Cab Chassis",
+      "hargaBase": 255000000,
+      "hargaStr": "Rp 255.000.000",
+      "hasPackage": false,
+      "transmisi": "5-Speed Manual (Column Shift)",
+      "dimensi": "4165 x 1695 x 1935 mm",
+      "gc": "195 mm",
+      "mesin": "4N14 2.2L Intercooled Turbocharged Common Rail DOHC 16-Valve (Euro 4)",
+      "cc": "2268 cc",
+      "powerEngine": "99.25 PS (73 kW) / 3.500 rpm",
+      "torqueEngine": "200 Nm / 1.000-3.500 rpm",
+      "electric": "Tidak Tersedia (Diesel Euro 4)",
+      "drivemode": "Standard 2WD Rear Wheel Drive",
+      "velg": "185 R14-8PR Steel Wheel",
+      "roof": "Standard Cabin (Ready for Custom Box/Body)",
+      "metercluster": "Combination Analog Display dengan Tripmeter",
+      "headunit": "Audio Head Unit AM/FM & USB Player",
+      "audiosound": "2 Speakers",
+      "jok": "Vinyl Seat Material (Kapasitas 3 Penumpang)",
+      "ac": "Blower Fan System",
+      "fiturmewah": "Landasan Sasis Fleksibel untuk Karoseri Box Logistik / Aluminium",
+      "airbags": "Tidak Tersedia",
+      "kamera": "Tidak Tersedia",
+      "cruise": "Tidak Tersedia",
+      "diamondsense": "LSPV (Load Sensing Proportioning Valve) & Rem Cakram Depan",
+      "gambar": "https://www.sunmotor.com/wp-content/uploads/2024/12/l300-chassis.jpg"
+    }
+  ]
+}
