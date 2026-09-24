@@ -80,7 +80,8 @@
 
     <!-- TOMBOL NAVIGASI PILIH MODEL MOBIL -->
     <div class="model-selector">
-      <button class="btn-model active" onclick="muatModel('xpander-all-variants.json', this)">🚘 All New Xpander</button>
+      <button class="btn-model active" onclick="muatModel('triton.json', this)">🛻 All New Triton</button>
+      <button class="btn-model" onclick="muatModel('xpander-all-variants.json', this)">🚘 All New Xpander</button>
       <button class="btn-model" onclick="muatModel('xpander-cross.json', this)">🏔️ Xpander Cross</button>
       <button class="btn-model" onclick="muatModel('xforce.json', this)">⚡ Mitsubishi Xforce</button>
       <button class="btn-model" onclick="muatModel('pajero-sport.json', this)">🦁 Pajero Sport</button>
@@ -141,9 +142,9 @@
           <tr><td>Panjang x Lebar x Tinggi</td><td id="m-dimensi"></td></tr>
           <tr><td>Ground Clearance</td><td id="m-gc"></td></tr>
           <tr><td>Transmisi</td><td id="m-transmisi"></td></tr>
-          <tr><td>Drive Mode Selector</td><td id="m-drivemode"></td></tr>
-          <tr><td>Suspensi (Depan / Belakang)</td><td>MacPherson Strut / Torsion Beam</td></tr>
-          <tr><td>Sistem Rem (Depan / Belakang)</td><td>Ventilated Disc / Solid Disc (All Wheels Disc)</td></tr>
+          <tr><td>Drive Mode Selector / Penggerak</td><td id="m-drivemode"></td></tr>
+          <tr><td>Suspensi (Depan / Belakang)</td><td>MacPherson Strut / Torsion Beam (Atau Double Wishbone/Leaf Spring)</td></tr>
+          <tr><td>Sistem Rem (Depan / Belakang)</td><td>Ventilated Disc / Solid Disc or Drum</td></tr>
           <tr><td>Rem Parkir</td><td id="m-rem-parkir"></td></tr>
         </tbody>
       </table>
@@ -155,7 +156,7 @@
           <tr><td>Isi Silinder (Displacement)</td><td id="m-cc"></td></tr>
           <tr><td>Daya Maksimum</td><td id="m-power-engine"></td></tr>
           <tr><td>Torsi Maksimum</td><td id="m-torque-engine"></td></tr>
-          <tr><td>Motor Listrik & Baterai</td><td id="m-electric"></td></tr>
+          <tr><td>Motor Listrik & Baterai / Emisi</td><td id="m-electric"></td></tr>
         </tbody>
       </table>
 
@@ -163,13 +164,13 @@
         <thead><tr><th colspan="2">🚘 EXTERIOR & INTERIOR</th></tr></thead>
         <tbody>
           <tr><td>Velg & Ukuran Ban</td><td id="m-velg"></td></tr>
-          <tr><td>Roof & Sunshade</td><td id="m-roof"></td></tr>
+          <tr><td>Roof & Kargo / Sunshade</td><td id="m-roof"></td></tr>
           <tr><td>Meter Cluster Display</td><td id="m-metercluster"></td></tr>
           <tr><td>Audio Head Unit</td><td id="m-headunit"></td></tr>
           <tr><td>Sistem Audio / Sound</td><td id="m-audio-sound"></td></tr>
           <tr><td>Bahan Jok (Seat Material)</td><td id="m-jok"></td></tr>
           <tr><td>Sistem AC</td><td id="m-ac"></td></tr>
-          <tr><td>Fitur Kenyamanan Khusus</td><td id="m-fitur-mewah"></td></tr>
+          <tr><td>Fitur Kenyamanan / Operasional Khusus</td><td id="m-fitur-mewah"></td></tr>
         </tbody>
       </table>
 
@@ -177,7 +178,7 @@
         <thead><tr><th colspan="2">🛡️ SAFETY & SECURITY</th></tr></thead>
         <tbody>
           <tr><td>Sistem Airbag</td><td id="m-airbags"></td></tr>
-          <tr><td>Active Yaw Control (AYC)</td><td>Tersedia (Available)</td></tr>
+          <tr><td>Active Yaw Control (AYC)</td><td>Tersedia (Varian Tertentu)</td></tr>
           <tr><td>Kamera Parkir / Monitor</td><td id="m-kamera"></td></tr>
           <tr><td>Cruise Control</td><td id="m-cruise"></td></tr>
           <tr><td>Fitur ADAS / Safety System</td><td id="m-diamond-sense"></td></tr>
@@ -233,13 +234,16 @@
 
       const uniqueTypes = [...new Set(dataVariants.map(item => {
         const name = item.nama.toLowerCase();
+        if (name.includes('single cabin') || name.includes('single cab')) return 'Single Cabin';
+        if (name.includes('double cabin') || name.includes('double cab')) return 'Double Cabin';
         if (name.includes('pick up')) return 'Pick Up';
         if (name.includes('chassis')) return 'Chassis';
         if (name.includes('ultimate')) return 'Ultimate';
         if (name.includes('exceed')) return 'Exceed';
         if (name.includes('gls')) return 'GLS';
-        if (name.includes('dakar')) return 'Dakar';
+        if (name.includes('hdx')) return 'HDX';
         if (name.includes('glx')) return 'GLX';
+        if (name.includes('dakar')) return 'Dakar';
         if (name.includes('cross')) return 'Cross';
         
         const words = item.nama.split(' ');
@@ -264,14 +268,26 @@
 
       const filteredData = currentFilter === 'ALL' 
         ? dataVariants 
-        : dataVariants.filter(item => item.nama.toLowerCase().includes(currentFilter.toLowerCase()) || item.id.toLowerCase().includes(currentFilter.toLowerCase()));
+        : dataVariants.filter(item => {
+            const search = currentFilter.toLowerCase();
+            const nama = item.nama.toLowerCase();
+            const id = item.id.toLowerCase();
+
+            if (search.includes('single cabin') || search.includes('single cab')) {
+              return nama.includes('single cabin') || nama.includes('single cab') || id.includes('sc');
+            }
+            if (search.includes('double cabin') || search.includes('double cab')) {
+              return nama.includes('double cabin') || nama.includes('double cab') || id.includes('dc');
+            }
+            return nama.includes(search) || id.includes(search);
+          });
 
       filteredData.forEach(mobil => {
         if (!selectedState[mobil.id]) {
           selectedState[mobil.id] = { 
             extraWarna: masterWarna[0]?.extra || 0, 
             extraPkg: 0, 
-            namaWarna: masterWarna[0]?.nama || 'Black Solid', 
+            namaWarna: masterWarna[0]?.nama || 'White Solid', 
             namaPkg: 'Standar' 
           };
         }
@@ -279,12 +295,16 @@
         const is4x4 = mobil.nama.toLowerCase().includes('4x4');
         const isHev = mobil.id.includes('hev');
         const isL300 = mobil.id.includes('l300');
+        const isTriton = mobil.id.includes('triton');
         const isTurbo = mobil.mesin && mobil.mesin.toLowerCase().includes('turbo');
         
         let badgeClass = 'badge';
         let badgeText = `⛽ Transmisi ${mobil.transmisi ? mobil.transmisi.split(' ')[0] : 'AT/MT'}`;
         
-        if (isL300) {
+        if (isTriton) {
+          badgeClass = is4x4 ? 'badge badge-4x4' : 'badge badge-turbo';
+          badgeText = is4x4 ? '🏔️ 4WD Drive System' : '🚚 2WD Commercial Cargo';
+        } else if (isL300) {
           badgeClass = 'badge badge-turbo';
           badgeText = '🚚 Euro 4 Diesel Turbo Intercooler';
         } else if (is4x4) {
@@ -298,7 +318,9 @@
           badgeText = '🏎️ 1.5L Turbo Engine';
         }
 
-        const infoMesinRingkas = isHev 
+        const infoMesinRingkas = isTriton
+          ? `<b>Mesin:</b> 2.4L Clean Diesel Euro 4 (${mobil.powerEngine || ''})`
+          : isHev 
           ? '<b>Mesin:</b> 1.6L Hybrid + Motor Listrik (Torsi 255 Nm)' 
           : `<b>Mesin:</b> ${mobil.mesin || '1.5L MIVEC'}`;
 
@@ -498,7 +520,7 @@
       if (document.getElementById('m-ac')) document.getElementById('m-ac').innerText = mobil.ac || "Digital Type";
       if (document.getElementById('m-fitur-mewah')) document.getElementById('m-fitur-mewah').innerText = mobil.fiturmewah || "-";
       if (document.getElementById('m-airbags')) document.getElementById('m-airbags').innerText = mobil.airbags || "-";
-      if (document.getElementById('m-rem-parkir')) document.getElementById('m-rem-parkir').innerText = mobil.remParkir || mobil.parkingBrake || "Electronic Parking Brake";
+      if (document.getElementById('m-rem-parkir')) document.getElementById('m-rem-parkir').innerText = mobil.remParkir || mobil.parkingBrake || "Hand Brake Lever";
       if (document.getElementById('m-kamera')) document.getElementById('m-kamera').innerText = mobil.kamera || "Rear View Camera";
       if (document.getElementById('m-diamond-sense')) document.getElementById('m-diamond-sense').innerText = mobil.diamondsense || "Tersedia";
 
@@ -511,8 +533,8 @@
       document.getElementById('modal-detail').classList.add('hidden');
     }
 
-    // Default memuat All New Xpander saat pertama dibuka
-    muatModel('xpander-all-variants.json', null);
+    // Default memuat All New Triton saat pertama kali dibuka
+    muatModel('triton.json', null);
   </script>
 </body>
 </html>
