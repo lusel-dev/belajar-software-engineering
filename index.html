@@ -629,9 +629,9 @@
       document.getElementById('modal-detail').classList.add('hidden');
     }
 
-    // Default memuat All New Triton sesuai tombol active
-    const btnActive = document.querySelector('.btn-model.active') || document.querySelector('.btn-model');
-    muatModel('triton.json', btnActive);
+    // Default memuat All New Xpander saat pertama kali dibuka
+const btnXpander = document.querySelector('.btn-model');
+muatModel('xpander-all-variants.json', btnXpander);
   </script>
 </body>
 </html>
