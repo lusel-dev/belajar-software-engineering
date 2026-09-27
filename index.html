@@ -22,88 +22,8 @@
     .btn-filter { padding: 8px 16px; border: 1px solid #ddd; background: #fff; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 13px; transition: all 0.2s; }
     .btn-filter.active { background: #333; color: #fff; border-color: #333; }
 
-    /* =================================================== */
-/* 1. TAMPILAN UTAMA / DESKTOP (Layar > 768px)         */
-/* =================================================== */
-.grid-mobil { 
-  display: grid; 
-  /* Membagi otomatis menjadi 3 kolom yang seimbang di Desktop */
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); 
-  gap: 20px; 
-}
-
-.card img { 
-  width: 100%; 
-  height: 180px; 
-  object-fit: cover; 
-  background: #f9f9f9; 
-}
-
-.card-body { 
-  padding: 15px; 
-  flex-grow: 1; 
-  display: flex; 
-  flex-direction: column; 
-  justify-content: space-between; 
-}
-
-
-/* =================================================== */
-/* 2. TAMPILAN TABLET / LAPTOP KECIL (769px - 1024px)  */
-/* =================================================== */
-@media (max-width: 1024px) {
-  .grid-mobil {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 15px;
-  }
-}
-
-
-/* =================================================== */
-/* 3. TAMPILAN KHUSUS HP / MOBILE (Maksimal 600px)     */
-/* =================================================== */
-@media (max-width: 600px) {
-  body {
-    padding: 8px; /* Mengurangi ruang kosong samping layar HP */
-  }
-  
-  .container {
-    padding: 12px;
-    border-radius: 8px;
-  }
-  
-  .grid-mobil {
-    /* Paksa presisi 2 kolom berdampingan di HP */
-    grid-template-columns: repeat(2, 1fr) !important; 
-    gap: 8px;
-  }
-  
-  .card img {
-    height: 110px; /* Foto disesuaikan agar tidak terlalu tinggi di HP */
-  }
-  
-  .card-body {
-    padding: 8px;
-  }
-  
-  .card h3 {
-    font-size: 13px !important; /* Judul varian disesuaikan */
-    margin: 3px 0 !important;
-  }
-  
-  .harga-box {
-    font-size: 13px !important;
-  }
-  
-  .btn-group-grid {
-    gap: 4px;
-  }
-  
-  .btn {
-    font-size: 10px !important;
-    padding: 6px 2px !important;
-  }
-}
+    /* Layout Komponen Kartu (Desktop Utama) */
+    .grid-mobil { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 20px; }
     .card { border: 1px solid #eee; border-radius: 10px; overflow: hidden; background: #fff; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s; }
     .card:hover { transform: translateY(-4px); box-shadow: 0 6px 15px rgba(0,0,0,0.1); }
     .card img { width: 100%; height: 180px; object-fit: cover; background: #f9f9f9; }
@@ -149,6 +69,101 @@
     .spec-table td:first-child { font-weight: 600; color: #555; width: 40%; }
     
     .hidden { display: none !important; }
+
+    /* =================================================== */
+    /* RESPONSIVE MEDIA QUERIES (DITARUH DI PALING BAWAH)  */
+    /* =================================================== */
+    @media (max-width: 1024px) {
+      .grid-mobil {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 10px 8px !important;
+        background-color: #f0f2f5;
+      }
+      
+      .container {
+        padding: 12px !important;
+        border-radius: 12px;
+      }
+
+      header h1 {
+        font-size: 18px !important;
+      }
+
+      .btn-model {
+        padding: 8px 12px !important;
+        font-size: 12px !important;
+      }
+
+      .btn-filter {
+        padding: 6px 12px !important;
+        font-size: 11px !important;
+      }
+
+      /* Single Column Layout khusus Mobile agar komponen tidak gepeng */
+      .grid-mobil {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+      }
+
+      .card img {
+        height: 170px !important;
+      }
+
+      .card-body {
+        padding: 12px !important;
+      }
+
+      .card h3 {
+        font-size: 15px !important;
+        margin: 4px 0 !important;
+      }
+
+      .harga-box {
+        font-size: 16px !important;
+      }
+
+      .pkg-section, .color-section {
+        margin: 8px 0 !important;
+        padding: 8px !important;
+      }
+
+      .pkg-options {
+        display: flex;
+        gap: 6px;
+      }
+
+      .btn-pkg {
+        padding: 8px 6px !important;
+        font-size: 11px !important;
+      }
+
+      .btn-group-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+        margin-top: 10px !important;
+      }
+
+      .btn {
+        font-size: 11px !important;
+        padding: 10px 4px !important;
+      }
+
+      .btn-full {
+        grid-column: span 2 !important;
+      }
+
+      .modal-content {
+        padding: 18px !important;
+        max-height: 90vh !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -614,9 +629,9 @@
       document.getElementById('modal-detail').classList.add('hidden');
     }
 
-    // Default memuat All New Xpander saat pertama kali dibuka
-const btnXpander = document.querySelector('.btn-model');
-muatModel('xpander-all-variants.json', btnXpander);
+    // Default memuat All New Triton sesuai tombol active
+    const btnActive = document.querySelector('.btn-model.active') || document.querySelector('.btn-model');
+    muatModel('triton.json', btnActive);
   </script>
 </body>
 </html>
