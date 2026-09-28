@@ -5,35 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Katalog Interaktif Mitsubishi</title>
   
-  <!-- FAVICON LOGO MITSUBISHI -->
+  <!-- BAGIAN: FAVICON LOGO MITSUBISHI -->
   <link rel="icon" type="image/x-icon" href="https://www.mitsubishi-motors.co.id/favicon.ico">
 
   <style>
+    /* BAGIAN: CSS UTAMA & RESET BASE */
     * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     body { background-color: #f4f6f8; margin: 0; padding: 20px; color: #333; }
     .container { max-width: 950px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
-    .promo-banner{background:#fff3cd;color:#856404;border:1px solid #ffeeba;padding:10px 14px;border-radius:10px;font-size:13px;text-align:center;margin-bottom:18px}.promo-banner-title{font-weight:bold;margin-bottom:6px;display:block;color:#856404;font-size:13.5px}.promo-list{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}.promo-chip{background:#fff;border:1px solid #f5c6cb;color:#d00000;padding:4px 10px;border-radius:20px;font-size:11.5px;font-weight:bold;box-shadow:0 1px 3px rgba(0,0,0,0.05)}@media(max-width:600px){.promo-list{flex-direction:column;gap:5px}.promo-chip{font-size:11px;padding:5px 8px}}
-    .trust-features{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:20px}.trust-item{background:#fafafa;border:1px solid #eee;padding:10px 12px;border-radius:8px;font-size:12px;display:flex;align-items:center;gap:8px}.trust-item span{font-size:18px}
+    
+    /* BAGIAN: BANNER PROMO SPESIAL */
+    .promo-banner{background:#fff3cd;color:#856404;border:1px solid #ffeeba;padding:10px 14px;border-radius:10px;font-size:13px;text-align:center;margin-bottom:18px}.promo-banner-title{font-weight:bold;margin-bottom:6px;display:block;color:#856404;font-size:13.5px}.promo-list{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}.promo-chip{background:#fff;border:1px solid #f5c6cb;color:#d00000;padding:4px 10px;border-radius:20px;font-size:11.5px;font-weight:bold;box-shadow:0 1px 3px rgba(0,0,0,0.05)}
+    
+    /* BAGIAN: TRUST BADGES (KEUNGGULAN SALES) */
+    .trust-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-top: 15px; margin-bottom: 20px; }
+    .trust-item { background: #fafafa; border: 1px solid #eee; padding: 10px 12px; border-radius: 8px; font-size: 12px; display: flex; align-items: flex-start; gap: 10px; text-align: left; }
+    .trust-item span { font-size: 20px; line-height: 1; margin-top: 2px; }
+    .trust-item div { text-align: left; }
+
+    /* BAGIAN: HEADER & TITLE */
     header { text-align: center; border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 20px; }
     header h1 { margin: 0; color: #d00000; font-size: 24px; letter-spacing: 1px; }
 
-    /* Navigasi Pilihan Model Utama */
+    /* BAGIAN: NAVIGASI SELEKTOR MODEL UTAMA */
     .model-selector { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; padding: 12px; background: #fafafa; border-radius: 10px; border: 1px solid #eaeaea; }
     .btn-model { padding: 10px 20px; border: 2px solid #d00000; background: #fff; color: #d00000; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; transition: all 0.2s; }
     .btn-model:hover, .btn-model.active { background: #d00000; color: #fff; }
 
-    /* Filter Sub-Varian */
+    /* BAGIAN: FILTER SUB-VARIAN MOBIL */
     .filter-group { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 25px; }
     .btn-filter { padding: 8px 16px; border: 1px solid #ddd; background: #fff; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 13px; transition: all 0.2s; }
     .btn-filter.active { background: #333; color: #fff; border-color: #333; }
 
-    /* Layout Komponen Kartu (Desktop Utama) */
+    /* BAGIAN: LAYOUT GRID KARTU MOBIL (DESKTOP) */
     .grid-mobil { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 20px; }
     .card { border: 1px solid #eee; border-radius: 10px; overflow: hidden; background: #fff; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s; }
     .card:hover { transform: translateY(-4px); box-shadow: 0 6px 15px rgba(0,0,0,0.1); }
     .card img { width: 100%; height: 180px; object-fit: cover; background: #f9f9f9; }
     .card-body { padding: 15px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
     
+    /* BAGIAN: BADGES, HARGA, DOTS WARNA & PAKET */
     .badge { display: inline-block; background: #e6f4ea; color: #137333; font-size: 12px; font-weight: bold; padding: 4px 8px; border-radius: 4px; margin-bottom: 8px; }
     .badge-hev { background: #e3f2fd; color: #0d47a1; }
     .badge-4x4 { background: #fee2e2; color: #991b1b; }
@@ -52,6 +63,7 @@
     .btn-pkg { flex: 1; padding: 6px 10px; border: 1px solid #ccc; background: #fff; border-radius: 4px; font-size: 11px; font-weight: bold; cursor: pointer; }
     .btn-pkg.active { background: #222; color: #fff; border-color: #222; }
 
+    /* BAGIAN: TOMBOL AKSI KARTU (CTA GRID) */
     .btn-group-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
     .btn { padding: 10px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; text-align: center; font-size: 12px; }
     .btn-full { grid-column: span 2; }
@@ -60,6 +72,7 @@
     .btn-kredit { background: #E65100; color: #fff; }
     .btn-wa { background: #25D366; color: #fff; text-decoration: none; font-size: 13px; }
 
+    /* BAGIAN: MODAL OVERLAY & POPUP FORM */
     .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 99; }
     .modal-content { background: #fff; border-radius: 12px; max-width: 650px; width: 100%; max-height: 85vh; overflow-y: auto; padding: 25px; }
     .modal-content-small { max-width: 420px; }
@@ -75,12 +88,10 @@
     
     .hidden { display: none !important; }
 
-    /* FLOATING BUTTON WA RINGKAS */
+    /* BAGIAN: FLOATING BUTTON WHATSAPP */
     .btn-wa-float{position:fixed;bottom:16px;right:16px;background:#25D366;color:#fff;padding:10px 16px;border-radius:50px;font-weight:bold;font-size:13px;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,0.25);z-index:999;display:flex;align-items:center;gap:6px;transition:transform 0.2s}.btn-wa-float:hover{transform:scale(1.05)}
 
-    /* =================================================== */
-    /* RESPONSIVE MEDIA QUERIES                            */
-    /* =================================================== */
+    /* BAGIAN: RESPONSIVE MEDIA QUERIES (TABLET & MOBILE) */
     @media (max-width: 1024px) {
       .grid-mobil { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 15px; }
     }
@@ -103,26 +114,37 @@
       .btn { font-size: 11px !important; padding: 10px 4px !important; }
       .btn-full { grid-column: span 2 !important; }
       .modal-content { padding: 18px !important; max-height: 90vh !important; }
+
+      /* OPTIMASI KHUSUS MOBILE UNTUK BANNER & TRUST BADGES */
+      .promo-list { flex-direction: column; gap: 5px; }
+      .promo-chip { font-size: 11px; padding: 5px 8px; }
+      .trust-features { grid-template-columns: 1fr !important; gap: 8px !important; }
+      .trust-item { padding: 8px 12px !important; }
     }
   </style>
 </head>
 <body>
 
+  <!-- BAGIAN: KONTAINER UTAMA -->
   <div class="container">
+    
+    <!-- BAGIAN: HEADER UTAMA -->
     <header>
       <h1 id="catalog-title">KATALOG MITSUBISHI</h1>
       <p style="margin: 5px 0 0; color: #666; font-size: 14px;">Pilih model & varian mobil favorit kamu</p>
-<!-- BANNER PROMO SPESIAL -->
-<div class="promo-banner">
-  <span class="promo-banner-title">🔥 PROMO SPESIAL BULAN INI</span>
-  <div class="promo-list">
-    <span class="promo-chip">DP Ringan Mulai Dari 10%</span>
-    <span class="promo-chip">Bunga 0% Hingga 2 Tahun</span>
-    <span class="promo-chip">Gratis Aksesoris Pilihan</span>
-    <span class="promo-chip">Garansi Jasa Servis Dan Spare Part</span>
-  </div>
-</div>
-      <!-- HTML TRUST BADGES DITARUH DI SINI -->
+
+      <!-- BAGIAN: PROMO BANNER SPESIAL -->
+      <div class="promo-banner">
+        <span class="promo-banner-title">🔥 PROMO SPESIAL BULAN INI</span>
+        <div class="promo-list">
+          <span class="promo-chip">DP Ringan Mulai Dari 10%</span>
+          <span class="promo-chip">Bunga 0% Hingga 2 Tahun</span>
+          <span class="promo-chip">Gratis Aksesoris Pilihan</span>
+          <span class="promo-chip">Garansi Jasa Servis Dan Spare Part</span>
+        </div>
+      </div>
+
+      <!-- BAGIAN: TRUST BADGES (KEUNGGULAN SERVICES) -->
       <div class="trust-features">
         <div class="trust-item"><span>⚡</span> <div><b>Proses Kredit Cepat</b><br><small>Data dibantu sampai ACC</small></div></div>
         <div class="trust-item"><span>🚚</span> <div><b>Ready Stock Unit</b><br><small>Layanan Test Drive di rumah/kantor</small></div></div>
@@ -130,7 +152,7 @@
       </div>
     </header>
 
-    <!-- TOMBOL NAVIGASI PILIH MODEL MOBIL -->
+    <!-- BAGIAN: TOMBOL SELEKTOR MODEL MOBIL -->
     <div class="model-selector">
       <button class="btn-model active" onclick="muatModel('xpander-all-variants.json', this)">🚘 All New Xpander</button>
       <button class="btn-model" onclick="muatModel('xpander-cross.json', this)">🏔️ Xpander Cross</button>
@@ -141,13 +163,14 @@
       <button class="btn-model" onclick="muatModel('triton.json', this)">🛻 All New Triton</button>
     </div>
 
-    <!-- SUB-FILTER VARIAN PER MODEL -->
+    <!-- BAGIAN: FILTER SUB-VARIAN KATEGORI -->
     <div class="filter-group" id="filter-container"></div>
 
+    <!-- BAGIAN: GRID DISPLAY KARTU MOBIL -->
     <div id="grid-mobil" class="grid-mobil"></div>
   </div>
 
-  <!-- MODAL FORM LEAD GENERATION -->
+  <!-- BAGIAN: MODAL POPUP FORM LEAD GENERATION -->
   <div id="modal-form-lead" class="modal-overlay hidden" onclick="tutupModalForm()">
     <div class="modal-content modal-content-small" onclick="event.stopPropagation()">
       <h3 id="form-title" style="margin-top: 0; color: #d00000;">Permintaan Data</h3>
@@ -180,7 +203,7 @@
     </div>
   </div>
 
-  <!-- MODAL SPESIFIKASI BROSUR -->
+  <!-- BAGIAN: MODAL POPUP DETAIL SPESIFIKASI BROSUR -->
   <div id="modal-detail" class="modal-overlay hidden" onclick="tutupModal()">
     <div class="modal-content" onclick="event.stopPropagation()">
       <h2 id="modal-nama" style="margin-top: 0; color: #d00000;"></h2>
@@ -244,13 +267,15 @@
     </div>
   </div>
 
-<!-- TOMBOL MELAYANG WA DENGAN LOGO ASLI (SVG) -->
-<a href="https://wa.me/6285169669017?text=Halo%20Lusel,%20saya%20ingin%20tanya%20promo%20mobil%20Mitsubishi" class="btn-wa-float" target="_blank">
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-    <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.763.459 3.483 1.332 5.002L2 22l5.122-1.336c1.464.798 3.111 1.218 4.887 1.218h.004c5.505 0 9.988-4.478 9.989-9.985 0-2.668-1.038-5.176-2.925-7.063C17.189 3.039 14.68 2 12.012 2zm5.836 14.162c-.244.688-1.428 1.312-1.988 1.393-.523.076-1.196.108-3.414-.808-2.839-1.173-4.664-4.047-4.805-4.237-.142-.19-1.148-1.528-1.148-2.914 0-1.386.726-2.068.983-2.348.257-.281.56-.351.747-.351.187 0 .374.001.538.009.175.008.409-.066.64.488.244.588.831 2.028.902 2.172.072.145.118.316.024.505-.094.19-.142.308-.282.473-.141.166-.296.371-.423.498-.142.142-.29.297-.124.582.166.285.736 1.213 1.58 1.964 1.085.966 2.001 1.266 2.286 1.408.285.142.451.118.618-.071.167-.189.715-.833.903-1.118.188-.285.375-.237.633-.142.258.095 1.637.771 1.917.91.281.142.468.213.538.332.07.118.07.688-.174 1.376z"/>
-  </svg>
-  Hubungi Whatsapp Kami
-</a>
+  <!-- BAGIAN: FLOATING STICKY BUTTON WA POJOK KANAN BAWAH -->
+  <a href="https://wa.me/6285169669017?text=Halo%20Lusel,%20saya%20ingin%20tanya%20promo%20mobil%20Mitsubishi" class="btn-wa-float" target="_blank">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+      <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.763.459 3.483 1.332 5.002L2 22l5.122-1.336c1.464.798 3.111 1.218 4.887 1.218h.004c5.505 0 9.988-4.478 9.989-9.985 0-2.668-1.038-5.176-2.925-7.063C17.189 3.039 14.68 2 12.012 2zm5.836 14.162c-.244.688-1.428 1.312-1.988 1.393-.523.076-1.196.108-3.414-.808-2.839-1.173-4.664-4.047-4.805-4.237-.142-.19-1.148-1.528-1.148-2.914 0-1.386.726-2.068.983-2.348.257-.281.56-.351.747-.351.187 0 .374.001.538.009.175.008.409-.066.64.488.244.588.831 2.028.902 2.172.072.145.118.316.024.505-.094.19-.142.308-.282.473-.141.166-.296.371-.423.498-.142.142-.29.297-.124.582.166.285.736 1.213 1.58 1.964 1.085.966 2.001 1.266 2.286 1.408.285.142.451.118.618-.071.167-.189.715-.833.903-1.118.188-.285.375-.237.633-.142.258.095 1.637.771 1.917.91.281.142.468.213.538.332.07.118.07.688-.174 1.376z"/>
+    </svg>
+    Hubungi Whatsapp Kami
+  </a>
+
+  <!-- BAGIAN: LOGIKA JAVASCRIPT & FETCH DATA -->
   <script>
     const nomorWaSales = "6285169669017";
 
@@ -592,7 +617,7 @@
       document.getElementById('modal-detail').classList.add('hidden');
     }
 
-    // Default memuat All New Xpander saat pertama kali dibuka
+    // BAGIAN: DEFAULT INITIAL LOAD ALL NEW XPANDER
     const btnXpander = document.querySelector('.btn-model');
     muatModel('xpander-all-variants.json', btnXpander);
   </script>
