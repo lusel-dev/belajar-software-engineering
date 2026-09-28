@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+  <!-- BAGIAN: OPEN GRAPH META TAGS (PREVIEW SOSMED & WA) -->
+  <meta property="og:title" content="Katalog Resmi Mitsubishi - Promo & Simulasi Kredit">
+  <meta property="og:description" content="Dapatkan info harga OTR terbaru, promo DP ringan 10%, bunga 0%, dan brosur PDF resmi All New Xpander, Xforce, Pajero Sport & Triton.">
+  <meta property="og:image" content="https://www.mitsubishi-motors.co.id/favicon.ico">
+  <meta property="og:type" content="website">
+  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Katalog Interaktif Mitsubishi</title>
@@ -63,6 +69,12 @@
     .btn-pkg { flex: 1; padding: 6px 10px; border: 1px solid #ccc; background: #fff; border-radius: 4px; font-size: 11px; font-weight: bold; cursor: pointer; }
     .btn-pkg.active { background: #222; color: #fff; border-color: #222; }
 
+    /* BAGIAN: TESTIMONIAL / SOCIAL PROOF */
+    .testi-section { margin-top: 35px; padding-top: 20px; border-top: 2px solid #eee; text-align: center; }
+    .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-top: 15px; }
+    .testi-card { background: #fafafa; border: 1px solid #eee; padding: 15px; border-radius: 10px; text-align: left; font-size: 12px; }
+    .testi-stars { color: #fbc02d; font-size: 14px; margin-bottom: 5px; }
+
     /* BAGIAN: TOMBOL AKSI KARTU (CTA GRID) */
     .btn-group-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
     .btn { padding: 10px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; text-align: center; font-size: 12px; }
@@ -120,6 +132,7 @@
       .promo-chip { font-size: 11px; padding: 5px 8px; }
       .trust-features { grid-template-columns: 1fr !important; gap: 8px !important; }
       .trust-item { padding: 8px 12px !important; }
+      .testi-grid { grid-template-columns: 1fr !important; }
     }
   </style>
 </head>
@@ -168,7 +181,31 @@
 
     <!-- BAGIAN: GRID DISPLAY KARTU MOBIL -->
     <div id="grid-mobil" class="grid-mobil"></div>
-  </div>
+
+    <!-- BAGIAN: TESTIMONIAL PELANGGAN (DITARUH DI SINI, DI BAWAH GRID MOBIL) -->
+    <div class="testi-section">
+      <h3 style="margin: 0; color: #333; font-size: 15px;">⭐ Kata Mereka yang Beli di Kami</h3>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="testi-stars">⭐⭐⭐⭐⭐</div>
+          <p style="margin: 4px 0 8px; color: #555;">"Pelayanan Mas Lusel luar biasa cepat! Data kredit Xpander dibantu dari awal sampai mobil dikirim ke rumah."</p>
+          <b>— Pak Budi (Jakarta)</b>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">⭐⭐⭐⭐⭐</div>
+          <p style="margin: 4px 0 8px; color: #555;">"Proses pengajuan kredit Pajero Sport gampang banget, bonus aksesorisnya juga melimpah. Rekomendasi sales!"</p>
+          <b>— Bu Ratna (Tangerang)</b>
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- PENUTUP KONTAINER UTAMA -->
+
+  <!-- BAGIAN: FOOTER HAK CIPTA & DISCLAIMER (DITARUH DI LUAR KONTAINER UTAMA) -->
+  <footer style="text-align: center; font-size: 11.5px; color: #777; margin-top: 25px; padding-bottom: 30px;">
+    <p>© 2026 Dealer Resmi Mitsubishi Motors Indonesia. All Rights Reserved.<br>
+    Informasi harga OTR, paket kredit & promo sewaktu-waktu dapat berubah sesuai ketentuan berlaku.</p>
+  </footer>
 
   <!-- BAGIAN: MODAL POPUP FORM LEAD GENERATION -->
   <div id="modal-form-lead" class="modal-overlay hidden" onclick="tutupModalForm()">
