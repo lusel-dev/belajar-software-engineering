@@ -74,99 +74,34 @@
     
     .hidden { display: none !important; }
 
+    /* FLOATING BUTTON WA RINGKAS */
+    .btn-wa-float{position:fixed;bottom:16px;right:16px;background:#25D366;color:#fff;padding:10px 16px;border-radius:50px;font-weight:bold;font-size:13px;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,0.25);z-index:999;display:flex;align-items:center;gap:6px;transition:transform 0.2s}.btn-wa-float:hover{transform:scale(1.05)}
+
     /* =================================================== */
-    /* RESPONSIVE MEDIA QUERIES (DITARUH DI PALING BAWAH)  */
+    /* RESPONSIVE MEDIA QUERIES                            */
     /* =================================================== */
     @media (max-width: 1024px) {
-      .grid-mobil {
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-        gap: 15px;
-      }
+      .grid-mobil { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 15px; }
     }
 
     @media (max-width: 600px) {
-      body {
-        padding: 10px 8px !important;
-        background-color: #f0f2f5;
-      }
-      
-      .container {
-        padding: 12px !important;
-        border-radius: 12px;
-      }
-
-      header h1 {
-        font-size: 18px !important;
-      }
-
-      .btn-model {
-        padding: 8px 12px !important;
-        font-size: 12px !important;
-      }
-
-      .btn-filter {
-        padding: 6px 12px !important;
-        font-size: 11px !important;
-      }
-
-      /* Single Column Layout khusus Mobile agar komponen tidak gepeng */
-      .grid-mobil {
-        grid-template-columns: 1fr !important;
-        gap: 16px !important;
-      }
-
-      .card img {
-        height: 170px !important;
-      }
-
-      .card-body {
-        padding: 12px !important;
-      }
-
-      .card h3 {
-        font-size: 15px !important;
-        margin: 4px 0 !important;
-      }
-
-      .harga-box {
-        font-size: 16px !important;
-      }
-
-      .pkg-section, .color-section {
-        margin: 8px 0 !important;
-        padding: 8px !important;
-      }
-
-      .pkg-options {
-        display: flex;
-        gap: 6px;
-      }
-
-      .btn-pkg {
-        padding: 8px 6px !important;
-        font-size: 11px !important;
-      }
-
-      .btn-group-grid {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr !important;
-        gap: 8px !important;
-        margin-top: 10px !important;
-      }
-
-      .btn {
-        font-size: 11px !important;
-        padding: 10px 4px !important;
-      }
-
-      .btn-full {
-        grid-column: span 2 !important;
-      }
-
-      .modal-content {
-        padding: 18px !important;
-        max-height: 90vh !important;
-      }
+      body { padding: 10px 8px !important; background-color: #f0f2f5; }
+      .container { padding: 12px !important; border-radius: 12px; }
+      header h1 { font-size: 18px !important; }
+      .btn-model { padding: 8px 12px !important; font-size: 12px !important; }
+      .btn-filter { padding: 6px 12px !important; font-size: 11px !important; }
+      .grid-mobil { grid-template-columns: 1fr !important; gap: 16px !important; }
+      .card img { height: 170px !important; }
+      .card-body { padding: 12px !important; }
+      .card h3 { font-size: 15px !important; margin: 4px 0 !important; }
+      .harga-box { font-size: 16px !important; }
+      .pkg-section, .color-section { margin: 8px 0 !important; padding: 8px !important; }
+      .pkg-options { display: flex; gap: 6px; }
+      .btn-pkg { padding: 8px 6px !important; font-size: 11px !important; }
+      .btn-group-grid { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 8px !important; margin-top: 10px !important; }
+      .btn { font-size: 11px !important; padding: 10px 4px !important; }
+      .btn-full { grid-column: span 2 !important; }
+      .modal-content { padding: 18px !important; max-height: 90vh !important; }
     }
   </style>
 </head>
@@ -180,13 +115,13 @@
 
     <!-- TOMBOL NAVIGASI PILIH MODEL MOBIL -->
     <div class="model-selector">
-      <button class="btn-model" onclick="muatModel('xpander-all-variants.json', this)">🚘 All New Xpander</button>
+      <button class="btn-model active" onclick="muatModel('xpander-all-variants.json', this)">🚘 All New Xpander</button>
       <button class="btn-model" onclick="muatModel('xpander-cross.json', this)">🏔️ Xpander Cross</button>
       <button class="btn-model" onclick="muatModel('xforce.json', this)">⚡ Mitsubishi Xforce</button>
       <button class="btn-model" onclick="muatModel('pajero-sport.json', this)">🦁 Pajero Sport</button>
       <button class="btn-model" onclick="muatModel('destinator.json', this)">🧭 Mitsubishi Destinator</button>
       <button class="btn-model" onclick="muatModel('l300.json', this)">🚚 Colt L300</button>
-      <button class="btn-model active" onclick="muatModel('triton.json', this)">🛻 All New Triton</button>
+      <button class="btn-model" onclick="muatModel('triton.json', this)">🛻 All New Triton</button>
     </div>
 
     <!-- SUB-FILTER VARIAN PER MODEL -->
@@ -291,6 +226,9 @@
       </div>
     </div>
   </div>
+
+  <!-- TOMBOL MELAYANG WA DI POJOK KANAN BAWAH -->
+  <a href="https://wa.me/6285169669017?text=Halo%20Lusel,%20saya%20ingin%20tanya%20promo%20mobil%20Mitsubishi" class="btn-wa-float" target="_blank">💬 Chat Sales WA</a>
 
   <script>
     const nomorWaSales = "6285169669017";
