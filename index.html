@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <!-- GOOGLE SITE VERIFICATION -->
+  <!-- GOOGLE SITE VERIFICATION -->
   <meta name="google-site-verification" content="F3jtJU0YeTx36GwtUoX7_xpEtB9tBA4ppk3Jt-EKiAQ" />
   <!-- BAGIAN: OPEN GRAPH META TAGS (PREVIEW SOSMED & WA) -->
   <meta property="og:title" content="Katalog Resmi Mitsubishi - Promo & Simulasi Kredit">
@@ -52,6 +52,23 @@
     /* BAGIAN: HEADER & TITLE */
     header { text-align: center; border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 20px; }
     header h1 { margin: 0; color: #d00000; font-size: 24px; letter-spacing: 1px; }
+
+    /* BAGIAN: KALKULATOR KREDIT INTERAKTIF */
+    .calc-card { background: #ffffff; border: 2px solid #d00000; border-radius: 12px; padding: 20px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(208, 0, 0, 0.06); }
+    .calc-title { text-align: center; color: #d00000; font-size: 18px; font-weight: bold; margin-bottom: 15px; }
+    .calc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 15px; }
+    .calc-field label { display: block; font-size: 12px; font-weight: 700; color: #444; margin-bottom: 5px; }
+    .calc-field select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 13px; background: #fff; }
+    .calc-result-box { background: #fef3f2; border: 1px solid #fecdca; border-radius: 8px; padding: 15px; text-align: center; margin-top: 10px; }
+    .calc-result-label { font-size: 11px; color: #667085; text-transform: uppercase; letter-spacing: 0.5px; }
+    .calc-result-price { font-size: 22px; color: #d92d20; font-weight: bold; margin: 4px 0; }
+    .calc-result-tdp { font-size: 14px; color: #101828; font-weight: 600; }
+    .calc-badge { display: inline-block; background-color: #e0f2fe; color: #0369a1; font-size: 11px; font-weight: bold; padding: 3px 8px; border-radius: 4px; margin-bottom: 6px; }
+    .calc-disclaimer { font-size: 11px; color: #777; font-style: italic; margin-top: 8px; text-align: center; line-height: 1.3; }
+    .calc-custom-note { font-size: 11.5px; color: #344054; background: #f8fafc; border: 1px dashed #cbd5e1; padding: 8px; border-radius: 6px; margin-top: 10px; text-align: center; }
+    .btn-calc-wa { display: block; width: 100%; background-color: #25D366; color: white; text-align: center; padding: 12px; border-radius: 8px; font-weight: bold; text-decoration: none; font-size: 14px; margin-top: 12px; transition: background 0.2s; }
+    .btn-calc-wa:hover { background-color: #1ebc57; }
+    .commercial-calc-notice { background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px; text-align: center; font-size: 13px; color: #334155; }
 
     /* BAGIAN: NAVIGASI SELEKTOR MODEL UTAMA */
     .model-selector { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; padding: 12px; background: #fafafa; border-radius: 10px; border: 1px solid #eaeaea; }
@@ -147,6 +164,10 @@
       .btn-full { grid-column: span 2 !important; }
       .modal-content { padding: 18px !important; max-height: 90vh !important; }
 
+      .calc-card { padding: 15px !important; }
+      .calc-grid { grid-template-columns: 1fr !important; gap: 10px !important; }
+      .calc-result-price { font-size: 20px !important; }
+
       /* OPTIMASI KHUSUS MOBILE UNTUK BANNER & TRUST BADGES */
       .promo-list { flex-direction: column; gap: 5px; }
       .promo-chip { font-size: 11px; padding: 5px 8px; }
@@ -185,6 +206,64 @@
       </div>
     </header>
 
+    <!-- BAGIAN: KALKULATOR SIMULASI KREDIT INTERAKTIF -->
+    <div class="calc-card">
+      <div class="calc-title">🧮 SIMULASI KREDIT DEALER RESMI</div>
+      
+      <div class="calc-grid">
+        <div class="calc-field">
+          <label for="calc-model">Model Mobil:</label>
+          <select id="calc-model" onchange="calcUpdateVariants()">
+            <option value="xpander">New Xpander</option>
+            <option value="xpander_cross">New Xpander Cross</option>
+            <option value="xforce">New Xforce</option>
+            <option value="destinator">Destinator</option>
+            <option value="pajero">New Pajero Sport</option>
+            <option value="l300">L300 Commercial</option>
+            <option value="triton">Triton All New</option>
+          </select>
+        </div>
+
+        <div class="calc-field" id="calc-variant-group">
+          <label for="calc-variant">Varian:</label>
+          <select id="calc-variant" onchange="calcUpdateTenors()"></select>
+        </div>
+
+        <div class="calc-field" id="calc-skema-group">
+          <label for="calc-skema">Program Penawaran:</label>
+          <select id="calc-skema" onchange="calcUpdateTenors()">
+            <option value="dp_ringan">DP Ringan Angsuran Fleksibel</option>
+            <option value="bunga_hemat">Program Angsuran Super Hemat (Suku Bunga Spesial)</option>
+            <option value="bunga_0">Program Bunga 0% (Bebas Bunga)</option>
+          </select>
+        </div>
+
+        <div class="calc-field" id="calc-tenor-group">
+          <label for="calc-tenor">Tenor (Jangka Waktu):</label>
+          <select id="calc-tenor" onchange="calcRunCalculation()"></select>
+        </div>
+      </div>
+
+      <div id="calc-display-area">
+        <div class="calc-result-box">
+          <div id="calc-badge-status" class="calc-badge" style="display:none;"></div>
+          <div class="calc-result-label">Estimasi Cicilan Per Bulan</div>
+          <div class="calc-result-price" id="calc-display-angsuran">Rp 0</div>
+          <div class="calc-result-tdp" id="calc-display-tdp">DP Bayar Pertama: Rp 0</div>
+        </div>
+
+        <div class="calc-disclaimer" id="calc-display-disclaimer">
+          *Angka merupakan Total DP Bayar Pertama yang sudah dipotong diskon dealer (Sudah termasuk Angsuran ke-1 & Asuransi All-Risk Jabodetabek).
+        </div>
+
+        <div class="calc-custom-note">
+          💡 <b>Mau Penyesuaian Budget?</b> DP & Angsuran bisa di-custom sesuai kebutuhan Anda via WA.
+        </div>
+      </div>
+
+      <a href="#" id="calc-btn-wa" target="_blank" class="btn-calc-wa">💬 Request Simulasi Fix / Custom DP via WA</a>
+    </div>
+
     <!-- BAGIAN: TOMBOL SELEKTOR MODEL MOBIL -->
     <div class="model-selector">
       <button class="btn-model active" onclick="muatModel('xpander-all-variants.json', this)">🚘 All New Xpander</button>
@@ -202,7 +281,7 @@
     <!-- BAGIAN: GRID DISPLAY KARTU MOBIL -->
     <div id="grid-mobil" class="grid-mobil"></div>
 
-    <!-- BAGIAN: TESTIMONIAL PELANGGAN (DITARUH DI SINI, DI BAWAH GRID MOBIL) -->
+    <!-- BAGIAN: TESTIMONIAL PELANGGAN -->
     <div class="testi-section">
       <h3 style="margin: 0; color: #333; font-size: 15px;">⭐ Kata Mereka yang Beli di Kami</h3>
       <div class="testi-grid">
@@ -221,16 +300,13 @@
 
   </div> <!-- PENUTUP KONTAINER UTAMA -->
 
-<!-- BAGIAN: FOOTER HAK CIPTA, ALAMAT DEALER & GOOGLE MAPS -->
+  <!-- BAGIAN: FOOTER -->
   <footer style="text-align: center; font-size: 11.5px; color: #777; margin-top: 25px; padding-bottom: 30px;">
-    
-    <!-- BOX ALAMAT DEALER & MAPS -->
     <div style="max-width: 600px; margin: 0 auto 15px; background: #fff; padding: 15px; border-radius: 10px; border: 1px solid #eee; text-align: center; color: #444; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
       <b style="color: #d00000; font-size: 13px; display: block; margin-bottom: 4px;">📍 DEALER RESMI MITSUBISHI MOTORS</b>
       <span style="font-size: 12px; font-weight: 600; display: block; margin-bottom: 4px;">Jl. Prof. Dr. Latumeten No. 5, RT.2/RW.7, Angke, Kec. Tambora, Kota Jakarta Barat, DKI Jakarta 11330</span>
       <small style="color: #666; display: block; margin-bottom: 12px;">Layanan Penjualan Unit, Test Drive & Simulasi Kredit Resmi</small>
 
-      <!-- GOOGLE MAPS EMBED CONTAINER (RESPONSIVE) -->
       <div style="width: 100%; height: 210px; border-radius: 8px; overflow: hidden; border: 1px solid #ddd;">
         <iframe 
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.8202021666687!2d106.7885068!3d-6.1548206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f64ff9c2fb4f%3A0xb3bd62c2f0f4a867!2sJl.%20Prof.%20Dr.%20Latumeten%20No.5%2C%20RT.2%2FRW.7%2C%20Angke%2C%20Kec.%20Tambora%2C%20Kota%20Jakarta%20Barat%2C%20Daerah%20Khusus%20Ibukota%20Jakarta%2011330!5e0!3m2!1sid!2sid!4v1710000000000!5m2!1sid!2sid" 
@@ -243,7 +319,6 @@
         </iframe>
       </div>
       
-      <!-- TOMBOL PETUNJUK ARAH KE MAPS -->
       <a href="https://maps.app.goo.gl/TKZ9BeQw8v3Dp65BA" target="_blank" style="display: inline-block; margin-top: 10px; font-size: 11px; color: #1565C0; text-decoration: none; font-weight: bold;">
         🗺️ Buka Rute Lokasi di Google Maps Apps →
       </a>
@@ -350,7 +425,7 @@
     </div>
   </div>
 
-  <!-- BAGIAN: FLOATING STICKY BUTTON WA POJOK KANAN BAWAH -->
+  <!-- BAGIAN: FLOATING STICKY BUTTON WA -->
   <a href="https://wa.me/6285169669017?text=Halo%20Lusel,%20saya%20ingin%20tanya%20promo%20mobil%20Mitsubishi" class="btn-wa-float" target="_blank">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
       <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.763.459 3.483 1.332 5.002L2 22l5.122-1.336c1.464.798 3.111 1.218 4.887 1.218h.004c5.505 0 9.988-4.478 9.989-9.985 0-2.668-1.038-5.176-2.925-7.063C17.189 3.039 14.68 2 12.012 2zm5.836 14.162c-.244.688-1.428 1.312-1.988 1.393-.523.076-1.196.108-3.414-.808-2.839-1.173-4.664-4.047-4.805-4.237-.142-.19-1.148-1.528-1.148-2.914 0-1.386.726-2.068.983-2.348.257-.281.56-.351.747-.351.187 0 .374.001.538.009.175.008.409-.066.64.488.244.588.831 2.028.902 2.172.072.145.118.316.024.505-.094.19-.142.308-.282.473-.141.166-.296.371-.423.498-.142.142-.29.297-.124.582.166.285.736 1.213 1.58 1.964 1.085.966 2.001 1.266 2.286 1.408.285.142.451.118.618-.071.167-.189.715-.833.903-1.118.188-.285.375-.237.633-.142.258.095 1.637.771 1.917.91.281.142.468.213.538.332.07.118.07.688-.174 1.376z"/>
@@ -358,7 +433,7 @@
     Hubungi Whatsapp Kami
   </a>
 
-  <!-- BAGIAN: LOGIKA JAVASCRIPT & FETCH DATA -->
+  <!-- BAGIAN: LOGIKA JAVASCRIPT -->
   <script>
     const nomorWaSales = "6285169669017";
 
@@ -366,6 +441,147 @@
     let dataVariants = [];
     let currentFilter = 'ALL';
     const selectedState = {};
+    let globalCalcData = null;
+
+    // INITAL LOAD KALKULATOR DATA (simulasi_kredit.json)
+    fetch('simulasi_kredit.json')
+      .then(res => res.json())
+      .then(data => {
+        globalCalcData = data;
+        calcUpdateVariants();
+      })
+      .catch(err => console.error("Gagal membaca file simulasi_kredit.json:", err));
+
+    const calcFormatRupiah = (num) => "Rp " + num.toLocaleString('id-ID');
+
+    function calcUpdateVariants() {
+      if (!globalCalcData) return;
+      const carKey = document.getElementById("calc-model").value;
+      const variantSelect = document.getElementById("calc-variant");
+      const vGroup = document.getElementById("calc-variant-group");
+      const sGroup = document.getElementById("calc-skema-group");
+      const tGroup = document.getElementById("calc-tenor-group");
+      const displayArea = document.getElementById("calc-display-area");
+
+      if (carKey === 'l300' || carKey === 'triton') {
+        vGroup.style.display = "none";
+        sGroup.style.display = "none";
+        tGroup.style.display = "none";
+        
+        const namaCommercial = carKey === 'l300' ? 'Colt L300 Commercial' : 'All New Triton';
+        displayArea.innerHTML = `
+          <div class="commercial-calc-notice">
+            <b>Unit Komersial (${namaCommercial})</b><br>
+            Skema kredit khusus operasional usaha, DP fleksibel & potongan cashback khusus. Silakan konsultasi langsung via Sales WA.
+          </div>`;
+        
+        const textWA = `Halo Lusel, saya mau tanya promo TDP minim dan hitungan kredit resmi untuk unit *${namaCommercial}*`;
+        document.getElementById("calc-btn-wa").href = `https://wa.me/${nomorWaSales}?text=${encodeURIComponent(textWA)}`;
+        return;
+      }
+
+      vGroup.style.display = "block";
+      sGroup.style.display = "block";
+      tGroup.style.display = "block";
+      
+      displayArea.innerHTML = `
+        <div class="calc-result-box">
+          <div id="calc-badge-status" class="calc-badge" style="display:none;"></div>
+          <div class="calc-result-label">Estimasi Cicilan Per Bulan</div>
+          <div class="calc-result-price" id="calc-display-angsuran">Rp 0</div>
+          <div class="calc-result-tdp" id="calc-display-tdp">DP Bayar Pertama: Rp 0</div>
+        </div>
+        <div class="calc-disclaimer" id="calc-display-disclaimer">
+          *Angka merupakan Total DP Bayar Pertama yang sudah dipotong diskon dealer (Sudah termasuk Angsuran ke-1 & Asuransi All-Risk Jabodetabek).
+        </div>
+        <div class="calc-custom-note">
+          💡 <b>Mau Penyesuaian Budget?</b> DP & Angsuran bisa di-custom sesuai kebutuhan Anda via WA.
+        </div>`;
+
+      variantSelect.innerHTML = "";
+      const modelObj = globalCalcData.models[carKey];
+      if (modelObj && modelObj.variants) {
+        modelObj.variants.forEach((v, index) => {
+          let opt = document.createElement("option");
+          opt.value = index;
+          opt.text = v.name;
+          variantSelect.add(opt);
+        });
+      }
+      calcUpdateTenors();
+    }
+
+    function calcUpdateTenors() {
+      if (!globalCalcData) return;
+      const carKey = document.getElementById("calc-model").value;
+      if (carKey === 'l300' || carKey === 'triton') return;
+
+      const variantIdx = document.getElementById("calc-variant").value || 0;
+      const skemaKey = document.getElementById("calc-skema").value;
+      const tenorSelect = document.getElementById("calc-tenor");
+
+      tenorSelect.innerHTML = "";
+      const variantObj = globalCalcData.models[carKey].variants[variantIdx];
+      const pkgMap = variantObj[skemaKey];
+
+      if (pkgMap) {
+        Object.keys(pkgMap).forEach(tenorBulan => {
+          let opt = document.createElement("option");
+          opt.value = tenorBulan;
+          opt.text = (tenorBulan <= 12) ? `${tenorBulan} Bulan (1 Tahun)` : `${tenorBulan} Bulan (${Math.round(tenorBulan/12)} Tahun)`;
+          tenorSelect.add(opt);
+        });
+      }
+      calcRunCalculation();
+    }
+
+    function calcRunCalculation() {
+      if (!globalCalcData) return;
+      const carKey = document.getElementById("calc-model").value;
+      if (carKey === 'l300' || carKey === 'triton') return;
+
+      const variantIdx = document.getElementById("calc-variant").value || 0;
+      const skemaKey = document.getElementById("calc-skema").value;
+      const tenorBulan = document.getElementById("calc-tenor").value;
+
+      const carModel = globalCalcData.models[carKey];
+      const selectedVariant = carModel.variants[variantIdx];
+      const pkg = selectedVariant[skemaKey] ? selectedVariant[skemaKey][tenorBulan] : null;
+
+      const badgeStatus = document.getElementById("calc-badge-status");
+      const displayDisclaimer = document.getElementById("calc-display-disclaimer");
+
+      if (pkg) {
+        const diskonDealer = globalCalcData.diskon_dealer[carKey] || 0;
+        const nettTdp = Math.max(0, pkg.tdpDipo - diskonDealer);
+
+        if (skemaKey === 'dp_ringan') {
+          badgeStatus.style.display = "inline-block";
+          badgeStatus.innerText = "⭐ Program DP Ringan Jabodetabek";
+        } else if (skemaKey === 'bunga_hemat') {
+          badgeStatus.style.display = "inline-block";
+          badgeStatus.innerText = "🏷️ Program Suku Bunga Spesial Dealer";
+        } else {
+          badgeStatus.style.display = "inline-block";
+          badgeStatus.innerText = "🔥 Program Bunga 0% (Bebas Bunga)";
+        }
+
+        document.getElementById("calc-display-angsuran").innerText = calcFormatRupiah(pkg.angsuran) + " / bln";
+        document.getElementById("calc-display-tdp").innerText = "DP Bayar Pertama: " + calcFormatRupiah(nettTdp);
+
+        const skemaSelectEl = document.getElementById("calc-skema");
+        const skemaText = skemaSelectEl.options[skemaSelectEl.selectedIndex].text;
+        
+        const textWA = `Halo Lusel, saya hitung simulasi di web untuk *${selectedVariant.name}*:\n` +
+                       `- Program: ${skemaText}\n` +
+                       `- Tenor: ${tenorBulan} Bulan\n` +
+                       `- DP Bayar Pertama: ${calcFormatRupiah(nettTdp)}\n` +
+                       `- Angsuran: ${calcFormatRupiah(pkg.angsuran)}/bln\n\n` +
+                       `Boleh bantu konsultasi & rincian resminya?`;
+
+        document.getElementById("calc-btn-wa").href = `https://wa.me/${nomorWaSales}?text=${encodeURIComponent(textWA)}`;
+      }
+    }
 
     function muatModel(jsonFileName, btnElement) {
       if (btnElement) {
@@ -700,7 +916,7 @@
       document.getElementById('modal-detail').classList.add('hidden');
     }
 
-    // BAGIAN: DEFAULT INITIAL LOAD ALL NEW XPANDER
+    // DEFAULT INITIAL LOAD ALL NEW XPANDER
     const btnXpander = document.querySelector('.btn-model');
     muatModel('xpander-all-variants.json', btnXpander);
   </script>
