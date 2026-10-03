@@ -59,10 +59,15 @@
     .calc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 15px; }
     .calc-field label { display: block; font-size: 12px; font-weight: 700; color: #444; margin-bottom: 5px; }
     .calc-field select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 13px; background: #fff; }
-    .calc-result-box { background: #fef3f2; border: 1px solid #fecdca; border-radius: 8px; padding: 15px; text-align: center; margin-top: 10px; }
-    .calc-result-label { font-size: 11px; color: #667085; text-transform: uppercase; letter-spacing: 0.5px; }
-    .calc-result-price { font-size: 22px; color: #d92d20; font-weight: bold; margin: 4px 0; }
-    .calc-result-tdp { font-size: 14px; color: #101828; font-weight: 600; }
+    
+    /* STYLING HASIL KALKULATOR - TERDAPAT PENYESUAIAN PADA TULISAN DP & ANGSURAN */
+    .calc-result-box { background: #fef3f2; border: 1.5px solid #fecdca; border-radius: 10px; padding: 16px; text-align: center; margin-top: 10px; }
+    .calc-result-item { margin: 6px 0; }
+    .calc-result-label { font-size: 11.5px; color: #667085; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+    .calc-result-tdp-price { font-size: 20px; color: #101828; font-weight: 800; margin-top: 2px; }
+    .calc-result-price { font-size: 22px; color: #d92d20; font-weight: 800; margin-top: 2px; }
+    .calc-result-divider { height: 1px; background-color: #fee4e2; margin: 10px auto; width: 85%; }
+    
     .calc-badge { display: inline-block; background-color: #e0f2fe; color: #0369a1; font-size: 11px; font-weight: bold; padding: 3px 8px; border-radius: 4px; margin-bottom: 6px; }
     .calc-disclaimer { font-size: 11px; color: #777; font-style: italic; margin-top: 8px; text-align: center; line-height: 1.3; }
     .calc-custom-note { font-size: 11.5px; color: #344054; background: #f8fafc; border: 1px dashed #cbd5e1; padding: 8px; border-radius: 6px; margin-top: 10px; text-align: center; }
@@ -166,6 +171,7 @@
 
       .calc-card { padding: 15px !important; }
       .calc-grid { grid-template-columns: 1fr !important; gap: 10px !important; }
+      .calc-result-tdp-price { font-size: 18px !important; }
       .calc-result-price { font-size: 20px !important; }
 
       /* OPTIMASI KHUSUS MOBILE UNTUK BANNER & TRUST BADGES */
@@ -198,7 +204,7 @@
         </div>
       </div>
 
-      <!-- BAGIAN: TRUST BADGES (KEUNGGULAN SERVICES) -->
+      <!-- BAGIAN: TRUST BADGES (KEUNGGULAN SALES) -->
       <div class="trust-features">
         <div class="trust-item"><span>⚡</span> <div><b>Proses Kredit Cepat</b><br><small>Data dibantu sampai ACC</small></div></div>
         <div class="trust-item"><span>🚚</span> <div><b>Ready Stock Unit</b><br><small>Layanan Test Drive di rumah/kantor</small></div></div>
@@ -247,13 +253,22 @@
       <div id="calc-display-area">
         <div class="calc-result-box">
           <div id="calc-badge-status" class="calc-badge" style="display:none;"></div>
-          <div class="calc-result-label">Estimasi Cicilan Per Bulan</div>
-          <div class="calc-result-price" id="calc-display-angsuran">Rp 0</div>
-          <div class="calc-result-tdp" id="calc-display-tdp">DP Bayar Pertama: Rp 0</div>
+          
+          <div class="calc-result-item">
+            <div class="calc-result-label">Total DP Bayar Pertama</div>
+            <div class="calc-result-tdp-price" id="calc-display-tdp">Rp 0</div>
+          </div>
+          
+          <div class="calc-result-divider"></div>
+
+          <div class="calc-result-item">
+            <div class="calc-result-label">Estimasi Angsuran Per Bulan</div>
+            <div class="calc-result-price" id="calc-display-angsuran">Rp 0</div>
+          </div>
         </div>
 
         <div class="calc-disclaimer" id="calc-display-disclaimer">
-          *Angka merupakan Total DP Bayar Pertama yang sudah dipotong diskon dealer (Sudah termasuk Angsuran ke-1 & Asuransi All-Risk Jabodetabek).
+          *DP Bayar Pertama sudah dipotong diskon dealer (Sudah termasuk Angsuran ke-1 & Asuransi All-Risk Jabodetabek).
         </div>
 
         <div class="calc-custom-note">
@@ -458,110 +473,118 @@
     const calcFormatRupiah = (num) => "Rp " + (num || 0).toLocaleString('id-ID');
 
     function calcUpdateVariants() {
-  if (!globalCalcData || !globalCalcData.models) return;
+      if (!globalCalcData || !globalCalcData.models) return;
 
-  const carKey = document.getElementById("calc-model").value;
-  const variantSelect = document.getElementById("calc-variant");
-  const vGroup = document.getElementById("calc-variant-group");
-  const sGroup = document.getElementById("calc-skema-group");
-  const tGroup = document.getElementById("calc-tenor-group");
-  const displayArea = document.getElementById("calc-display-area");
+      const carKey = document.getElementById("calc-model").value;
+      const variantSelect = document.getElementById("calc-variant");
+      const vGroup = document.getElementById("calc-variant-group");
+      const sGroup = document.getElementById("calc-skema-group");
+      const tGroup = document.getElementById("calc-tenor-group");
+      const displayArea = document.getElementById("calc-display-area");
 
-  // 1. TAMPILAN KHUSUS UNIT KOMERSIAL (L300 & TRITON)
-  if (carKey === 'l300' || carKey === 'triton') {
-    vGroup.style.display = "none";
-    sGroup.style.display = "none";
-    tGroup.style.display = "none";
+      // 1. TAMPILAN KHUSUS UNIT KOMERSIAL (L300 & TRITON)
+      if (carKey === 'l300' || carKey === 'triton') {
+        vGroup.style.display = "none";
+        sGroup.style.display = "none";
+        tGroup.style.display = "none";
 
-    const namaCommercial = carKey === 'l300' ? 'Colt L300 Commercial' : 'All New Triton';
-    displayArea.innerHTML = `
-      <div class="commercial-calc-notice">
-        <b>Unit Komersial (${namaCommercial})</b><br>
-        Skema kredit khusus operasional usaha, DP fleksibel & potongan cashback khusus. Silakan konsultasi langsung via Sales WA.
-      </div>`;
+        const namaCommercial = carKey === 'l300' ? 'Colt L300 Commercial' : 'All New Triton';
+        displayArea.innerHTML = `
+          <div class="commercial-calc-notice">
+            <b>Unit Komersial (${namaCommercial})</b><br>
+            Skema kredit khusus operasional usaha, DP fleksibel & potongan cashback khusus. Silakan konsultasi langsung via Sales WA.
+          </div>`;
 
-    const textWA = `Halo Lusel, saya mau tanya promo TDP minim dan hitungan kredit resmi untuk unit *${namaCommercial}*`;
-    document.getElementById("calc-btn-wa").href = `https://wa.me/${nomorWaSales}?text=${encodeURIComponent(textWA)}`;
-    return;
-  }
+        const textWA = `Halo Lusel, saya mau tanya promo TDP minim dan hitungan kredit resmi untuk unit *${namaCommercial}*`;
+        document.getElementById("calc-btn-wa").href = `https://wa.me/${nomorWaSales}?text=${encodeURIComponent(textWA)}`;
+        return;
+      }
 
-  // 2. KEMBALIKAN TAMPILAN DROPDOWN UNTUK MOBIL PENUMPANG
-  vGroup.style.display = "block";
-  sGroup.style.display = "block";
-  tGroup.style.display = "block";
+      // 2. KEMBALIKAN TAMPILAN DROPDOWN UNTUK MOBIL PENUMPANG
+      vGroup.style.display = "block";
+      sGroup.style.display = "block";
+      tGroup.style.display = "block";
 
-  // FIX: Reset & bangun ulang elemen HTML area hasil jika sebelumnya terhapus oleh pesan komersial
-  displayArea.innerHTML = `
-    <div class="calc-result-box">
-      <div id="calc-badge-status" class="calc-badge" style="display:none;"></div>
-      <div class="calc-result-label">Estimasi Cicilan Per Bulan</div>
-      <div class="calc-result-price" id="calc-display-angsuran">Rp 0</div>
-      <div class="calc-result-tdp" id="calc-display-tdp">DP Bayar Pertama: Rp 0</div>
-    </div>
-    <div class="calc-disclaimer" id="calc-display-disclaimer">
-      *Angka merupakan Total DP Bayar Pertama yang sudah dipotong diskon dealer (Sudah termasuk Angsuran ke-1 & Asuransi All-Risk Jabodetabek).
-    </div>
-    <div class="calc-custom-note">
-      💡 <b>Mau Penyesuaian Budget?</b> DP & Angsuran bisa di-custom sesuai kebutuhan Anda via WA.
-    </div>`;
+      // Reset & bangun ulang elemen HTML area hasil (DP dibuat menonjol & terpisah)
+      displayArea.innerHTML = `
+        <div class="calc-result-box">
+          <div id="calc-badge-status" class="calc-badge" style="display:none;"></div>
+          
+          <div class="calc-result-item">
+            <div class="calc-result-label">Total DP Bayar Pertama</div>
+            <div class="calc-result-tdp-price" id="calc-display-tdp">Rp 0</div>
+          </div>
 
-  // Populate varian dari JSON
-  variantSelect.innerHTML = "";
-  const modelObj = globalCalcData.models[carKey];
+          <div class="calc-result-divider"></div>
 
-  if (modelObj && modelObj.variants && modelObj.variants.length > 0) {
-    modelObj.variants.forEach((v, index) => {
-      let opt = document.createElement("option");
-      opt.value = index;
-      opt.text = v.name;
-      variantSelect.add(opt);
-    });
-    variantSelect.selectedIndex = 0;
-  }
+          <div class="calc-result-item">
+            <div class="calc-result-label">Estimasi Angsuran Per Bulan</div>
+            <div class="calc-result-price" id="calc-display-angsuran">Rp 0</div>
+          </div>
+        </div>
+        <div class="calc-disclaimer" id="calc-display-disclaimer">
+          *DP Bayar Pertama sudah dipotong diskon dealer (Sudah termasuk Angsuran ke-1 & Asuransi All-Risk Jabodetabek).
+        </div>
+        <div class="calc-custom-note">
+          💡 <b>Mau Penyesuaian Budget?</b> DP & Angsuran bisa di-custom sesuai kebutuhan Anda via WA.
+        </div>`;
 
-  // Lanjutkan update tenor & hitung angsuran
-  calcUpdateTenors();
-}
+      // Populate varian dari JSON
+      variantSelect.innerHTML = "";
+      const modelObj = globalCalcData.models[carKey];
+
+      if (modelObj && modelObj.variants && modelObj.variants.length > 0) {
+        modelObj.variants.forEach((v, index) => {
+          let opt = document.createElement("option");
+          opt.value = index;
+          opt.text = v.name;
+          variantSelect.add(opt);
+        });
+        variantSelect.selectedIndex = 0;
+      }
+
+      // Lanjutkan update tenor & hitung angsuran
+      calcUpdateTenors();
+    }
 
     function calcUpdateTenors() {
-  if (!globalCalcData || !globalCalcData.models) return;
-  
-  const carKey = document.getElementById("calc-model").value;
-  if (carKey === 'l300' || carKey === 'triton') return;
-
-  const variantSelect = document.getElementById("calc-variant");
-  const variantIdx = parseInt(variantSelect.value) || 0;
-  const skemaKey = document.getElementById("calc-skema").value;
-  const tenorSelect = document.getElementById("calc-tenor");
-
-  tenorSelect.innerHTML = "";
-  
-  const modelObj = globalCalcData.models[carKey];
-  if (!modelObj || !modelObj.variants || !modelObj.variants[variantIdx]) return;
-  
-  const variantObj = modelObj.variants[variantIdx];
-  const pkgMap = variantObj[skemaKey];
-
-  if (pkgMap) {
-    Object.keys(pkgMap).forEach(tenorBulan => {
-      let opt = document.createElement("option");
-      opt.value = tenorBulan;
-      const numBulan = parseInt(tenorBulan);
+      if (!globalCalcData || !globalCalcData.models) return;
       
-      // Menghitung estimasi tahun secara akurat (11->1 Thn, 23->2 Thn, 35->3 Thn, dst)
-      const estimasiTahun = Math.ceil(numBulan / 12);
-      opt.text = `${numBulan} Bulan (${estimasiTahun} Tahun)`;
+      const carKey = document.getElementById("calc-model").value;
+      if (carKey === 'l300' || carKey === 'triton') return;
+
+      const variantSelect = document.getElementById("calc-variant");
+      const variantIdx = parseInt(variantSelect.value) || 0;
+      const skemaKey = document.getElementById("calc-skema").value;
+      const tenorSelect = document.getElementById("calc-tenor");
+
+      tenorSelect.innerHTML = "";
       
-      tenorSelect.add(opt);
-    });
-    
-    if (tenorSelect.options.length > 0) {
-      tenorSelect.selectedIndex = 0;
+      const modelObj = globalCalcData.models[carKey];
+      if (!modelObj || !modelObj.variants || !modelObj.variants[variantIdx]) return;
+      
+      const variantObj = modelObj.variants[variantIdx];
+      const pkgMap = variantObj[skemaKey];
+
+      if (pkgMap) {
+        Object.keys(pkgMap).forEach(tenorBulan => {
+          let opt = document.createElement("option");
+          opt.value = tenorBulan;
+          const numBulan = parseInt(tenorBulan);
+          
+          const estimasiTahun = Math.ceil(numBulan / 12);
+          opt.text = `${numBulan} Bulan (${estimasiTahun} Tahun)`;
+          
+          tenorSelect.add(opt);
+        });
+        
+        if (tenorSelect.options.length > 0) {
+          tenorSelect.selectedIndex = 0;
+        }
+      }
+
+      calcRunCalculation();
     }
-  }
-
-  calcRunCalculation();
-}
 
     function calcRunCalculation() {
       if (!globalCalcData || !globalCalcData.models) return;
@@ -594,7 +617,7 @@
         }
 
         document.getElementById("calc-display-angsuran").innerText = calcFormatRupiah(pkg.angsuran) + " / bln";
-        document.getElementById("calc-display-tdp").innerText = "DP Bayar Pertama: " + calcFormatRupiah(nettTdp);
+        document.getElementById("calc-display-tdp").innerText = calcFormatRupiah(nettTdp);
 
         const skemaSelectEl = document.getElementById("calc-skema");
         const skemaText = skemaSelectEl.options[skemaSelectEl.selectedIndex].text;
