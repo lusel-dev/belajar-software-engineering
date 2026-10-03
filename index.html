@@ -459,7 +459,7 @@
     let globalCalcData = null;
 
     // INITAL LOAD KALKULATOR DATA
-    fetch('simulasi-kredit.json')
+    fetch('simulasi-kredit.json?v=' + new Date().getTime())
       .then(res => {
         if (!res.ok) throw new Error("Gagal mengambil simulasi-kredit.json");
         return res.json();
