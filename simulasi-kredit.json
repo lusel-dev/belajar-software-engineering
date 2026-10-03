@@ -1,11 +1,11 @@
 {
   "last_updated": "September 2026",
   "diskon_dealer": {
-    "xpander": 20000000,
-    "xpander_cross": 20000000,
+    "xpander": 25000000,
+    "xpander_cross": 25000000,
     "xforce": 0,
     "destinator": 30000000,
-    "pajero": 50000000
+    "pajero": 60000000
   },
   "models": {
     "xpander": {
