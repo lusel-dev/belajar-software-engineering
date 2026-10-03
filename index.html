@@ -443,19 +443,23 @@
     const selectedState = {};
     let globalCalcData = null;
 
-    // INITAL LOAD KALKULATOR DATA (simulasi_kredit.json)
+    // INITAL LOAD KALKULATOR DATA
     fetch('simulasi_kredit.json')
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error("Gagal mengambil simulasi_kredit.json");
+        return res.json();
+      })
       .then(data => {
         globalCalcData = data;
         calcUpdateVariants();
       })
-      .catch(err => console.error("Gagal membaca file simulasi_kredit.json:", err));
+      .catch(err => console.error("Error Fetch JSON:", err));
 
-    const calcFormatRupiah = (num) => "Rp " + num.toLocaleString('id-ID');
+    const calcFormatRupiah = (num) => "Rp " + (num || 0).toLocaleString('id-ID');
 
     function calcUpdateVariants() {
-      if (!globalCalcData) return;
+      if (!globalCalcData || !globalCalcData.models) return;
+      
       const carKey = document.getElementById("calc-model").value;
       const variantSelect = document.getElementById("calc-variant");
       const vGroup = document.getElementById("calc-variant-group");
@@ -483,87 +487,85 @@
       vGroup.style.display = "block";
       sGroup.style.display = "block";
       tGroup.style.display = "block";
-      
-      displayArea.innerHTML = `
-        <div class="calc-result-box">
-          <div id="calc-badge-status" class="calc-badge" style="display:none;"></div>
-          <div class="calc-result-label">Estimasi Cicilan Per Bulan</div>
-          <div class="calc-result-price" id="calc-display-angsuran">Rp 0</div>
-          <div class="calc-result-tdp" id="calc-display-tdp">DP Bayar Pertama: Rp 0</div>
-        </div>
-        <div class="calc-disclaimer" id="calc-display-disclaimer">
-          *Angka merupakan Total DP Bayar Pertama yang sudah dipotong diskon dealer (Sudah termasuk Angsuran ke-1 & Asuransi All-Risk Jabodetabek).
-        </div>
-        <div class="calc-custom-note">
-          💡 <b>Mau Penyesuaian Budget?</b> DP & Angsuran bisa di-custom sesuai kebutuhan Anda via WA.
-        </div>`;
 
       variantSelect.innerHTML = "";
       const modelObj = globalCalcData.models[carKey];
-      if (modelObj && modelObj.variants) {
+      
+      if (modelObj && modelObj.variants && modelObj.variants.length > 0) {
         modelObj.variants.forEach((v, index) => {
           let opt = document.createElement("option");
           opt.value = index;
           opt.text = v.name;
           variantSelect.add(opt);
         });
+        variantSelect.selectedIndex = 0;
       }
+
       calcUpdateTenors();
     }
 
     function calcUpdateTenors() {
-      if (!globalCalcData) return;
+      if (!globalCalcData || !globalCalcData.models) return;
+      
       const carKey = document.getElementById("calc-model").value;
       if (carKey === 'l300' || carKey === 'triton') return;
 
-      const variantIdx = document.getElementById("calc-variant").value || 0;
+      const variantSelect = document.getElementById("calc-variant");
+      const variantIdx = parseInt(variantSelect.value) || 0;
       const skemaKey = document.getElementById("calc-skema").value;
       const tenorSelect = document.getElementById("calc-tenor");
 
       tenorSelect.innerHTML = "";
-      const variantObj = globalCalcData.models[carKey].variants[variantIdx];
+      
+      const modelObj = globalCalcData.models[carKey];
+      if (!modelObj || !modelObj.variants || !modelObj.variants[variantIdx]) return;
+      
+      const variantObj = modelObj.variants[variantIdx];
       const pkgMap = variantObj[skemaKey];
 
       if (pkgMap) {
         Object.keys(pkgMap).forEach(tenorBulan => {
           let opt = document.createElement("option");
           opt.value = tenorBulan;
-          opt.text = (tenorBulan <= 12) ? `${tenorBulan} Bulan (1 Tahun)` : `${tenorBulan} Bulan (${Math.round(tenorBulan/12)} Tahun)`;
+          opt.text = (parseInt(tenorBulan) <= 12) ? `${tenorBulan} Bulan (1 Tahun)` : `${tenorBulan} Bulan (${Math.round(parseInt(tenorBulan)/12)} Tahun)`;
           tenorSelect.add(opt);
         });
+        if (tenorSelect.options.length > 0) {
+          tenorSelect.selectedIndex = tenorSelect.options.length - 1;
+        }
       }
+
       calcRunCalculation();
     }
 
     function calcRunCalculation() {
-      if (!globalCalcData) return;
+      if (!globalCalcData || !globalCalcData.models) return;
+      
       const carKey = document.getElementById("calc-model").value;
       if (carKey === 'l300' || carKey === 'triton') return;
 
-      const variantIdx = document.getElementById("calc-variant").value || 0;
+      const variantSelect = document.getElementById("calc-variant");
+      const variantIdx = parseInt(variantSelect.value) || 0;
       const skemaKey = document.getElementById("calc-skema").value;
       const tenorBulan = document.getElementById("calc-tenor").value;
 
       const carModel = globalCalcData.models[carKey];
+      if (!carModel || !carModel.variants || !carModel.variants[variantIdx]) return;
+
       const selectedVariant = carModel.variants[variantIdx];
       const pkg = selectedVariant[skemaKey] ? selectedVariant[skemaKey][tenorBulan] : null;
 
       const badgeStatus = document.getElementById("calc-badge-status");
-      const displayDisclaimer = document.getElementById("calc-display-disclaimer");
 
       if (pkg) {
-        const diskonDealer = globalCalcData.diskon_dealer[carKey] || 0;
+        const diskonDealer = (globalCalcData.diskon_dealer && globalCalcData.diskon_dealer[carKey]) ? globalCalcData.diskon_dealer[carKey] : 0;
         const nettTdp = Math.max(0, pkg.tdpDipo - diskonDealer);
 
-        if (skemaKey === 'dp_ringan') {
+        if (badgeStatus) {
           badgeStatus.style.display = "inline-block";
-          badgeStatus.innerText = "⭐ Program DP Ringan Jabodetabek";
-        } else if (skemaKey === 'bunga_hemat') {
-          badgeStatus.style.display = "inline-block";
-          badgeStatus.innerText = "🏷️ Program Suku Bunga Spesial Dealer";
-        } else {
-          badgeStatus.style.display = "inline-block";
-          badgeStatus.innerText = "🔥 Program Bunga 0% (Bebas Bunga)";
+          if (skemaKey === 'dp_ringan') badgeStatus.innerText = "⭐ Program DP Ringan Jabodetabek";
+          else if (skemaKey === 'bunga_hemat') badgeStatus.innerText = "🏷️ Program Suku Bunga Spesial Dealer";
+          else badgeStatus.innerText = "🔥 Program Bunga 0% (Bebas Bunga)";
         }
 
         document.getElementById("calc-display-angsuran").innerText = calcFormatRupiah(pkg.angsuran) + " / bln";
