@@ -3,9 +3,9 @@
   "diskon_dealer": {
     "xpander": 25000000,
     "xpander_cross": 25000000,
-    "xforce": 0,
+    "xforce": 3000000,
     "destinator": 30000000,
-    "pajero": 100000000
+    "pajero": 55000000
   },
   "models": {
     "xpander": {
