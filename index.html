@@ -458,51 +458,70 @@
     const calcFormatRupiah = (num) => "Rp " + (num || 0).toLocaleString('id-ID');
 
     function calcUpdateVariants() {
-      if (!globalCalcData || !globalCalcData.models) return;
-      
-      const carKey = document.getElementById("calc-model").value;
-      const variantSelect = document.getElementById("calc-variant");
-      const vGroup = document.getElementById("calc-variant-group");
-      const sGroup = document.getElementById("calc-skema-group");
-      const tGroup = document.getElementById("calc-tenor-group");
-      const displayArea = document.getElementById("calc-display-area");
+  if (!globalCalcData || !globalCalcData.models) return;
 
-      if (carKey === 'l300' || carKey === 'triton') {
-        vGroup.style.display = "none";
-        sGroup.style.display = "none";
-        tGroup.style.display = "none";
-        
-        const namaCommercial = carKey === 'l300' ? 'Colt L300 Commercial' : 'All New Triton';
-        displayArea.innerHTML = `
-          <div class="commercial-calc-notice">
-            <b>Unit Komersial (${namaCommercial})</b><br>
-            Skema kredit khusus operasional usaha, DP fleksibel & potongan cashback khusus. Silakan konsultasi langsung via Sales WA.
-          </div>`;
-        
-        const textWA = `Halo Lusel, saya mau tanya promo TDP minim dan hitungan kredit resmi untuk unit *${namaCommercial}*`;
-        document.getElementById("calc-btn-wa").href = `https://wa.me/${nomorWaSales}?text=${encodeURIComponent(textWA)}`;
-        return;
-      }
+  const carKey = document.getElementById("calc-model").value;
+  const variantSelect = document.getElementById("calc-variant");
+  const vGroup = document.getElementById("calc-variant-group");
+  const sGroup = document.getElementById("calc-skema-group");
+  const tGroup = document.getElementById("calc-tenor-group");
+  const displayArea = document.getElementById("calc-display-area");
 
-      vGroup.style.display = "block";
-      sGroup.style.display = "block";
-      tGroup.style.display = "block";
+  // 1. TAMPILAN KHUSUS UNIT KOMERSIAL (L300 & TRITON)
+  if (carKey === 'l300' || carKey === 'triton') {
+    vGroup.style.display = "none";
+    sGroup.style.display = "none";
+    tGroup.style.display = "none";
 
-      variantSelect.innerHTML = "";
-      const modelObj = globalCalcData.models[carKey];
-      
-      if (modelObj && modelObj.variants && modelObj.variants.length > 0) {
-        modelObj.variants.forEach((v, index) => {
-          let opt = document.createElement("option");
-          opt.value = index;
-          opt.text = v.name;
-          variantSelect.add(opt);
-        });
-        variantSelect.selectedIndex = 0;
-      }
+    const namaCommercial = carKey === 'l300' ? 'Colt L300 Commercial' : 'All New Triton';
+    displayArea.innerHTML = `
+      <div class="commercial-calc-notice">
+        <b>Unit Komersial (${namaCommercial})</b><br>
+        Skema kredit khusus operasional usaha, DP fleksibel & potongan cashback khusus. Silakan konsultasi langsung via Sales WA.
+      </div>`;
 
-      calcUpdateTenors();
-    }
+    const textWA = `Halo Lusel, saya mau tanya promo TDP minim dan hitungan kredit resmi untuk unit *${namaCommercial}*`;
+    document.getElementById("calc-btn-wa").href = `https://wa.me/${nomorWaSales}?text=${encodeURIComponent(textWA)}`;
+    return;
+  }
+
+  // 2. KEMBALIKAN TAMPILAN DROPDOWN UNTUK MOBIL PENUMPANG
+  vGroup.style.display = "block";
+  sGroup.style.display = "block";
+  tGroup.style.display = "block";
+
+  // FIX: Reset & bangun ulang elemen HTML area hasil jika sebelumnya terhapus oleh pesan komersial
+  displayArea.innerHTML = `
+    <div class="calc-result-box">
+      <div id="calc-badge-status" class="calc-badge" style="display:none;"></div>
+      <div class="calc-result-label">Estimasi Cicilan Per Bulan</div>
+      <div class="calc-result-price" id="calc-display-angsuran">Rp 0</div>
+      <div class="calc-result-tdp" id="calc-display-tdp">DP Bayar Pertama: Rp 0</div>
+    </div>
+    <div class="calc-disclaimer" id="calc-display-disclaimer">
+      *Angka merupakan Total DP Bayar Pertama yang sudah dipotong diskon dealer (Sudah termasuk Angsuran ke-1 & Asuransi All-Risk Jabodetabek).
+    </div>
+    <div class="calc-custom-note">
+      💡 <b>Mau Penyesuaian Budget?</b> DP & Angsuran bisa di-custom sesuai kebutuhan Anda via WA.
+    </div>`;
+
+  // Populate varian dari JSON
+  variantSelect.innerHTML = "";
+  const modelObj = globalCalcData.models[carKey];
+
+  if (modelObj && modelObj.variants && modelObj.variants.length > 0) {
+    modelObj.variants.forEach((v, index) => {
+      let opt = document.createElement("option");
+      opt.value = index;
+      opt.text = v.name;
+      variantSelect.add(opt);
+    });
+    variantSelect.selectedIndex = 0;
+  }
+
+  // Lanjutkan update tenor & hitung angsuran
+  calcUpdateTenors();
+}
 
     function calcUpdateTenors() {
   if (!globalCalcData || !globalCalcData.models) return;
