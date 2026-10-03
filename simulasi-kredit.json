@@ -1,0 +1,517 @@
+{
+  "last_updated": "September 2026",
+  "diskon_dealer": {
+    "xpander": 20000000,
+    "xpander_cross": 20000000,
+    "xforce": 0,
+    "destinator": 30000000,
+    "pajero": 50000000
+  },
+  "models": {
+    "xpander": {
+      "name": "New Xpander",
+      "variants": [
+        {
+          "id": "xpander_ultimate_cvt",
+          "name": "Ultimate 4x2 CVT (OTR 348 JT)",
+          "dp_ringan": {
+            "12": { "tdpDipo": 34800000, "angsuran": 28711000 },
+            "24": { "tdpDipo": 34800000, "angsuran": 15641000 },
+            "36": { "tdpDipo": 34800000, "angsuran": 11246000 },
+            "48": { "tdpDipo": 34800000, "angsuran": 9283000 },
+            "60": { "tdpDipo": 34800000, "angsuran": 8209000 },
+            "72": { "tdpDipo": 69600000, "angsuran": 7302000 }
+          },
+          "bunga_hemat": {
+            "11": { "tdpDipo": 104968000, "angsuran": 24230000 },
+            "23": { "tdpDipo": 93788000, "angsuran": 13019000 },
+            "35": { "tdpDipo": 89973000, "angsuran": 9204000 },
+            "47": { "tdpDipo": 88291000, "angsuran": 7522000 },
+            "59": { "tdpDipo": 87394000, "angsuran": 6625000 }
+          },
+          "bunga_0": {
+            "11": { "tdpDipo": 214289000, "angsuran": 13050000 },
+            "23": { "tdpDipo": 242735000, "angsuran": 5366000 }
+          }
+        },
+        {
+          "id": "xpander_ultimate_mt",
+          "name": "Ultimate 4x2 MT (OTR 332 JT)",
+          "dp_ringan": {
+            "12": { "tdpDipo": 33200000, "angsuran": 27407000 },
+            "24": { "tdpDipo": 33200000, "angsuran": 14931000 },
+            "36": { "tdpDipo": 33200000, "angsuran": 10736000 },
+            "48": { "tdpDipo": 33200000, "angsuran": 8861000 },
+            "60": { "tdpDipo": 33200000, "angsuran": 7836000 },
+            "72": { "tdpDipo": 66400000, "angsuran": 6971000 }
+          },
+          "bunga_hemat": {
+            "11": { "tdpDipo": 100322000, "angsuran": 23116000 },
+            "23": { "tdpDipo": 89656000, "angsuran": 12421000 },
+            "35": { "tdpDipo": 86017000, "angsuran": 8781000 },
+            "47": { "tdpDipo": 84412000, "angsuran": 7177000 },
+            "59": { "tdpDipo": 83557000, "angsuran": 6321000 }
+          },
+          "bunga_0": {
+            "11": { "tdpDipo": 204556000, "angsuran": 12450000 },
+            "23": { "tdpDipo": 231755000, "angsuran": 5120000 }
+          }
+        },
+        {
+          "id": "xpander_exceed_tourer_cvt",
+          "name": "Exceed Tourer 4x2 CVT (OTR 302.5 JT)",
+          "dp_ringan": {
+            "12": { "tdpDipo": 30250000, "angsuran": 25002000 },
+            "24": { "tdpDipo": 30250000, "angsuran": 13621000 },
+            "36": { "tdpDipo": 30250000, "angsuran": 9794000 },
+            "48": { "tdpDipo": 30250000, "angsuran": 8084000 },
+            "60": { "tdpDipo": 30250000, "angsuran": 7149000 },
+            "72": { "tdpDipo": 60500000, "angsuran": 6360000 }
+          },
+          "bunga_hemat": {
+            "11": { "tdpDipo": 91754000, "angsuran": 21062000 },
+            "23": { "tdpDipo": 82040000, "angsuran": 11318000 },
+            "35": { "tdpDipo": 78724000, "angsuran": 8002000 },
+            "47": { "tdpDipo": 77262000, "angsuran": 6540000 },
+            "59": { "tdpDipo": 76482000, "angsuran": 5760000 }
+          },
+          "bunga_0": {
+            "11": { "tdpDipo": 118588000, "angsuran": 17646000 },
+            "23": { "tdpDipo": 197017000, "angsuran": 5295000 }
+          }
+        },
+        {
+          "id": "xpander_exceed_tourer_mt",
+          "name": "Exceed Tourer 4x2 MT (OTR 293 JT)",
+          "dp_ringan": {
+            "12": { "tdpDipo": 29300000, "angsuran": 24228000 },
+            "24": { "tdpDipo": 29300000, "angsuran": 13199000 },
+            "36": { "tdpDipo": 29300000, "angsuran": 9490000 },
+            "48": { "tdpDipo": 29300000, "angsuran": 7833000 },
+            "60": { "tdpDipo": 29300000, "angsuran": 6927000 },
+            "72": { "tdpDipo": 58600000, "angsuran": 6164000 }
+          },
+          "bunga_hemat": {
+            "11": { "tdpDipo": 88995000, "angsuran": 20401000 },
+            "23": { "tdpDipo": 79587000, "angsuran": 10962000 },
+            "35": { "tdpDipo": 76375000, "angsuran": 7751000 },
+            "47": { "tdpDipo": 74959000, "angsuran": 6335000 },
+            "59": { "tdpDipo": 74204000, "angsuran": 5580000 }
+          },
+          "bunga_0": {
+            "11": { "tdpDipo": 114987000, "angsuran": 17092000 },
+            "23": { "tdpDipo": 190954000, "angsuran": 5129000 }
+          }
+        },
+        {
+          "id": "xpander_gls_cvt",
+          "name": "GLS 4x2 CVT (OTR 283.5 JT)",
+          "dp_ringan": {
+            "12": { "tdpDipo": 28350000, "angsuran": 23454000 },
+            "24": { "tdpDipo": 28350000, "angsuran": 12777000 },
+            "36": { "tdpDipo": 28350000, "angsuran": 9187000 },
+            "48": { "tdpDipo": 28350000, "angsuran": 7583000 },
+            "60": { "tdpDipo": 28350000, "angsuran": 6706000 },
+            "72": { "tdpDipo": 56700000, "angsuran": 5967000 }
+          },
+          "bunga_hemat": {
+            "11": { "tdpDipo": 86236000, "angsuran": 19739000 },
+            "23": { "tdpDipo": 77134000, "angsuran": 10607000 },
+            "35": { "tdpDipo": 74026000, "angsuran": 7500000 },
+            "47": { "tdpDipo": 72656000, "angsuran": 6130000 },
+            "59": { "tdpDipo": 71926000, "angsuran": 5399000 }
+          },
+          "bunga_0": {
+            "11": { "tdpDipo": 175054000, "angsuran": 10632000 },
+            "23": { "tdpDipo": 198474000, "angsuran": 4372000 }
+          }
+        },
+        {
+          "id": "xpander_gls_mt",
+          "name": "GLS 4x2 MT (OTR 274.5 JT)",
+          "dp_ringan": {
+            "12": { "tdpDipo": 27450000, "angsuran": 22720000 },
+            "24": { "tdpDipo": 27450000, "angsuran": 12377000 },
+            "36": { "tdpDipo": 27450000, "angsuran": 8900000 },
+            "48": { "tdpDipo": 27450000, "angsuran": 7346000 },
+            "60": { "tdpDipo": 27450000, "angsuran": 6496000 },
+            "72": { "tdpDipo": 54900000, "angsuran": 5781000 }
+          },
+          "bunga_hemat": {
+            "11": { "tdpDipo": 83622000, "angsuran": 19113000 },
+            "23": { "tdpDipo": 74810000, "angsuran": 10271000 },
+            "35": { "tdpDipo": 71801000, "angsuran": 7262000 },
+            "47": { "tdpDipo": 70475000, "angsuran": 5935000 },
+            "59": { "tdpDipo": 69767000, "angsuran": 5228000 }
+          },
+          "bunga_0": {
+            "11": { "tdpDipo": 169579000, "angsuran": 10294000 },
+            "23": { "tdpDipo": 192298000, "angsuran": 4234000 }
+          }
+        }
+      ]
+    },
+    "xpander_cross": {
+      "name": "New Xpander Cross",
+      "variants": [
+        {
+          "id": "cross_cvt_premium",
+          "name": "4x2 CVT Premium Package (OTR 374 JT)",
+          "dp_ringan": {
+            "12": { "tdpDipo": 37400000, "angsuran": 30830000 },
+            "24": { "tdpDipo": 37400000, "angsuran": 16796000 },
+            "36": { "tdpDipo": 37400000, "angsuran": 12077000 },
+            "48": { "tdpDipo": 37400000, "angsuran": 9968000 },
+            "60": { "tdpDipo": 37400000, "angsuran": 8815000 },
+            "72": { "tdpDipo": 74800000, "angsuran": 7840000 }
+          },
+          "bunga_hemat": {
+            "11": { "tdpDipo": 112519000, "angsuran": 26040000 },
+            "23": { "tdpDipo": 100501000, "angsuran": 13992000 },
+            "35": { "tdpDipo": 96401000, "angsuran": 9892000 },
+            "47": { "tdpDipo": 94593000, "angsuran": 8084000 },
+            "59": { "tdpDipo": 93629000, "angsuran": 7120000 }
+          },
+          "bunga_0": {
+            "11": { "tdpDipo": 230105000, "angsuran": 14025000 },
+            "23": { "tdpDipo": 260576000, "angsuran": 5767000 }
+          }
+        },
+        {
+          "id": "cross_mt",
+          "name": "4x2 MT (OTR 348 JT)",
+          "dp_ringan": {
+            "12": { "tdpDipo": 34800000, "angsuran": 28711000 },
+            "24": { "tdpDipo": 34800000, "angsuran": 15641000 },
+            "36": { "tdpDipo": 34800000, "angsuran": 11246000 },
+            "48": { "tdpDipo": 34800000, "angsuran": 9283000 },
+            "60": { "tdpDipo": 34800000, "angsuran": 8209000 },
+            "72": { "tdpDipo": 69600000, "angsuran": 7302000 }
+          },
+          "bunga_hemat": {
+            "11": { "tdpDipo": 104968000, "angsuran": 24230000 },
+            "23": { "tdpDipo": 93788000, "angsuran": 13019000 },
+            "35": { "tdpDipo": 89973000, "angsuran": 9204000 },
+            "47": { "tdpDipo": 88291000, "angsuran": 7522000 },
+            "59": { "tdpDipo": 87394000, "angsuran": 6625000 }
+          },
+          "bunga_0": {
+            "11": { "tdpDipo": 214289000, "angsuran": 13050000 },
+            "23": { "tdpDipo": 242735000, "angsuran": 5366000 }
+          }
+        }
+      ]
+    },
+    "xforce": {
+      "name": "New Xforce",
+      "variants": [
+        {
+          "id": "xforce_ultimate_cvt",
+          "name": "Ultimate CVT (OTR 399 JT)",
+          "dp_ringan": {
+            "12": { "tdpDipo": 43700000, "angsuran": 31633000 },
+            "24": { "tdpDipo": 43700000, "angsuran": 16782000 },
+            "36": { "tdpDipo": 43700000, "angsuran": 11762000 },
+            "48": { "tdpDipo": 43700000, "angsuran": 9607000 },
+            "60": { "tdpDipo": 43700000, "angsuran": 8410000 },
+            "72": { "tdpDipo": 43700000, "angsuran": 7534000 }
+          },
+          "bunga_hemat": {
+            "12": { "tdpDipo": 71829000, "angsuran": 19670000 },
+            "24": { "tdpDipo": 62977000, "angsuran": 10848000 },
+            "36": { "tdpDipo": 60481500, "angsuran": 8353000 },
+            "48": { "tdpDipo": 59804000, "angsuran": 7675000 },
+            "60": { "tdpDipo": 59316000, "angsuran": 7186000 }
+          },
+          "bunga_0": {
+            "11": { "tdpDipo": 235943000, "angsuran": 14963000 },
+            "23": { "tdpDipo": 237194000, "angsuran": 7814000 }
+          }
+        },
+        {
+          "id": "xforce_exceed_cvt",
+          "name": "Exceed CVT (OTR 388 JT)",
+          "dp_ringan": {
+            "12": { "tdpDipo": 42600000, "angsuran": 30761000 },
+            "24": { "tdpDipo": 42600000, "angsuran": 16320000 },
+            "36": { "tdpDipo": 42600000, "angsuran": 11438000 },
+            "48": { "tdpDipo": 42600000, "angsuran": 9343000 },
+            "60": { "tdpDipo": 42600000, "angsuran": 8178000 },
+            "72": { "tdpDipo": 42600000, "angsuran": 7326000 }
+          },
+          "bunga_hemat": {
+            "12": { "tdpDipo": 69957000, "angsuran": 19156000 },
+            "24": { "tdpDipo": 61350000, "angsuran": 10549000 },
+            "36": { "tdpDipo": 58923000, "angsuran": 8123000 },
+            "48": { "tdpDipo": 58264000, "angsuran": 7463000 },
+            "60": { "tdpDipo": 57807000, "angsuran": 7006000 }
+          },
+          "bunga_0": {
+            "11": { "tdpDipo": 229480000, "angsuran": 14550000 },
+            "23": { "tdpDipo": 230700000, "angsuran": 7599000 }
+          }
+        },
+        {
+          "id": "xforce_hev",
+          "name": "New Xforce HEV (OTR 460 JT)",
+          "dp_ringan": {
+            "11": { "tdpDipo": 92342000, "angsuran": 36892000 },
+            "23": { "tdpDipo": 75383000, "angsuran": 19933000 },
+            "35": { "tdpDipo": 69696000, "angsuran": 14246000 },
+            "47": { "tdpDipo": 67133000, "angsuran": 11683000 },
+            "59": { "tdpDipo": 65790000, "angsuran": 10340000 }
+          },
+          "bunga_hemat": {
+            "11": { "tdpDipo": 133415000, "angsuran": 31965000 },
+            "23": { "tdpDipo": 118445000, "angsuran": 16995000 },
+            "35": { "tdpDipo": 113357000, "angsuran": 11907000 },
+            "47": { "tdpDipo": 111207000, "angsuran": 9757000 },
+            "59": { "tdpDipo": 110046000, "angsuran": 8596000 }
+          },
+          "bunga_0": {
+            "11": { "tdpDipo": 314947000, "angsuran": 13417000 },
+            "23": { "tdpDipo": 315381000, "angsuran": 6931000 }
+          }
+        }
+      ]
+    },
+    "destinator": {
+      "name": "Destinator",
+      "variants": [
+        {
+          "id": "destinator_ultimate_premium",
+          "name": "Destinator Ultimate Premium (OTR 517 JT)",
+          "dp_ringan": {
+            "11": { "tdpDipo": 103181000, "angsuran": 41347000 },
+            "23": { "tdpDipo": 84109000, "angsuran": 22275000 },
+            "35": { "tdpDipo": 77660000, "angsuran": 15826000 },
+            "47": { "tdpDipo": 74677000, "angsuran": 12843000 },
+            "59": { "tdpDipo": 73095000, "angsuran": 11261000 },
+            "71": { "tdpDipo": 73030000, "angsuran": 11196000 }
+          },
+          "bunga_hemat": {
+            "11": { "tdpDipo": 149184000, "angsuran": 35680000 },
+            "23": { "tdpDipo": 132337000, "angsuran": 18803000 },
+            "35": { "tdpDipo": 126595000, "angsuran": 13061000 },
+            "47": { "tdpDipo": 124138000, "angsuran": 10604000 },
+            "59": { "tdpDipo": 122867000, "angsuran": 9333000 },
+            "71": { "tdpDipo": 122210000, "angsuran": 8676000 }
+          },
+          "bunga_0": {
+            "11": { "tdpDipo": 361234000, "angsuran": 15080000 },
+            "23": { "tdpDipo": 354379000, "angsuran": 8195000 }
+          }
+        },
+        {
+          "id": "destinator_ultimate",
+          "name": "Destinator Ultimate (OTR 487 JT)",
+          "dp_ringan": {
+            "11": { "tdpDipo": 97422000, "angsuran": 38948000 },
+            "23": { "tdpDipo": 79457000, "angsuran": 20983000 },
+            "35": { "tdpDipo": 73362000, "angsuran": 14908000 },
+            "47": { "tdpDipo": 70572000, "angsuran": 12098000 },
+            "59": { "tdpDipo": 69159000, "angsuran": 10685000 },
+            "71": { "tdpDipo": 69097000, "angsuran": 10623000 }
+          },
+          "bunga_hemat": {
+            "11": { "tdpDipo": 140754000, "angsuran": 33610000 },
+            "23": { "tdpDipo": 124886000, "angsuran": 17712000 },
+            "35": { "tdpDipo": 119478000, "angsuran": 12304000 },
+            "47": { "tdpDipo": 117163000, "angsuran": 9989000 },
+            "59": { "tdpDipo": 116037000, "angsuran": 8863000 },
+            "71": { "tdpDipo": 115413000, "angsuran": 8239000 }
+          },
+          "bunga_0": {
+            "11": { "tdpDipo": 355575000, "angsuran": 12175000 },
+            "23": { "tdpDipo": 334044000, "angsuran": 7720000 }
+          }
+        },
+        {
+          "id": "destinator_exceed",
+          "name": "Destinator Exceed (OTR 427 JT)",
+          "dp_ringan": {
+            "11": { "tdpDipo": 85904000, "angsuran": 34150000 },
+            "23": { "tdpDipo": 70153000, "angsuran": 18399000 },
+            "35": { "tdpDipo": 64936000, "angsuran": 13182000 },
+            "47": { "tdpDipo": 62532000, "angsuran": 10778000 },
+            "59": { "tdpDipo": 61271000, "angsuran": 9517000 },
+            "71": { "tdpDipo": 61214000, "angsuran": 9460000 }
+          },
+          "bunga_hemat": {
+            "11": { "tdpDipo": 123893000, "angsuran": 29469000 },
+            "23": { "tdpDipo": 109985000, "angsuran": 15531000 },
+            "35": { "tdpDipo": 105345000, "angsuran": 10891000 },
+            "47": { "tdpDipo": 103372000, "angsuran": 8918000 },
+            "59": { "tdpDipo": 102363000, "angsuran": 7909000 },
+            "71": { "tdpDipo": 101804000, "angsuran": 7350000 }
+          },
+          "bunga_0": {
+            "11": { "tdpDipo": 292505000, "angsuran": 12455000 },
+            "23": { "tdpDipo": 293373000, "angsuran": 6769000 }
+          }
+        },
+        {
+          "id": "destinator_gls",
+          "name": "Destinator GLS (OTR 402 JT)",
+          "dp_ringan": {
+            "11": { "tdpDipo": 81104000, "angsuran": 32150000 },
+            "23": { "tdpDipo": 66431000, "angsuran": 17477000 },
+            "35": { "tdpDipo": 61473000, "angsuran": 12519000 },
+            "47": { "tdpDipo": 59189000, "angsuran": 10235000 },
+            "59": { "tdpDipo": 57990000, "angsuran": 9036000 },
+            "71": { "tdpDipo": 57934000, "angsuran": 8980000 }
+          },
+          "bunga_hemat": {
+            "11": { "tdpDipo": 116868000, "angsuran": 27744000 },
+            "23": { "tdpDipo": 103924000, "angsuran": 14770000 },
+            "35": { "tdpDipo": 99509000, "angsuran": 10355000 },
+            "47": { "tdpDipo": 97632000, "angsuran": 8478000 },
+            "59": { "tdpDipo": 96671000, "angsuran": 7517000 },
+            "71": { "tdpDipo": 96138000, "angsuran": 6984000 }
+          },
+          "bunga_0": {
+            "11": { "tdpDipo": 275525000, "angsuran": 11725000 },
+            "23": { "tdpDipo": 276574000, "angsuran": 6520000 }
+          }
+        }
+      ]
+    },
+    "pajero": {
+      "name": "New Pajero Sport",
+      "variants": [
+        {
+          "id": "pajero_dakar_ultimate_4x4",
+          "name": "Dakar Ultimate 4x4 AT (OTR 794 JT)",
+          "dp_ringan": {
+            "11": { "tdpDipo": 192265000, "angsuran": 59707000 },
+            "23": { "tdpDipo": 164795000, "angsuran": 32237000 },
+            "35": { "tdpDipo": 155542000, "angsuran": 22984000 },
+            "47": { "tdpDipo": 151219000, "angsuran": 18661000 },
+            "59": { "tdpDipo": 148928000, "angsuran": 16370000 }
+          },
+          "bunga_hemat": {
+            "11": { "tdpDipo": 227299000, "angsuran": 55071000 },
+            "23": { "tdpDipo": 201399000, "angsuran": 29141000 },
+            "35": { "tdpDipo": 192797000, "angsuran": 20539000 },
+            "47": { "tdpDipo": 188812000, "angsuran": 16554000 },
+            "59": { "tdpDipo": 186707000, "angsuran": 14449000 }
+          },
+          "bunga_0": {
+            "11": { "tdpDipo": 551387000, "angsuran": 23159000 },
+            "23": { "tdpDipo": 542202000, "angsuran": 12644000 }
+          }
+        },
+        {
+          "id": "pajero_dakar_ultimate_4x2",
+          "name": "Dakar Ultimate 4x2 AT (OTR 733 JT)",
+          "dp_ringan": {
+            "11": { "tdpDipo": 177796000, "angsuran": 55120000 },
+            "23": { "tdpDipo": 152437000, "angsuran": 29761000 },
+            "35": { "tdpDipo": 143895000, "angsuran": 21219000 },
+            "47": { "tdpDipo": 139904000, "angsuran": 17228000 },
+            "59": { "tdpDipo": 137789000, "angsuran": 15113000 }
+          },
+          "bunga_hemat": {
+            "11": { "tdpDipo": 210136000, "angsuran": 50840000 },
+            "23": { "tdpDipo": 186229000, "angsuran": 26903000 },
+            "35": { "tdpDipo": 178288000, "angsuran": 18962000 },
+            "47": { "tdpDipo": 174609000, "angsuran": 15283000 },
+            "59": { "tdpDipo": 172665000, "angsuran": 13339000 }
+          },
+          "bunga_0": {
+            "11": { "tdpDipo": 509226000, "angsuran": 21380000 },
+            "23": { "tdpDipo": 500849000, "angsuran": 11673000 }
+          }
+        },
+        {
+          "id": "pajero_dakar_4x2",
+          "name": "Dakar 4x2 AT (OTR 679 JT)",
+          "dp_ringan": {
+            "11": { "tdpDipo": 164987000, "angsuran": 51059000 },
+            "23": { "tdpDipo": 141497000, "angsuran": 27569000 },
+            "35": { "tdpDipo": 133584000, "angsuran": 19656000 },
+            "47": { "tdpDipo": 129887000, "angsuran": 15959000 },
+            "59": { "tdpDipo": 127929000, "angsuran": 14001000 }
+          },
+          "bunga_hemat": {
+            "11": { "tdpDipo": 194708000, "angsuran": 46860000 },
+            "23": { "tdpDipo": 172631000, "angsuran": 24753000 },
+            "35": { "tdpDipo": 165153000, "angsuran": 17275000 },
+            "47": { "tdpDipo": 161934000, "angsuran": 14056000 },
+            "59": { "tdpDipo": 160132000, "angsuran": 12254000 }
+          },
+          "bunga_0": {
+            "11": { "tdpDipo": 471903000, "angsuran": 19805000 },
+            "23": { "tdpDipo": 464241000, "angsuran": 10813000 }
+          }
+        },
+        {
+          "id": "pajero_exceed_4x2_at",
+          "name": "Exceed 4x2 AT (OTR 606 JT)",
+          "dp_ringan": {
+            "11": { "tdpDipo": 147672000, "angsuran": 45570000 },
+            "23": { "tdpDipo": 126707000, "angsuran": 24605000 },
+            "35": { "tdpDipo": 119646000, "angsuran": 17544000 },
+            "47": { "tdpDipo": 116346000, "angsuran": 14244000 },
+            "59": { "tdpDipo": 114598000, "angsuran": 12496000 }
+          },
+          "bunga_hemat": {
+            "11": { "tdpDipo": 174195000, "angsuran": 41823000 },
+            "23": { "tdpDipo": 154495000, "angsuran": 22093000 },
+            "35": { "tdpDipo": 147821000, "angsuran": 15419000 },
+            "47": { "tdpDipo": 144947000, "angsuran": 12545000 },
+            "59": { "tdpDipo": 143340000, "angsuran": 10938000 }
+          },
+          "bunga_0": {
+            "11": { "tdpDipo": 421447000, "angsuran": 17675000 },
+            "23": { "tdpDipo": 414753000, "angsuran": 9651000 }
+          }
+        },
+        {
+          "id": "pajero_exceed_4x2_mt",
+          "name": "Exceed 4x2 MT (OTR 591 JT)",
+          "dp_ringan": {
+            "11": { "tdpDipo": 144114000, "angsuran": 44442000 },
+            "23": { "tdpDipo": 123669000, "angsuran": 23997000 },
+            "35": { "tdpDipo": 116782000, "angsuran": 17110000 },
+            "47": { "tdpDipo": 113564000, "angsuran": 13892000 },
+            "59": { "tdpDipo": 111859000, "angsuran": 12187000 }
+          },
+          "bunga_hemat": {
+            "11": { "tdpDipo": 169979000, "angsuran": 40787000 },
+            "23": { "tdpDipo": 150768000, "angsuran": 21546000 },
+            "35": { "tdpDipo": 144259000, "angsuran": 15037000 },
+            "47": { "tdpDipo": 141457000, "angsuran": 12235000 },
+            "59": { "tdpDipo": 139889000, "angsuran": 10667000 }
+          },
+          "bunga_0": {
+            "11": { "tdpDipo": 411080000, "angsuran": 17238000 },
+            "23": { "tdpDipo": 404584000, "angsuran": 9412000 }
+          }
+        },
+        {
+          "id": "pajero_glx_4x4_mt",
+          "name": "GLX 4x4 MT (OTR 620.5 JT)",
+          "dp_ringan": {
+            "11": { "tdpDipo": 151111000, "angsuran": 46660000 },
+            "23": { "tdpDipo": 129645000, "angsuran": 25194000 },
+            "35": { "tdpDipo": 122414000, "angsuran": 17963000 },
+            "47": { "tdpDipo": 119036000, "angsuran": 14585000 },
+            "59": { "tdpDipo": 117246000, "angsuran": 12795000 }
+          },
+          "bunga_hemat": {
+            "11": { "tdpDipo": 178269000, "angsuran": 42823000 },
+            "23": { "tdpDipo": 158097000, "angsuran": 22621000 },
+            "35": { "tdpDipo": 151263000, "angsuran": 15787000 },
+            "47": { "tdpDipo": 148321000, "angsuran": 12845000 },
+            "59": { "tdpDipo": 146675000, "angsuran": 11199000 }
+          },
+          "bunga_0": {
+            "11": { "tdpDipo": 431469000, "angsuran": 18098000 },
+            "23": { "tdpDipo": 424583000, "angsuran": 9882000 }
+          }
+        }
+      ]
+    }
+  }
+}
