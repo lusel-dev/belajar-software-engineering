@@ -505,38 +505,44 @@
     }
 
     function calcUpdateTenors() {
-      if (!globalCalcData || !globalCalcData.models) return;
+  if (!globalCalcData || !globalCalcData.models) return;
+  
+  const carKey = document.getElementById("calc-model").value;
+  if (carKey === 'l300' || carKey === 'triton') return;
+
+  const variantSelect = document.getElementById("calc-variant");
+  const variantIdx = parseInt(variantSelect.value) || 0;
+  const skemaKey = document.getElementById("calc-skema").value;
+  const tenorSelect = document.getElementById("calc-tenor");
+
+  tenorSelect.innerHTML = "";
+  
+  const modelObj = globalCalcData.models[carKey];
+  if (!modelObj || !modelObj.variants || !modelObj.variants[variantIdx]) return;
+  
+  const variantObj = modelObj.variants[variantIdx];
+  const pkgMap = variantObj[skemaKey];
+
+  if (pkgMap) {
+    Object.keys(pkgMap).forEach(tenorBulan => {
+      let opt = document.createElement("option");
+      opt.value = tenorBulan;
+      const numBulan = parseInt(tenorBulan);
       
-      const carKey = document.getElementById("calc-model").value;
-      if (carKey === 'l300' || carKey === 'triton') return;
-
-      const variantSelect = document.getElementById("calc-variant");
-      const variantIdx = parseInt(variantSelect.value) || 0;
-      const skemaKey = document.getElementById("calc-skema").value;
-      const tenorSelect = document.getElementById("calc-tenor");
-
-      tenorSelect.innerHTML = "";
+      // Menghitung estimasi tahun secara akurat (11->1 Thn, 23->2 Thn, 35->3 Thn, dst)
+      const estimasiTahun = Math.ceil(numBulan / 12);
+      opt.text = `${numBulan} Bulan (${estimasiTahun} Tahun)`;
       
-      const modelObj = globalCalcData.models[carKey];
-      if (!modelObj || !modelObj.variants || !modelObj.variants[variantIdx]) return;
-      
-      const variantObj = modelObj.variants[variantIdx];
-      const pkgMap = variantObj[skemaKey];
-
-      if (pkgMap) {
-        Object.keys(pkgMap).forEach(tenorBulan => {
-          let opt = document.createElement("option");
-          opt.value = tenorBulan;
-          opt.text = (parseInt(tenorBulan) <= 12) ? `${tenorBulan} Bulan (1 Tahun)` : `${tenorBulan} Bulan (${Math.round(parseInt(tenorBulan)/12)} Tahun)`;
-          tenorSelect.add(opt);
-        });
-        if (tenorSelect.options.length > 0) {
-          tenorSelect.selectedIndex = tenorSelect.options.length - 1;
-        }
-      }
-
-      calcRunCalculation();
+      tenorSelect.add(opt);
+    });
+    
+    if (tenorSelect.options.length > 0) {
+      tenorSelect.selectedIndex = 0;
     }
+  }
+
+  calcRunCalculation();
+}
 
     function calcRunCalculation() {
       if (!globalCalcData || !globalCalcData.models) return;
