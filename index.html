@@ -187,11 +187,11 @@
     </a>
   </div>
 
-  <!-- MODAL POPUP TEST DRIVE (DENGAN PILIHAN WAKTU & UNIT KHUSUS PENUMPANG) -->
+  <!-- MODAL POPUP TEST DRIVE (DENGAN INPUT JAM BEBAS & DESTINATOR) -->
   <div id="modal-testdrive" class="modal-overlay hidden" onclick="tutupModalTestDrive()">
     <div class="modal-content" onclick="event.stopPropagation()">
       <h3 style="margin-top: 0; color: #d00000; text-align: center;">🚗 Form Booking Test Drive</h3>
-      <p style="font-size: 11.5px; color: #666; text-align: center; margin-bottom: 12px;">Pilih unit mobil penumpang dan jadwalkan waktu test drive Anda.</p>
+      <p style="font-size: 11.5px; color: #666; text-align: center; margin-bottom: 12px;">Pilih unit mobil penumpang dan tentukan jadwal jam test drive Anda.</p>
       
       <form onsubmit="kirimTestDriveWA(event)">
         <div class="form-group">
@@ -205,15 +205,12 @@
             <option value="Xpander Cross">Xpander Cross</option>
             <option value="Xforce">Xforce</option>
             <option value="Pajero Sport">Pajero Sport</option>
+            <option value="Destinator">Destinator</option>
           </select>
         </div>
         <div class="form-group">
-          <label>Waktu / Jam Pilihan *</label>
-          <select id="td-waktu">
-            <option value="Pagi (09.00 - 11.30 WIB)">Sesi Pagi (09.00 - 11.30 WIB)</option>
-            <option value="Siang (13.00 - 15.00 WIB)">Sesi Siang (13.00 - 15.00 WIB)</option>
-            <option value="Sore (15.30 - 17.30 WIB)">Sesi Sore (15.30 - 17.30 WIB)</option>
-          </select>
+          <label>Jam Pilihan Test Drive *</label>
+          <input type="text" id="td-waktu" placeholder="Contoh: Jam 14.00 WIB / Pukul 10 pagi" required />
         </div>
         <div class="form-group">
           <label>Domisili / Area *</label>
@@ -240,7 +237,7 @@
       const waktu = document.getElementById('td-waktu').value;
       const lokasi = document.getElementById('td-lokasi').value;
       
-      const pesan = `Halo saya mau tanya info mitsubishi. Saya *${nama}* dari *${lokasi}* ingin booking Test Drive unit *${unit}* pada *${waktu}*. Mohon konfirmasi ketersediaannya. Terima kasih.`;
+      const pesan = `Halo saya mau tanya info mitsubishi. Saya *${nama}* dari *${lokasi}* ingin booking Test Drive unit *${unit}* pada jam *${waktu}*. Mohon konfirmasi ketersediaannya. Terima kasih.`;
       window.open(`https://wa.me/${nomorWaSales}?text=` + encodeURIComponent(pesan), '_blank');
       tutupModalTestDrive();
     }
