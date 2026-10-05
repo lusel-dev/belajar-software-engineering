@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Katalog Truk & Kendaraan Komersial - Fuso & Mitsubishi Jakarta Barat</title>
+  <link rel="icon" type="image/x-icon" href="https://www.mitsubishi-motors.co.id/favicon.ico">
+
+  <style>
+    /* CSS UTAMA & RESET BASE */
+    * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: #f4f6f8; margin: 0; padding: 20px; color: #333; }
+    .container { max-width: 950px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    
+    /* NAVBAR UTAMA ANTAR HALAMAN */
+    .main-navbar { background: #1e293b; padding: 12px 20px; border-radius: 8px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; color: white; flex-wrap: wrap; gap: 10px; }
+    .main-navbar b { font-size: 14px; }
+    .nav-links { display: flex; gap: 15px; }
+    .nav-links a { color: #fff; text-decoration: none; font-size: 13.5px; font-weight: 600; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: #f87171; }
+
+    /* TOP DEALER STATUS BAR */
+    .dealer-status-bar { background: #1e293b; color: #fff; padding: 8px 14px; border-radius: 8px; font-size: 12px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+    .dealer-status-bar .status-tag { background: #22c55e; color: #fff; font-size: 10px; font-weight: bold; padding: 2px 8px; border-radius: 12px; }
+
+    /* BANNER PROMO KOMERSIAL */
+    .promo-banner { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; padding: 12px 14px; border-radius: 10px; font-size: 13px; text-align: center; margin-bottom: 18px; }
+    .promo-banner-title { font-weight: bold; margin-bottom: 6px; display: block; color: #0369a1; font-size: 13.5px; }
+    .promo-list { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+    .promo-chip { background: #fff; border: 1px solid #7dd3fc; color: #0284c7; padding: 4px 10px; border-radius: 20px; font-size: 11.5px; font-weight: bold; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+
+    /* HEADER & TITLE */
+    header { text-align: center; border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 20px; }
+    header h1 { margin: 0; color: #1e293b; font-size: 24px; letter-spacing: 1px; }
+
+    /* KARTU INFO BISNIS */
+    .business-card { background: #f8fafc; border: 2px solid #1e293b; border-radius: 12px; padding: 20px; margin-bottom: 25px; text-align: center; }
+    .business-title { color: #1e293b; font-size: 17px; font-weight: bold; margin-bottom: 8px; }
+    .business-desc { font-size: 13px; color: #475569; line-height: 1.5; margin-bottom: 15px; }
+    .btn-bus-wa { display: inline-block; background-color: #25D366; color: white; text-align: center; padding: 10px 20px; border-radius: 8px; font-weight: bold; text-decoration: none; font-size: 13.5px; transition: background 0.2s; }
+    .btn-bus-wa:hover { background-color: #1ebc57; }
+
+    /* SELEKTOR MODEL TRUK */
+    .model-selector { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; padding: 12px; background: #fafafa; border-radius: 10px; border: 1px solid #eaeaea; }
+    .btn-model { padding: 10px 18px; border: 2px solid #1e293b; background: #fff; color: #1e293b; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 13.5px; transition: all 0.2s; }
+    .btn-model:hover, .btn-model.active { background: #1e293b; color: #fff; }
+
+    /* FILTER SUB-VARIAN TRUK */
+    .filter-group { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 25px; }
+    .btn-filter { padding: 8px 16px; border: 1px solid #ddd; background: #fff; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 13px; transition: all 0.2s; }
+    .btn-filter.active { background: #1e293b; color: #fff; border-color: #1e293b; }
+
+    /* GRID KARTU TRUK */
+    .grid-mobil { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 20px; }
+    .card { border: 1px solid #eee; border-radius: 10px; overflow: hidden; background: #fff; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 6px 15px rgba(0,0,0,0.1); }
+    .card img { width: 100%; height: 180px; object-fit: cover; background: #f9f9f9; }
+    .card-body { padding: 15px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    
+    .badge { display: inline-block; background: #e0f2fe; color: #0369a1; font-size: 12px; font-weight: bold; padding: 4px 8px; border-radius: 4px; margin-bottom: 8px; }
+    .badge-turbo { background: #fef3c7; color: #b45309; }
+    .harga-box { font-size: 17px; font-weight: bold; color: #1e293b; margin: 6px 0; display: block; }
+
+    .color-section { margin: 10px 0; background: #fafafa; padding: 10px; border-radius: 6px; border: 1px solid #f0f0f0; }
+    .color-title { font-size: 12px; color: #444; font-weight: 600; margin-bottom: 6px; }
+    .color-dots { display: flex; gap: 8px; align-items: center; }
+    .color-dot { width: 20px; height: 20px; border-radius: 50%; border: 2px solid #ccc; cursor: pointer; transition: transform 0.2s, border-color 0.2s; }
+    .color-dot:hover { transform: scale(1.2); }
+    .color-dot.active { border-color: #1e293b; transform: scale(1.15); box-shadow: 0 0 5px rgba(30, 41, 59, 0.4); }
+
+    .btn-group-grid { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 12px; }
+    .btn { padding: 10px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; text-align: center; font-size: 12px; }
+    .btn-detail { background: #334155; color: #fff; }
+    .btn-wa { background: #25D366; color: #fff; text-decoration: none; font-size: 13px; }
+
+    /* MODAL POPUP */
+    .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 999; }
+    .modal-content { background: #fff; border-radius: 12px; max-width: 650px; width: 100%; max-height: 85vh; overflow-y: auto; padding: 25px; }
+    .spec-table { width: 100%; border-collapse: collapse; margin-bottom: 15px; font-size: 13px; }
+    .spec-table td, .spec-table th { padding: 8px 12px; border-bottom: 1px solid #eee; text-align: left; }
+    .spec-table th { background: #f8f8f8; color: #1e293b; font-size: 14px; }
+    .spec-table td:first-child { font-weight: 600; color: #555; width: 40%; }
+    .hidden { display: none !important; }
+
+    /* FLOATING BUTTONS */
+    .floating-container { position: fixed; bottom: 20px; right: 18px; display: flex; flex-direction: column; gap: 12px; align-items: flex-end; z-index: 998; }
+    .float-btn { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(0,0,0,0.25); text-decoration: none; border: none; cursor: pointer; transition: transform 0.2s; position: relative; }
+    .float-btn:hover { transform: scale(1.1); }
+    .float-btn-wa { background-color: #25D366; }
+    .float-btn .tooltip { position: absolute; right: 62px; background: rgba(0, 0, 0, 0.8); color: #fff; padding: 5px 10px; border-radius: 6px; font-size: 11px; font-weight: 600; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
+    .float-btn:hover .tooltip { opacity: 1; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- NAVBAR UTAMA ANTAR HALAMAN -->
+    <nav class="main-navbar">
+      <b>📍 Dealer Resmi Fuso & Mitsubishi Jakarta Barat</b>
+      <div class="nav-links">
+        <a href="index.html">Beranda</a>
+        <a href="penumpang.html">Mobil Penumpang</a>
+        <a href="komersial.html" class="active">Truk & Komersial</a>
+      </div>
+    </nav>
+
+    <div class="dealer-status-bar">
+      <span>🚛 Kategori: Truk & Kendaraan Operasional Usaha</span>
+      <span class="status-tag">🟢 Ready Stock Unit</span>
+    </div>
+
+    <!-- HEADER UTAMA -->
+    <header>
+      <h1 id="catalog-title">KATALOG TRUK & KOMERSIAL</h1>
+      <p style="margin: 5px 0 0; color: #666; font-size: 14px;">Solusi armada tangguh untuk kemajuan bisnis dan logistik Anda</p>
+
+      <div class="promo-banner">
+        <span class="promo-banner-title">💼 LAYANAN ARMADA BISNIS & KAROSERI</span>
+        <div class="promo-list">
+          <span class="promo-chip">DP Fleksibel & Bisa Custom</span>
+          <span class="promo-chip">Bantuan Karoseri (Box/Bak/Dump)</span>
+          <span class="promo-chip">Garansi Mesin & Suku Cadang Resmi</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- KARTU INFO KONSULTASI BISNIS -->
+    <div class="business-card">
+      <div class="business-title">📈 Butuh Armada Banyak / Hitungan Khusus Perusahaan (Fleet)?</div>
+      <div class="business-desc">
+        Dapatkan penawaran harga khusus pengadaan perusahaan, proses leasing kilat, serta konsultasi pembuatan karoseri langsung dari Sales Executive kami.
+      </div>
+      <a href="https://wa.me/6285169669017?text=Halo%20Lusel,%20saya%20ingin%20konsultasi%20pengadaan%20unit%20komersial/truk%20untuk%20usaha" target="_blank" class="btn-bus-wa">
+        💬 Konsultasi Armada Usaha via WhatsApp
+      </a>
+    </div>
+
+    <!-- SELEKTOR MODEL TRUK -->
+    <div class="model-selector">
+      <button class="btn-model active" onclick="muatModel('l300.json', this)">🚚 Colt L300</button>
+      <button class="btn-model" onclick="muatModel('triton.json', this)">🛻 All New Triton</button>
+      <button class="btn-model" onclick="muatModel('canter.json', this)">🚚 Canter (Colt Diesel)</button>
+      <button class="btn-model" onclick="muatModel('fighter.json', this)">🚛 Fuso Fighter X</button>
+    </div>
+
+    <!-- FILTER SUB-VARIAN -->
+    <div class="filter-group" id="filter-container"></div>
+
+    <!-- GRID DISPLAY KARTU TRUK -->
+    <div id="grid-mobil" class="grid-mobil"></div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer style="text-align: center; font-size: 11.5px; color: #777; margin-top: 25px; padding-bottom: 30px;">
+    <p>© 2026 Dealer Resmi Mitsubishi & Fuso Indonesia. All Rights Reserved.</p>
+  </footer>
+
+  <!-- MODAL DETAIL SPESIFIKASI -->
+  <div id="modal-detail" class="modal-overlay hidden" onclick="tutupModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <h2 id="modal-nama" style="margin-top: 0; color: #1e293b;"></h2>
+      <p style="font-size: 18px; font-weight: bold; color: #1e293b;">Harga Chassis OTR: <span id="modal-harga"></span></p>
+      <table class="spec-table">
+        <tbody>
+          <tr><td>Mesin</td><td id="m-mesin"></td></tr>
+          <tr><td>Daya / Torsi Maksimum</td><td id="m-power"></td></tr>
+          <tr><td>Kategori / Karoseri</td><td id="m-kategori"></td></tr>
+        </tbody>
+      </table>
+      <button class="btn btn-full" style="background: #ccc; color: #333;" onclick="tutupModal()">Tutup</button>
+    </div>
+  </div>
+
+  <!-- FLOATING WA -->
+  <div class="floating-container">
+    <a href="https://wa.me/6285169669017?text=Halo%20Lusel,%20saya%20ingin%20tanya%20truk%20Mitsubishi%20Fuso" class="float-btn float-btn-wa" target="_blank">
+      <span class="tooltip">Chat WhatsApp</span>
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.763.459 3.483 1.332 5.002L2 22l5.122-1.336c1.464.798 3.111 1.218 4.887 1.218h.004c5.505 0 9.988-4.478 9.989-9.985 0-2.668-1.038-5.176-2.925-7.063C17.189 3.039 14.68 2 12.012 2zm5.836 14.162c-.244.688-1.428 1.312-1.988 1.393-.523.076-1.196.108-3.414-.808-2.839-1.173-4.664-4.047-4.805-4.237-.142-.19-1.148-1.528-1.148-2.914 0-1.386.726-2.068.983-2.348.257-.281.56-.351.747-.351.187 0 .374.001.538.009.175.008.409-.066.64.488.244.588.831 2.028.902 2.172.072.145.118.316.024.505-.094.19-.142.308-.282.473-.141.166-.296.371-.423.498-.142.142-.29.297-.124.582.166.285.736 1.213 1.58 1.964 1.085.966 2.001 1.266 2.286 1.408.285.142.451.118.618-.071.167-.189.715-.833.903-1.118.188-.285.375-.237.633-.142.258.095 1.637.771 1.917.91.281.142.468.213.538.332.07.118.07.688-.174 1.376z"/></svg>
+    </a>
+  </div>
+
+  <script>
+    const nomorWaSales = "6285169669017";
+    let masterWarna = [];
+    let dataVariants = [];
+    let currentFilter = 'ALL';
+    const selectedState = {};
+
+    function muatModel(jsonFileName, btnElement) {
+      if (btnElement) {
+        document.querySelectorAll('.btn-model').forEach(b => b.classList.remove('active'));
+        btnElement.classList.add('active');
+      }
+      fetch(jsonFileName)
+        .then(res => res.json())
+        .then(data => {
+          masterWarna = data.masterWarna || [{ nama: 'Standard', hex: '#ffffff', extra: 0 }];
+          dataVariants = data.variants || data.dataMobil || [];
+          currentFilter = 'ALL';
+          document.getElementById('catalog-title').innerText = `KATALOG TRUK ${(data.modelName || '').toUpperCase()}`;
+          renderFilterButtons();
+          renderKatalog();
+        })
+        .catch(err => console.error("Error load JSON:", err));
+    }
+
+    function renderFilterButtons() {
+      const container = document.getElementById('filter-container');
+      const isKaroseri = dataVariants.some(item => item.kategori);
+      let uniqueTypes = isKaroseri 
+        ? [...new Set(dataVariants.map(item => item.kategori).filter(Boolean))]
+        : [...new Set(dataVariants.map(item => item.nama.split(' ')[1] || 'Standard'))];
+
+      let html = `<button class="btn-filter active" onclick="setFilter('ALL', this)">Semua Varian</button>`;
+      uniqueTypes.forEach(type => { html += `<button class="btn-filter" onclick="setFilter('${type}', this)">${type}</button>`; });
+      container.innerHTML = html;
+    }
+
+    function renderKatalog() {
+      const container = document.getElementById('grid-mobil');
+      container.innerHTML = '';
+      
+      const filtered = currentFilter === 'ALL' 
+        ? dataVariants 
+        : dataVariants.filter(item => {
+            const search = currentFilter.toLowerCase();
+            const nama = item.nama.toLowerCase();
+            const kat = (item.kategori || '').toLowerCase();
+            return nama.includes(search) || kat.includes(search);
+          });
+      
+      filtered.forEach(mobil => {
+        if (!selectedState[mobil.id]) {
+          selectedState[mobil.id] = { extraWarna: 0, namaWarna: masterWarna[0]?.nama || 'Standard' };
+        }
+        
+        container.innerHTML += `
+          <div class="card">
+            <img id="img-${mobil.id}" src="${mobil.gambar}" alt="${mobil.nama}" />
+            <div class="card-body">
+              <div>
+                <span class="badge badge-turbo">🚛 ${mobil.kategori || 'Commercial Unit'}</span>
+                <h3>${mobil.nama}</h3>
+                <span class="harga-box" id="price-box-${mobil.id}">${mobil.hargaStr}</span>
+                <div style="font-size: 11.5px; color: #555; background: #f8fafc; padding: 6px; border-radius: 4px; margin-top: 6px;">
+                  <b>Mesin:</b> ${mobil.powerEngine || mobil.mesin || 'Euro 4 Diesel'}
+                </div>
+              </div>
+              <div class="btn-group-grid" style="margin-top: 15px;">
+                <button class="btn btn-detail" onclick="bukaModal('${mobil.id}')">Spesifikasi Detail</button>
+                <button id="btn-wa-${mobil.id}" class="btn btn-wa" onclick="hubungiSales('${mobil.nama}', '${mobil.hargaStr}')">Tanya Unit & Karoseri WA</button>
+              </div>
+            </div>
+          </div>`;
+      });
+    }
+
+    function setFilter(type, el) {
+      currentFilter = type;
+      document.querySelectorAll('.btn-filter').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+      renderKatalog();
+    }
+
+    function hubungiSales(nama, harga) {
+      window.open(`https://wa.me/${nomorWaSales}?text=` + encodeURIComponent(`Halo Lusel, saya tertarik dengan unit komersial *${nama}* (${harga}). Mohon info ketersediaan unit dan simulasi kredit usahanya.`), '_blank');
+    }
+
+    function bukaModal(id) {
+      const m = dataVariants.find(item => item.id === id);
+      if (!m) return;
+      document.getElementById('modal-nama').innerText = m.nama;
+      document.getElementById('modal-harga').innerText = m.hargaStr;
+      document.getElementById('m-mesin').innerText = m.mesin || '-';
+      document.getElementById('m-power').innerText = m.powerEngine || '-';
+      document.getElementById('m-kategori').innerText = m.kategori || 'Commercial Truck';
+      document.getElementById('modal-detail').classList.remove('hidden');
+    }
+    function tutupModal() { document.getElementById('modal-detail').classList.add('hidden'); }
+
+    // Load default model komersial pertama (Colt L300)
+    muatModel('l300.json', document.querySelector('.btn-model'));
+  </script>
+</body>
+</html>
