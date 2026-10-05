@@ -2,10 +2,10 @@
   "modelName": "FUSO FIGHTER X",
   "masterWarna": [
     {
-      "nama": "White Solid / Yellow Classic (Khas Fighter X)",
+      "nama": "Yellow Classic (Khas Fighter X)",
       "hex": "#FFFFFF",
       "extra": 0,
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2025/10/th-home-img.webp"
+      "gambar": "https://www.mitsubishidipogatsu.com/file/fighterx-01.jpg"
     }
   ],
   "variants": [
@@ -20,7 +20,7 @@
       "torsi": "785 Nm / 1.200-1.800 Nm/rpm",
       "transmisi": "M07056 (6 gigi maju, 1 mundur)",
       "velg": "Ganda, 11.00-20-16PR, 10 Baut",
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2025/06/FN61-FS-2.webp",
+      "gambar": "https://imgcdn.oto.com/large/gallery/exterior/119/2065/mitsubishi-fighter-fn-61-fs-front-angle-low-view-560934.jpg?tr=w-510,h-340",
       "dimensi": "Panjang 8.475 mm | WB 5.460 mm",
       "gc": "Standar Medium Duty"
     },
@@ -35,7 +35,7 @@
       "torsi": "785 Nm / 1.200-1.800 Nm/rpm",
       "transmisi": "M07056 (6 gigi maju, 1 mundur)",
       "velg": "Ganda, 11.00-20-16PR, 10 Baut",
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2025/06/FN61-FL.webp",
+      "gambar": "https://imgcdn.oto.com/large/gallery/exterior/119/2209/mitsubishi-fighter-fn-61-fl-front-angle-low-view-141676.jpg",
       "dimensi": "Panjang 11.925 mm | WB 7.190 mm",
       "gc": "Standar Medium Duty"
     },
@@ -50,7 +50,7 @@
       "torsi": "880 Nm / 1.200-2.000 Nm/rpm",
       "transmisi": "EATON ES-11109 (9 gigi maju, 1 mundur)",
       "velg": "Ganda, 11.00-20-16PR, 10 Baut",
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2025/06/FN61-FLHD-R.webp",
+      "gambar": "https://imgcdn.oto.com/large/gallery/exterior/119/2596/mitsubishi-fighter-fn-61-fl-hd-front-angle-low-view-745761.jpg",
       "dimensi": "Panjang 11.925 mm | WB 7.190 mm",
       "gc": "Standar Medium Duty"
     },
@@ -65,7 +65,7 @@
       "torsi": "880 Nm / 1.200-2.000 Nm/rpm",
       "transmisi": "EATON ES-11109 (9 gigi maju, 1 mundur)",
       "velg": "Ganda, 11.00-20-16PR, 10 Baut",
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2025/06/FN61-FLHD-R.webp",
+      "gambar": "https://imgcdn.oto.com/large/gallery/exterior/119/2855/mitsubishi-fn-61-fl-hd-r-front-angle-low-view-280238.jpg",
       "dimensi": "Panjang 11.925 mm | WB 7.190 mm",
       "gc": "Standar Medium Duty"
     },
@@ -80,7 +80,7 @@
       "torsi": "880 Nm / 1.200-2.000 Nm/rpm",
       "transmisi": "EATON ES-11109 (9 gigi maju, 1 mundur)",
       "velg": "Ganda, 11.00-20-16PR, 10 Baut",
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2025/06/FN62-FHD-R.webp",
+      "gambar": "https://imgcdn.oto.com/large/gallery/exterior/119/2068/mitsubishi-fighter-fn-62-f-hd-front-angle-low-view-352791.jpg",
       "dimensi": "Panjang 8.475 mm | WB 5.460 mm",
       "gc": "High Clearance"
     },
@@ -95,7 +95,7 @@
       "torsi": "880 Nm / 1.200-2.000 Nm/rpm",
       "transmisi": "EATON ES-11109 (9 gigi maju, 1 mundur)",
       "velg": "Ganda, 11.00-20-16PR, 10 Baut",
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2025/06/FN62-FHD-R.webp",
+      "gambar": "https://imgcdn.oto.com/large/gallery/exterior/119/2067/mitsubishi-fighter-fn-62-f-front-angle-low-view-653489.jpg",
       "dimensi": "Panjang 8.475 mm | WB 5.460 mm",
       "gc": "High Clearance"
     },
@@ -110,7 +110,7 @@
       "torsi": "880 Nm / 1.200-2.000 Nm/rpm",
       "transmisi": "EATON ES-11109 (9 gigi maju, 1 mundur)",
       "velg": "Ganda, 11.00-20-16PR, 10 Baut",
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2025/06/FN62-FLHD-R-1.webp",
+      "gambar": "https://imgcdn.oto.com/large/gallery/exterior/119/2210/mitsubishi-fighter-fn-62-fl-hd-front-angle-low-view-818220.jpg",
       "dimensi": "Panjang 11.935 mm | WB 7.190 mm",
       "gc": "Standar Heavy Duty"
     },
@@ -125,7 +125,7 @@
       "torsi": "880 Nm / 1.200-2.000 Nm/rpm",
       "transmisi": "EATON ES-11109 (9 gigi maju, 1 mundur)",
       "velg": "Ganda, 11.00-20-16PR, 10 Baut",
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2025/06/FN62-FLHD-R-1.webp",
+      "gambar": "https://imgcdn.oto.com/large/gallery/exterior/119/2210/mitsubishi-fighter-fn-62-fl-hd-front-angle-low-view-818220.jpg",
       "dimensi": "Panjang 11.935 mm | WB 7.190 mm",
       "gc": "Standar Heavy Duty"
     },
@@ -140,7 +140,7 @@
       "torsi": "785 Nm / 1.200-1.800 Nm/rpm",
       "transmisi": "M07056 (6 gigi maju, 1 mundur)",
       "velg": "Ganda, 11.00-20-16PR, 10 Baut",
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2025/06/FM65-FSL.webp",
+      "gambar": "https://imgcdn.oto.com/large/gallery/exterior/119/2062/mitsubishi-fighter-fm-65-fs-hi-front-angle-low-view-438656.jpg",
       "dimensi": "Panjang 7.510 mm | WB 4.280 mm",
       "gc": "Standar Medium Duty"
     },
@@ -155,7 +155,7 @@
       "torsi": "785 Nm / 1.200-1.800 Nm/rpm",
       "transmisi": "M07056 (6 gigi maju, 1 mundur)",
       "velg": "Ganda, 11.00-20-16PR, 10 Baut",
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2025/06/FM65-FSL.webp",
+      "gambar": "https://imgcdn.oto.com/large/gallery/exterior/119/2064/mitsubishi-fighter-fm-65-fl-hi-gear-front-angle-low-view-171019.jpg",
       "dimensi": "Sasis Panjang Hi-Gear",
       "gc": "Standar Medium Duty"
     },
@@ -170,7 +170,7 @@
       "torsi": "785 Nm / 1.200-1.800 Nm/rpm",
       "transmisi": "M07056 (6 gigi maju, 1 mundur)",
       "velg": "Ganda, 11.00-20-16PR, 10 Baut",
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2025/06/FM65-FSL.webp",
+      "gambar": "https://imgcdn.oto.com/large/gallery/exterior/119/2062/mitsubishi-fighter-fm-65-fs-hi-front-angle-low-view-438656.jpg",
       "dimensi": "Panjang 8.680 mm | WB 5.080 mm",
       "gc": "Standar Medium Duty"
     },
@@ -185,7 +185,7 @@
       "torsi": "785 Nm / 1.200-1.800 Nm/rpm",
       "transmisi": "M07056 (6 gigi maju, 1 mundur)",
       "velg": "Ganda, 11.00-20-16PR, 10 Baut",
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2025/06/FM65-FSL.webp",
+      "gambar": "https://imgcdn.oto.com/large/gallery/exterior/119/2064/mitsubishi-fighter-fm-65-fl-hi-gear-front-angle-low-view-171019.jpg",
       "dimensi": "Panjang 10.545 mm | WB 6.080 mm",
       "gc": "Standar Medium Duty"
     },
@@ -200,7 +200,7 @@
       "torsi": "785 Nm / 1.200-1.800 Nm/rpm",
       "transmisi": "M07056 (6 gigi maju, 1 mundur)",
       "velg": "Ganda, 11.00-20-16PR, 10 Baut",
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2025/06/FM65-FSL.webp",
+      "gambar": "https://imgcdn.oto.com/large/gallery/exterior/119/2208/mitsubishi-fighter-fm-65-fsl-hi-gear-front-angle-low-view-109690.jpg",
       "dimensi": "Panjang 10.545 mm | WB 6.080 mm",
       "gc": "Standar Medium Duty"
     },
@@ -215,7 +215,7 @@
       "torsi": "785 Nm / 1.200-1.800 Nm/rpm",
       "transmisi": "M07056 (6 gigi maju, 1 mundur)",
       "velg": "Ganda, 11.00-20-16PR, 10 Baut",
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2025/06/FM65-FSL.webp",
+      "gambar": "https://imgcdn.oto.com/large/gallery/exterior/119/2064/mitsubishi-fighter-fm-65-fl-hi-gear-front-angle-low-view-171019.jpg",
       "dimensi": "Sasis Panjang Hi-Gear",
       "gc": "Standar Medium Duty"
     }
