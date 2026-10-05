@@ -17,13 +17,22 @@
     .nav-links a { color: #cbd5e1; text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s ease; }
     .nav-links a:hover, .nav-links a.active { color: #fff; background: #334155; }
 
-    /* HEADER DENGAN LOGO RESMI GAMBAR */
-    header { text-align: center; border-bottom: 2px solid #f1f5f9; padding-bottom: 20px; margin-bottom: 25px; }
-    .brand-logos-container { display: flex; justify-content: center; align-items: center; gap: 25px; margin-bottom: 15px; flex-wrap: wrap; }
-    .brand-logo-img { height: 36px; object-fit: contain; }
-    
-    header h1 { margin: 5px 0 0; color: #1e293b; font-size: 22px; letter-spacing: 0.5px; }
-    header p { margin: 4px 0 0; color: #64748b; font-size: 13.5px; }
+    <!-- HEADER RESMI DENGAN LOGO DI KIRI DAN KANAN -->
+    <header>
+      <div class="header-layout">
+        <!-- Logo Kiri (Mitsubishi Motors) -->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Mitsubishi_Motors_logo.svg" alt="Mitsubishi Motors" class="header-logo">
+        
+        <!-- Teks Tengah -->
+        <div class="header-text-center">
+          <h1>SHOWROOM DIGITAL RESMI MITSUBISHI</h1>
+          <p>Pusat Penjualan Unit, Booking Test Drive & Simulasi Kredit</p>
+        </div>
+
+        <!-- Logo Kanan (Mitsubishi Fuso) -->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Mitsubishi_Fuso_Logo.svg" alt="Mitsubishi Fuso" class="header-logo">
+      </div>
+    </header>
 
     /* BANNER PROMO */
     .promo-banner { background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%); color: #92400e; border: 1px solid #fde68a; padding: 14px; border-radius: 10px; font-size: 13px; text-align: center; margin-bottom: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
