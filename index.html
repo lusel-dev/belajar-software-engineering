@@ -1,9 +1,152 @@
-<!-- NAVBAR UTAMA ANTAR HALAMAN -->
-<nav style="background: #1e293b; padding: 12px 20px; border-radius: 8px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; color: white; flex-wrap: wrap; gap: 10px;">
-  <b>📍 Dealer Resmi Mitsubishi</b>
-  <div style="display: flex; gap: 15px;">
-    <a href="index.html" style="color: #fff; text-decoration: none; font-size: 13.5px; font-weight: 600;">Beranda</a>
-    <a href="penumpang.html" style="color: #fff; text-decoration: none; font-size: 13.5px; font-weight: 600;">Mobil Penumpang</a>
-    <a href="komersial.html" style="color: #fff; text-decoration: none; font-size: 13.5px; font-weight: 600;">Truk & Komersial</a>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dealer Resmi Mitsubishi & Fuso Jakarta Barat - Promo & Katalog</title>
+  <link rel="icon" type="image/x-icon" href="https://www.mitsubishi-motors.co.id/favicon.ico">
+  <style>
+    * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: #f4f6f8; margin: 0; padding: 20px; color: #333; }
+    .container { max-width: 950px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    
+    /* NAVBAR UTAMA */
+    .main-navbar { background: #1e293b; padding: 12px 20px; border-radius: 8px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; color: white; flex-wrap: wrap; gap: 10px; }
+    .main-navbar b { font-size: 14px; }
+    .nav-links { display: flex; gap: 15px; }
+    .nav-links a { color: #fff; text-decoration: none; font-size: 13.5px; font-weight: 600; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: #f87171; }
+
+    /* HEADER & BANNER */
+    header { text-align: center; border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 20px; }
+    header h1 { margin: 0; color: #d00000; font-size: 24px; letter-spacing: 1px; }
+    .promo-banner { background: #fff3cd; color: #856404; border: 1px solid #ffeeba; padding: 12px; border-radius: 10px; font-size: 13px; text-align: center; margin-bottom: 20px; }
+    
+    /* PILIHAN KATEGORI UTAMA */
+    .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 25px 0; }
+    .category-card { background: #fafafa; border: 2px solid #e2e8f0; border-radius: 12px; padding: 25px; text-align: center; transition: transform 0.2s, border-color 0.2s; text-decoration: none; color: inherit; display: flex; flex-direction: column; justify-content: space-between; }
+    .category-card:hover { transform: translateY(-5px); border-color: #d00000; box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+    .category-card h3 { color: #d00000; margin: 10px 0; font-size: 20px; }
+    .category-card p { font-size: 13px; color: #666; margin-bottom: 20px; line-height: 1.4; }
+    .btn-cat { background: #d00000; color: #fff; padding: 10px 20px; border-radius: 6px; font-weight: bold; font-size: 13px; display: inline-block; }
+
+    /* BAGIAN TENTANG KAMI & ALAMAT */
+    .about-section { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 20px; margin-top: 30px; }
+    .about-title { color: #1e293b; font-size: 16px; font-weight: bold; margin-bottom: 10px; text-align: center; }
+    .about-text { font-size: 13px; color: #475569; line-height: 1.6; text-align: center; margin-bottom: 15px; }
+    
+    .map-box { width: 100%; height: 210px; border-radius: 8px; overflow: hidden; border: 1px solid #cbd5e1; margin-top: 15px; }
+
+    /* FOOTER */
+    footer { text-align: center; font-size: 11.5px; color: #777; margin-top: 25px; padding-bottom: 30px; border-top: 1px solid #eee; padding-top: 15px; }
+
+    @media (max-width: 600px) {
+      .main-navbar { flex-direction: column; align-items: stretch; text-align: center; }
+      .nav-links { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- NAVBAR MENU UTAMA -->
+    <nav class="main-navbar">
+      <b>📍 Dealer Resmi Mitsubishi & Fuso Jakarta Barat</b>
+      <div class="nav-links">
+        <a href="index.html" class="active">Beranda</a>
+        <a href="penumpang.html">Mobil Penumpang</a>
+        <a href="komersial.html">Truk & Komersial</a>
+      </div>
+    </nav>
+
+    <!-- HEADER UTAMA -->
+    <header>
+      <h1>SHOWROOM DIGITAL MITSUBISHI JAKARTA BARAT</h1>
+      <p style="margin: 5px 0 0; color: #666; font-size: 14px;">Pusat Penjualan Unit Resmi, Promo DP Ringan & Simulasi Kredit Terbaik</p>
+    </header>
+
+    <!-- BANNER PROMO -->
+    <div class="promo-banner">
+      <b>🔥 PROMO SPESIAL BULAN INI:</b> DP Ringan Mulai 10% | Bunga 0% Hingga 2 Tahun | Data Kredit Dibantu Sampai ACC!
+    </div>
+
+    <div style="text-align: center; margin: 20px 0;">
+      <h2 style="font-size: 18px; color: #1e293b; margin-bottom: 5px;">Pilih Kategori Kendaraan Impian Anda</h2>
+      <p style="font-size: 13px; color: #666;">Silakan pilih kategori di bawah ini untuk melihat katalog lengkap, pilihan warna, dan simulasi kredit.</p>
+    </div>
+
+    <!-- KOTAK PILIHAN MENU UTAMA -->
+    <div class="category-grid">
+      
+      <!-- MENU 1: MOBIL PENUMPANG -->
+      <a href="penumpang.html" class="category-card">
+        <div>
+          <span style="font-size: 40px;">🚗</span>
+          <h3>Mobil Penumpang & SUV</h3>
+          <p>Koleksi kendaraan keluarga dan SUV tangguh: All New Xpander, Xpander Cross, Xforce, Pajero Sport, dan Destinator.</p>
+        </div>
+        <div>
+          <span class="btn-cat">Lihat Katalog Penumpang →</span>
+        </div>
+      </a>
+
+      <!-- MENU 2: TRUK & KOMERSIAL -->
+      <a href="komersial.html" class="category-card">
+        <div>
+          <span style="font-size: 40px;">🚛</span>
+          <h3>Truk & Kendaraan Usaha</h3>
+          <p>Solusi armada handal untuk bisnis dan logistik Anda: Colt L300, All New Triton, Canter, hingga Fuso Fighter X.</p>
+        </div>
+        <div>
+          <span class="btn-cat" style="background: #1e293b;">Lihat Katalog Komersial →</span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- BAGIAN TENTANG KAMI & LOKASI DEALER (ABOUT & ADDRESS) -->
+    <div class="about-section">
+      <div class="about-title">🏢 Tentang Dealer Resmi Kami</div>
+      <div class="about-text">
+        Kami adalah diler resmi kendaraan penumpang dan niaga Mitsubishi Motors & Fuso yang berlokasi strategis di Jakarta Barat. Melayani pembelian secara tunai maupun kredit dengan proses cepat, transparan, serta didukung layanan purna jual dan ketersediaan suku cadang resmi.
+      </div>
+      
+      <div style="text-align: center; margin-bottom: 10px;">
+        <b style="color: #d00000; font-size: 13px; display: block;">📍 Alamat Showroom & Bengkel:</b>
+        <span style="font-size: 12.5px; color: #333; font-weight: 600;">Jl. Prof. Dr. Latumeten No. 5, RT.2/RW.7, Angke, Kec. Tambora, Kota Jakarta Barat, DKI Jakarta 11330</span>
+      </div>
+
+      <!-- GOOGLE MAPS EMBED -->
+      <div class="map-box">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.8202021666687!2d106.7885068!3d-6.1548206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f64ff9c2fb4f%3A0xb3bd62c2f0f4a867!2sJl.%20Prof.%20Dr.%20Latumeten%20No.5%2C%20RT.2%2FRW.7%2C%20Angke%2C%20Kec.%20Tambora%2C%20Kota%20Jakarta%20Barat%2C%20Daerah%20Khusus%20Ibukota%20Jakarta%2011330!5e0!3m2!1sid!2sid!4v1710000000000!5m2!1sid!2sid" 
+          width="100%" 
+          height="100%" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+      <div style="text-align: center; margin-top: 15px;">
+        <a href="https://maps.app.goo.gl/TKZ9BeQw8v3Dp65BA" target="_blank" style="display: inline-block; font-size: 12px; color: #1565C0; text-decoration: none; font-weight: bold;">
+          🗺 Buka Rute Lokasi di Google Maps Apps →
+        </a>
+      </div>
+
+      <div style="text-align: center; margin-top: 15px;">
+        <a href="https://wa.me/6285169669017?text=Halo%20Lusel,%20saya%20mau%20tanya%20langsung%20ke%20showroom%20Latumeten" target="_blank" style="background: #25D366; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: bold; display: inline-block;">💬 Chat Konsultasi Langsung dengan Lusel (Sales)</a>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2026 Dealer Resmi Mitsubishi & Fuso Indonesia. All Rights Reserved.<br>
+      Informasi harga OTR, paket kredit & promo sewaktu-waktu dapat berubah sesuai ketentuan berlaku.</p>
+    </footer>
+
   </div>
-</nav>
+
+</body>
+</html>
