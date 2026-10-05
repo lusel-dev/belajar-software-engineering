@@ -17,11 +17,10 @@
     .nav-links a { color: #cbd5e1; text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s ease; }
     .nav-links a:hover, .nav-links a.active { color: #fff; background: #334155; }
 
-    /* HEADER DENGAN LOGO BESAR */
+    /* HEADER DENGAN LOGO RESMI GAMBAR */
     header { text-align: center; border-bottom: 2px solid #f1f5f9; padding-bottom: 20px; margin-bottom: 25px; }
-    .brand-logos-container { display: flex; justify-content: center; align-items: center; gap: 25px; margin-bottom: 12px; }
-    .brand-badge { background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 14px; letter-spacing: 1px; color: #1e293b; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
-    .brand-badge span { color: #d00000; font-size: 18px; }
+    .brand-logos-container { display: flex; justify-content: center; align-items: center; gap: 25px; margin-bottom: 15px; flex-wrap: wrap; }
+    .brand-logo-img { height: 36px; object-fit: contain; }
     
     header h1 { margin: 5px 0 0; color: #1e293b; font-size: 22px; letter-spacing: 0.5px; }
     header p { margin: 4px 0 0; color: #64748b; font-size: 13.5px; }
@@ -49,13 +48,13 @@
     /* MODAL POPUP TEST DRIVE */
     .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 999; }
     .modal-content { background: #fff; border-radius: 12px; max-width: 420px; width: 100%; padding: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
-    .form-group { margin-bottom: 15px; }
-    .form-group label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 5px; color: #444; }
-    .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; }
+    .form-group { margin-bottom: 14px; }
+    .form-group label { display: block; font-size: 12.5px; font-weight: bold; margin-bottom: 4px; color: #444; }
+    .form-group input, .form-group select { width: 100%; padding: 9px; border: 1px solid #ccc; border-radius: 6px; font-size: 13.5px; }
     .hidden { display: none !important; }
-    .btn-submit { width: 100%; background: #25D366; color: white; padding: 12px; border: none; border-radius: 6px; font-weight: bold; font-size: 14px; cursor: pointer; }
+    .btn-submit { width: 100%; background: #25D366; color: white; padding: 11px; border: none; border-radius: 6px; font-weight: bold; font-size: 14px; cursor: pointer; }
 
-    /* FLOATING BUTTONS (WHATSAPP & TEST DRIVE) */
+    /* FLOATING BUTTONS */
     .floating-container { position: fixed; bottom: 20px; right: 18px; display: flex; flex-direction: column; gap: 12px; align-items: flex-end; z-index: 998; }
     .float-btn { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(0,0,0,0.25); text-decoration: none; border: none; cursor: pointer; transition: transform 0.2s; position: relative; }
     .float-btn:hover { transform: scale(1.1); }
@@ -70,7 +69,6 @@
     @media (max-width: 600px) {
       .main-navbar { flex-direction: column; align-items: stretch; text-align: center; }
       .nav-links { justify-content: center; }
-      .brand-logos-container { flex-direction: column; gap: 10px; }
     }
   </style>
 </head>
@@ -78,7 +76,7 @@
 
   <div class="container">
     
-    <!-- MODERN NAVBAR DENGAN MENU LENGKAP -->
+    <!-- MODERN NAVBAR -->
     <nav class="main-navbar">
       <div class="brand-logo-text">📍 Dealer Resmi Jakarta Barat</div>
       <div class="nav-links">
@@ -90,11 +88,12 @@
       </div>
     </nav>
 
-    <!-- HEADER DENGAN LOGO RESMI BESAR -->
+    <!-- HEADER DENGAN LOGO GAMBAR RESMI -->
     <header>
       <div class="brand-logos-container">
-        <div class="brand-badge"><span>❖</span> MITSUBISHI MOTORS</div>
-        <div class="brand-badge" style="color: #0284c7;"><span>🚛</span> MITSUBISHI FUSO</div>
+        <!-- Nanti link gambar di bawah bisa kamu ganti dengan link gambar logo asli pilihanmu -->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Mitsubishi_Motors_logo.svg" alt="Mitsubishi Motors" class="brand-logo-img">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Mitsubishi_Fuso_Logo.svg" alt="Mitsubishi Fuso" class="brand-logo-img">
       </div>
       <h1>SHOWROOM DIGITAL RESMI MITSUBISHI</h1>
       <p>Pusat Penjualan Unit, Booking Test Drive & Simulasi Kredit Resmi</p>
@@ -112,34 +111,26 @@
 
     <!-- KOTAK PILIHAN MENU UTAMA -->
     <div class="category-grid">
-      
-      <!-- MENU 1: MOBIL PENUMPANG -->
       <a href="penumpang.html" class="category-card">
         <div>
           <span style="font-size: 42px;">🚗</span>
           <h3>Mobil Penumpang & SUV</h3>
           <p>Koleksi kendaraan keluarga dan SUV tangguh: All New Xpander, Xpander Cross, Xforce, Pajero Sport, dan Destinator.</p>
         </div>
-        <div>
-          <span class="btn-cat">Lihat Katalog Penumpang →</span>
-        </div>
+        <div><span class="btn-cat">Lihat Katalog Penumpang →</span></div>
       </a>
 
-      <!-- MENU 2: TRUK & KOMERSIAL -->
       <a href="komersial.html" class="category-card">
         <div>
           <span style="font-size: 42px;">🚛</span>
           <h3>Truk & Kendaraan Usaha</h3>
           <p>Solusi armada handal untuk bisnis dan logistik Anda: Colt L300, All New Triton, Canter, hingga Fuso Fighter X.</p>
         </div>
-        <div>
-          <span class="btn-cat" style="background: #1e293b;">Lihat Katalog Komersial →</span>
-        </div>
+        <div><span class="btn-cat" style="background: #1e293b;">Lihat Katalog Komersial →</span></div>
       </a>
-
     </div>
 
-    <!-- SECTION: TENTANG KAMI (ABOUT) -->
+    <!-- SECTION: TENTANG KAMI -->
     <div id="about" class="content-section">
       <div class="section-title">🏢 Tentang Dealer Resmi Kami</div>
       <div class="section-desc">
@@ -147,7 +138,7 @@
       </div>
     </div>
 
-    <!-- SECTION: HUBUNGI KAMI & LOKASI (CONTACT & ADDRESS) -->
+    <!-- SECTION: HUBUNGI KAMI & LOKASI -->
     <div id="contact" class="content-section" style="margin-top: 20px;">
       <div class="section-title">📞 Hubungi Kami & Lokasi Showroom</div>
       <div class="section-desc">
@@ -159,7 +150,6 @@
         <span style="font-size: 13px; color: #333; font-weight: 600;">Jl. Prof. Dr. Latumeten No. 5, RT.2/RW.7, Angke, Kec. Tambora, Kota Jakarta Barat, DKI Jakarta 11330</span>
       </div>
 
-      <!-- GOOGLE MAPS -->
       <div class="map-box">
         <iframe 
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.8202021666687!2d106.7885068!3d-6.1548206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f64ff9c2fb4f%3A0xb3bd62c2f0f4a867!2sJl.%20Prof.%20Dr.%20Latumeten%20No.5%2C%20RT.2%2FRW.7%2C%20Angke%2C%20Kec.%20Tambora%2C%20Kota%20Jakarta%20Barat%2C%20Daerah%20Khusus%20Ibukota%20Jakarta%2011330!5e0!3m2!1sid!2sid!4v1710000000000!5m2!1sid!2sid" 
@@ -173,12 +163,8 @@
       </div>
 
       <div style="text-align: center; margin-top: 15px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
-        <a href="https://maps.app.goo.gl/TKZ9BeQw8v3Dp65BA" target="_blank" style="background: #1e293b; color: white; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-size: 12.5px; font-weight: bold;">
-          🗺 Buka Rute di Google Maps →
-        </a>
-        <a href="https://wa.me/6285169669017?text=Halo%20Lusel,%20saya%20ingin%20tanya%20langsung%20ke%20showroom%20Latumeten" target="_blank" style="background: #25D366; color: white; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-size: 12.5px; font-weight: bold;">
-          💬 Chat WhatsApp Sales (Lusel)
-        </a>
+        <a href="https://maps.app.goo.gl/TKZ9BeQw8v3Dp65BA" target="_blank" style="background: #1e293b; color: white; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-size: 12.5px; font-weight: bold;">🗺 Buka Rute di Google Maps →</a>
+        <a href="https://wa.me/6285169669017?text=halo%20saya%20mau%20tanya%20info%20mitsubishi" target="_blank" style="background: #25D366; color: white; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-size: 12.5px; font-weight: bold;">💬 Chat WhatsApp Sales (Lusel)</a>
       </div>
     </div>
 
@@ -189,23 +175,23 @@
 
   </div>
 
-  <!-- FLOATING BUTTONS (WHATSAPP & TEST DRIVE) -->
+  <!-- FLOATING BUTTONS -->
   <div class="floating-container">
     <button class="float-btn float-btn-testdrive" onclick="bukaModalTestDrive()" title="Booking Test Drive">
       <span class="tooltip">Booking Test Drive</span>
       🚗
     </button>
-    <a href="https://wa.me/6285169669017?text=Halo%20Lusel,%20saya%20ingin%20tanya%20info%20mobil%20Mitsubishi" class="float-btn float-btn-wa" target="_blank">
+    <a href="https://wa.me/6285169669017?text=halo%20saya%20mau%20tanya%20info%20mitsubishi" class="float-btn float-btn-wa" target="_blank">
       <span class="tooltip">Chat WhatsApp</span>
       <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.763.459 3.483 1.332 5.002L2 22l5.122-1.336c1.464.798 3.111 1.218 4.887 1.218h.004c5.505 0 9.988-4.478 9.989-9.985 0-2.668-1.038-5.176-2.925-7.063C17.189 3.039 14.68 2 12.012 2zm5.836 14.162c-.244.688-1.428 1.312-1.988 1.393-.523.076-1.196.108-3.414-.808-2.839-1.173-4.664-4.047-4.805-4.237-.142-.19-1.148-1.528-1.148-2.914 0-1.386.726-2.068.983-2.348.257-.281.56-.351.747-.351.187 0 .374.001.538.009.175.008.409-.066.64.488.244.588.831 2.028.902 2.172.072.145.118.316.024.505-.094.19-.142.308-.282.473-.141.166-.296.371-.423.498-.142.142-.29.297-.124.582.166.285.736 1.213 1.58 1.964 1.085.966 2.001 1.266 2.286 1.408.285.142.451.118.618-.071.167-.189.715-.833.903-1.118.188-.285.375-.237.633-.142.258.095 1.637.771 1.917.91.281.142.468.213.538.332.07.118.07.688-.174 1.376z"/></svg>
     </a>
   </div>
 
-  <!-- MODAL POPUP TEST DRIVE -->
+  <!-- MODAL POPUP TEST DRIVE (DENGAN PILIHAN WAKTU & UNIT KHUSUS PENUMPANG) -->
   <div id="modal-testdrive" class="modal-overlay hidden" onclick="tutupModalTestDrive()">
     <div class="modal-content" onclick="event.stopPropagation()">
       <h3 style="margin-top: 0; color: #d00000; text-align: center;">🚗 Form Booking Test Drive</h3>
-      <p style="font-size: 12px; color: #666; text-align: center; margin-bottom: 15px;">Isi data di bawah untuk penjadwalan test drive unit pilihan Anda.</p>
+      <p style="font-size: 11.5px; color: #666; text-align: center; margin-bottom: 12px;">Pilih unit mobil penumpang dan jadwalkan waktu test drive Anda.</p>
       
       <form onsubmit="kirimTestDriveWA(event)">
         <div class="form-group">
@@ -213,15 +199,20 @@
           <input type="text" id="td-nama" placeholder="Contoh: Budi Santoso" required />
         </div>
         <div class="form-group">
-          <label>Pilihan Mobil / Truk *</label>
+          <label>Pilihan Unit Test Drive *</label>
           <select id="td-unit">
             <option value="All New Xpander">All New Xpander</option>
             <option value="Xpander Cross">Xpander Cross</option>
             <option value="Xforce">Xforce</option>
             <option value="Pajero Sport">Pajero Sport</option>
-            <option value="Colt L300">Colt L300</option>
-            <option value="Canter">Canter (Colt Diesel)</option>
-            <option value="Fuso Fighter X">Fuso Fighter X</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Waktu / Jam Pilihan *</label>
+          <select id="td-waktu">
+            <option value="Pagi (09.00 - 11.30 WIB)">Sesi Pagi (09.00 - 11.30 WIB)</option>
+            <option value="Siang (13.00 - 15.00 WIB)">Sesi Siang (13.00 - 15.00 WIB)</option>
+            <option value="Sore (15.30 - 17.30 WIB)">Sesi Sore (15.30 - 17.30 WIB)</option>
           </select>
         </div>
         <div class="form-group">
@@ -246,10 +237,10 @@
       e.preventDefault();
       const nama = document.getElementById('td-nama').value;
       const unit = document.getElementById('td-unit').value;
+      const waktu = document.getElementById('td-waktu').value;
       const lokasi = document.getElementById('td-lokasi').value;
-      const jam = document.getElementById('td-jam').value;
       
-      const pesan = `Halo Lusel, saya *${nama}* dari *${lokasi}* ingin booking Test Drive untuk unit *${unit}*. Mohon info apakah tersedia jadwalnya? Terima kasih.`;
+      const pesan = `Halo saya mau tanya info mitsubishi. Saya *${nama}* dari *${lokasi}* ingin booking Test Drive unit *${unit}* pada *${waktu}*. Mohon konfirmasi ketersediaannya. Terima kasih.`;
       window.open(`https://wa.me/${nomorWaSales}?text=` + encodeURIComponent(pesan), '_blank');
       tutupModalTestDrive();
     }
