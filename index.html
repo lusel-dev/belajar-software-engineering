@@ -195,7 +195,7 @@
       <span class="tooltip">Booking Test Drive</span>
       🚗
     </button>
-    <a href="https://wa.me/6285169669017?text=Halo%20Lusel,%20saya%20ingin%20tanya%20info%20mobil%20Mitsubishi%20Fuso" class="float-btn float-btn-wa" target="_blank">
+    <a href="https://wa.me/6285169669017?text=Halo%20Lusel,%20saya%20ingin%20tanya%20info%20mobil%20Mitsubishi" class="float-btn float-btn-wa" target="_blank">
       <span class="tooltip">Chat WhatsApp</span>
       <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.763.459 3.483 1.332 5.002L2 22l5.122-1.336c1.464.798 3.111 1.218 4.887 1.218h.004c5.505 0 9.988-4.478 9.989-9.985 0-2.668-1.038-5.176-2.925-7.063C17.189 3.039 14.68 2 12.012 2zm5.836 14.162c-.244.688-1.428 1.312-1.988 1.393-.523.076-1.196.108-3.414-.808-2.839-1.173-4.664-4.047-4.805-4.237-.142-.19-1.148-1.528-1.148-2.914 0-1.386.726-2.068.983-2.348.257-.281.56-.351.747-.351.187 0 .374.001.538.009.175.008.409-.066.64.488.244.588.831 2.028.902 2.172.072.145.118.316.024.505-.094.19-.142.308-.282.473-.141.166-.296.371-.423.498-.142.142-.29.297-.124.582.166.285.736 1.213 1.58 1.964 1.085.966 2.001 1.266 2.286 1.408.285.142.451.118.618-.071.167-.189.715-.833.903-1.118.188-.285.375-.237.633-.142.258.095 1.637.771 1.917.91.281.142.468.213.538.332.07.118.07.688-.174 1.376z"/></svg>
     </a>
@@ -247,8 +247,9 @@
       const nama = document.getElementById('td-nama').value;
       const unit = document.getElementById('td-unit').value;
       const lokasi = document.getElementById('td-lokasi').value;
+      const jam = document.getElementById('td-jam').value;
       
-      const pesan = `Halo Lusel, saya *${nama}* dari *${lokasi}* ingin booking Test Drive untuk unit *${unit}*. Mohon info ketersediaan jadwalnya ya. Terima kasih.`;
+      const pesan = `Halo Lusel, saya *${nama}* dari *${lokasi}* ingin booking Test Drive untuk unit *${unit}*. Mohon info apakah tersedia jadwalnya? Terima kasih.`;
       window.open(`https://wa.me/${nomorWaSales}?text=` + encodeURIComponent(pesan), '_blank');
       tutupModalTestDrive();
     }
