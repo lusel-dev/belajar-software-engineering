@@ -5,7 +5,7 @@
       "nama": "Yellow Classic (Khas Canter)",
       "hex": "#FFC800",
       "extra": 0,
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2023/02/CANTER-FE-74-HD-e1765519435729.webp"
+      "gambar": "https://www.sunstarmotor.id/wp-content/uploads/elementor/thumbs/FE-71-Flat-Deck-rd6giiib5s9ofm1bex89u1tofaasq576yg54rwc5nk.jpg"
     }
   ],
   "variants": [
@@ -20,7 +20,7 @@
       "torsi": "300 Nm / 1.000-2.500 rpm",
       "transmisi": "M025S5 (5-Speed Manual)",
       "velg": "15x6.00GS, 6 studs",
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2023/02/fe-71-a.webp",
+      "gambar": "https://www.sunstarmotor.id/wp-content/uploads/elementor/thumbs/FE-71-Alumunium-Box-rd6gibxfty0o6cavhcdvulhg9l7889h2ljkqeylwv4.jpg",
       "dimensi": "Panjang 4.735 mm | WB 2.500 mm",
       "gc": "200 mm"
     },
@@ -35,7 +35,7 @@
       "torsi": "420 Nm / 1.500 rpm",
       "transmisi": "M035S5 (5-Speed Manual)",
       "velg": "16x6.00GS, 6 studs",
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2023/02/tb-12.webp",
+      "gambar": "https://www.sunstarmotor.id/wp-content/uploads/elementor/thumbs/Canter-FE-73-Box-Alumunium-rbxdo6oon2i78hq7s1t0x7ze7giqh9lsyrqe3dpfhc.jpg",
       "dimensi": "Panjang 5.960 mm | WB 3.350 mm",
       "gc": "210 mm"
     },
@@ -50,13 +50,13 @@
       "torsi": "420 Nm / 1.500 rpm",
       "transmisi": "M035S5 High Gear Ratio",
       "velg": "16x6.00GS, 6 studs",
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2023/02/CANTER-FE-74-HD-e1765519435729.webp",
+      "gambar": "https://www.sunstarmotor.id/wp-content/uploads/FE-74-HD-2.jpg",
       "dimensi": "Panjang 5.960 mm | WB 3.350 mm",
       "gc": "210 mm"
     },
     {
-      "id": "fe-75-5hd-x-n",
-      "nama": "Canter FE 75 5HD X N 4x2 MT",
+      "id": "fe-75-shd-x-n",
+      "nama": "Canter FE 75 SHD X N 4x2 MT",
       "kategori": "Power",
       "hargaBase": 593500000,
       "hargaStr": "Rp 593.500.000",
@@ -65,7 +65,7 @@
       "torsi": "420 Nm / 1.500 rpm",
       "transmisi": "M035S5 Heavy Duty",
       "velg": "16x6.00GS, 6 studs",
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2023/02/CANTER-FE-SHDX-e1765519575987.webp",
+      "gambar": "https://mitsubishisolo.co.id/wp-content/uploads/2024/07/2-5-1-1024x591.webp",
       "dimensi": "Panjang 5.960 mm | WB 3.350 mm",
       "gc": "210 mm"
     },
@@ -80,7 +80,7 @@
       "torsi": "420 Nm / 1.500 rpm",
       "transmisi": "M035S5 dengan Built-in PTO",
       "velg": "16x6.00GS, 6 studs",
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2023/02/CANTER-FE-SHDX-e1765519575987.webp",
+      "gambar": "https://mitsubishisolo.co.id/wp-content/uploads/2024/07/2-5-1-1024x591.webp",
       "dimensi": "Panjang 5.960 mm | WB 3.350 mm",
       "gc": "210 mm"
     },
@@ -95,7 +95,7 @@
       "torsi": "420 Nm / 1.500 rpm",
       "transmisi": "M035S5 Heavy Duty",
       "velg": "16x6.00GS, 6 studs",
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2023/02/CANTER-FE-84-SHDX-e1765519603268.webp",
+      "gambar": "https://www.sunstarmotor.id/wp-content/uploads/FE-71-Jungkit-500x500.jpg",
       "dimensi": "Panjang 5.960 mm | Wide Cabin",
       "gc": "210 mm"
     },
@@ -110,7 +110,7 @@
       "torsi": "420 Nm / 1.500 rpm",
       "transmisi": "M035S5",
       "velg": "16x6.00GS, 6 studs",
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2023/02/CANTER-FE-84GS-e1765519587916.webp",
+      "gambar": "https://www.sunstarmotor.id/wp-content/uploads/FE-84-GS-Carrier.jpg",
       "dimensi": "Panjang 7.145 mm | WB 3.850 mm",
       "gc": "210 mm"
     },
@@ -125,7 +125,7 @@
       "torsi": "300 Nm / 1.000-2.500 rpm",
       "transmisi": "M025S5",
       "velg": "15x6.00GS, 6 studs",
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2023/02/tb-7-1.webp",
+      "gambar": "https://www.sunstarmotor.id/wp-content/uploads/Canter-FE-71-L.jpg",
       "dimensi": "Panjang 6.425 mm | WB 3.350 mm",
       "gc": "200 mm"
     },
@@ -140,7 +140,7 @@
       "torsi": "420 Nm / 1.500 rpm",
       "transmisi": "M035S5 (Final Gear 4.444)",
       "velg": "16x6.00GS, 6 studs",
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2023/02/FE-74LK.webp",
+      "gambar": "https://www.sunstarmotor.id/wp-content/uploads/elementor/thumbs/FE-74-L-Flat-Deck-rbxgd5p9pr9508vbiytf5r1cgijyl4kwaqnqh1x9k0.jpg",
       "dimensi": "Panjang 7.420 mm | WB 4.200 mm",
       "gc": "200 mm"
     },
@@ -155,7 +155,7 @@
       "torsi": "420 Nm / 1.500 rpm",
       "transmisi": "M035S5 (Final Gear 5.428)",
       "velg": "16x6.00GS, 6 studs",
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2023/02/product-FE-84-G.webp",
+      "gambar": "https://mitsubishisolo.co.id/wp-content/uploads/2024/07/2-5-1-1024x591.webp",
       "dimensi": "Panjang 7.145 mm | WB 3.850 mm",
       "gc": "210 mm"
     },
@@ -170,7 +170,7 @@
       "torsi": "420 Nm / 1.500 rpm",
       "transmisi": "M035S5 Speed Ratio",
       "velg": "16x6.00GS, 6 studs",
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2023/02/product-FE-74-copy.webp",
+      "gambar": "https://srikandi.com/assets/upload/FE74HD/New/FE-74_HD_K-Angle-45-Bak_Kayu1300.png",
       "dimensi": "Panjang 5.960 mm | WB 3.350 mm",
       "gc": "210 mm"
     },
@@ -185,7 +185,7 @@
       "torsi": "420 Nm / 1.500 rpm",
       "transmisi": "M035S5 (Final Gear 5.517)",
       "velg": "16x6.00GS, 6 studs",
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2023/02/FE-74HDS.webp",
+      "gambar": "https://www.sunstarmotor.id/wp-content/uploads/FE-74-HD-2.jpg",
       "dimensi": "Panjang 5.960 mm | WB 3.350 mm",
       "gc": "210 mm"
     },
@@ -200,7 +200,7 @@
       "torsi": "300 Nm / 1.000-2.500 rpm",
       "transmisi": "M025S5 (Final Gear 4.875)",
       "velg": "15x6.00GS, 6 studs",
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2023/02/tb-1.webp",
+      "gambar": "https://mitsubishimajumotor.id/wp-content/uploads/FE71BC_Chasis-Kokoh-SectionProduct.webp",
       "dimensi": "Panjang 4.735 mm | Tangki 70 L",
       "gc": "200 mm"
     },
@@ -215,7 +215,7 @@
       "torsi": "300 Nm / 1.000-2.500 rpm",
       "transmisi": "M025S5 (Final Gear 4.875)",
       "velg": "15x6.00GS, 6 studs",
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2023/02/FE-71LBC.webp",
+      "gambar": "https://srikandi.com/assets/upload/Canter%20FE%2071%20BC/FE-71-BC-spec-45-efek-.png",
       "dimensi": "Panjang 6.425 mm | Tangki 100 L",
       "gc": "200 mm"
     },
@@ -230,7 +230,7 @@
       "torsi": "300 Nm / 1.000-2.500 rpm",
       "transmisi": "M025S5 (Final Gear 4.875)",
       "velg": "15x6.00GS, 6 studs",
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2023/02/tb-3.webp",
+      "gambar": "https://www.sunstarmotor.id/wp-content/uploads/FE-71-LBC-500x500.jpg",
       "dimensi": "Panjang 6.450 mm | WB 3.350 mm",
       "gc": "195 mm"
     },
@@ -245,7 +245,7 @@
       "torsi": "420 Nm / 1.500 rpm",
       "transmisi": "M035S5 (Final Gear 5.428)",
       "velg": "16x6.00GS, 6 studs",
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2023/02/product-FE-84G_BC.webp",
+      "gambar": "https://www.sunstarmotor.id/wp-content/uploads/FE-84G_BC.jpg",
       "dimensi": "Panjang 7.130 mm | WB 3.850 mm",
       "gc": "210 mm"
     },
@@ -260,7 +260,7 @@
       "torsi": "300 Nm / 1.000-2.500 rpm",
       "transmisi": "M025S5",
       "velg": "Alloy Wheel R16x7JJ",
-      "gambar": "https://www.ktbfuso.co.id/wp-content/uploads/2024/01/300x300.webp",
+      "gambar": "https://srikandi.com/assets/upload/Canter%20FE%2071%20BC/FE-71-BC-spec-45-efek-.png",
       "dimensi": "Panjang 6.515 mm | High Roof Cabin",
       "gc": "350 mm"
     }
