@@ -5,13 +5,13 @@
   <meta name="google-site-verification" content="F3jtJU0YeTx36GwtUoX7_xpEtB9tBA4ppk3Jt-EKiAQ" />
   <!-- BAGIAN: OPEN GRAPH META TAGS (PREVIEW SOSMED & WA) -->
   <meta property="og:title" content="Katalog Resmi Mitsubishi - Promo & Simulasi Kredit">
-  <meta property="og:description" content="Dapatkan info harga OTR terbaru, promo DP ringan 10%, bunga 0%, dan brosur PDF resmi All New Xpander, Xforce, Pajero Sport & Triton.">
+  <meta property="og:description" content="Dapatkan info harga OTR terbaru, promo DP ringan 10%, bunga 0%, dan brosur PDF resmi All New Xpander, Xforce, Pajero Sport & Fighter X.">
   <meta property="og:image" content="https://www.mitsubishi-motors.co.id/favicon.ico">
   <meta property="og:type" content="website">
   
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Katalog Interaktif Mitsubishi</title>
+  <title>Dealer Resmi Mitsubishi - Katalog & Simulasi Kredit</title>
   
   <!-- META PIXEL CODE -->
   <script>
@@ -40,6 +40,10 @@
     body { background-color: #f4f6f8; margin: 0; padding: 20px; color: #333; }
     .container { max-width: 950px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
     
+    /* TOP DEALER BADGE */
+    .dealer-status-bar { background: #1e293b; color: #fff; padding: 8px 14px; border-radius: 8px; font-size: 12px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+    .dealer-status-bar .status-tag { background: #22c55e; color: #fff; font-size: 10px; font-weight: bold; padding: 2px 8px; border-radius: 12px; }
+
     /* BAGIAN: BANNER PROMO SPESIAL */
     .promo-banner{background:#fff3cd;color:#856404;border:1px solid #ffeeba;padding:10px 14px;border-radius:10px;font-size:13px;text-align:center;margin-bottom:18px}.promo-banner-title{font-weight:bold;margin-bottom:6px;display:block;color:#856404;font-size:13.5px}.promo-list{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}.promo-chip{background:#fff;border:1px solid #f5c6cb;color:#d00000;padding:4px 10px;border-radius:20px;font-size:11.5px;font-weight:bold;box-shadow:0 1px 3px rgba(0,0,0,0.05)}
     
@@ -60,7 +64,7 @@
     .calc-field label { display: block; font-size: 12px; font-weight: 700; color: #444; margin-bottom: 5px; }
     .calc-field select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 13px; background: #fff; }
     
-    /* STYLING HASIL KALKULATOR - TERDAPAT PENYESUAIAN PADA TULISAN DP & ANGSURAN */
+    /* STYLING HASIL KALKULATOR */
     .calc-result-box { background: #fef3f2; border: 1.5px solid #fecdca; border-radius: 10px; padding: 16px; text-align: center; margin-top: 10px; }
     .calc-result-item { margin: 6px 0; }
     .calc-result-label { font-size: 11.5px; color: #667085; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
@@ -75,10 +79,16 @@
     .btn-calc-wa:hover { background-color: #1ebc57; }
     .commercial-calc-notice { background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px; text-align: center; font-size: 13px; color: #334155; }
 
+    /* BAGIAN: SEGMENT TABS (KATEGORI UTAMA) */
+    .segment-tabs { display: flex; gap: 10px; justify-content: center; margin-bottom: 15px; }
+    .btn-segment { flex: 1; max-width: 320px; padding: 12px 15px; border: 2px solid #1e293b; background: #fff; color: #1e293b; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 13.5px; text-align: center; transition: all 0.2s; }
+    .btn-segment:hover, .btn-segment.active { background: #1e293b; color: #fff; }
+
     /* BAGIAN: NAVIGASI SELEKTOR MODEL UTAMA */
     .model-selector { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; padding: 12px; background: #fafafa; border-radius: 10px; border: 1px solid #eaeaea; }
-    .btn-model { padding: 10px 20px; border: 2px solid #d00000; background: #fff; color: #d00000; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; transition: all 0.2s; }
+    .btn-model { padding: 10px 18px; border: 2px solid #d00000; background: #fff; color: #d00000; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 13.5px; transition: all 0.2s; }
     .btn-model:hover, .btn-model.active { background: #d00000; color: #fff; }
+    .btn-model.hidden-model { display: none !important; }
 
     /* BAGIAN: FILTER SUB-VARIAN MOBIL */
     .filter-group { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 25px; }
@@ -127,13 +137,13 @@
     .btn-wa { background: #25D366; color: #fff; text-decoration: none; font-size: 13px; }
 
     /* BAGIAN: MODAL OVERLAY & POPUP FORM */
-    .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 99; }
+    .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 999; }
     .modal-content { background: #fff; border-radius: 12px; max-width: 650px; width: 100%; max-height: 85vh; overflow-y: auto; padding: 25px; }
     .modal-content-small { max-width: 420px; }
 
     .form-group { margin-bottom: 15px; }
     .form-group label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 5px; color: #444; }
-    .form-group input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; }
+    .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; }
     
     .spec-table { width: 100%; border-collapse: collapse; margin-bottom: 15px; font-size: 13px; }
     .spec-table td, .spec-table th { padding: 8px 12px; border-bottom: 1px solid #eee; text-align: left; }
@@ -142,10 +152,67 @@
     
     .hidden { display: none !important; }
 
-    /* BAGIAN: FLOATING BUTTON WHATSAPP */
-    .btn-wa-float{position:fixed;bottom:16px;right:16px;background:#25D366;color:#fff;padding:10px 16px;border-radius:50px;font-weight:bold;font-size:13px;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,0.25);z-index:999;display:flex;align-items:center;gap:6px;transition:transform 0.2s}.btn-wa-float:hover{transform:scale(1.05)}
+    /* FLOATING BUTTONS ATAS-BAWAH DI SEBELAH KANAN */
+    .floating-container {
+      position: fixed;
+      bottom: 20px;
+      right: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: flex-end;
+      z-index: 998;
+    }
 
-    /* BAGIAN: RESPONSIVE MEDIA QUERIES (TABLET & MOBILE) */
+    .float-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+
+    .float-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    }
+
+    .float-btn-wa {
+      background-color: #25D366;
+    }
+
+    .float-btn-testdrive {
+      background-color: #d00000;
+    }
+
+    /* TOOLTIP TEKS DI SEBELAH KIRI SIMBOL */
+    .float-btn .tooltip {
+      position: absolute;
+      right: 62px;
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+
+    .float-btn:hover .tooltip {
+      opacity: 1;
+    }
+
+    /* RESPONSIVE MEDIA QUERIES */
     @media (max-width: 1024px) {
       .grid-mobil { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 15px; }
     }
@@ -154,6 +221,8 @@
       body { padding: 10px 8px !important; background-color: #f0f2f5; }
       .container { padding: 12px !important; border-radius: 12px; }
       header h1 { font-size: 18px !important; }
+      .segment-tabs { flex-direction: column; gap: 8px; }
+      .btn-segment { max-width: 100%; padding: 10px; font-size: 12.5px; }
       .btn-model { padding: 8px 12px !important; font-size: 12px !important; }
       .btn-filter { padding: 6px 12px !important; font-size: 11px !important; }
       .grid-mobil { grid-template-columns: 1fr !important; gap: 16px !important; }
@@ -174,26 +243,34 @@
       .calc-result-tdp-price { font-size: 18px !important; }
       .calc-result-price { font-size: 20px !important; }
 
-      /* OPTIMASI KHUSUS MOBILE UNTUK BANNER & TRUST BADGES */
       .promo-list { flex-direction: column; gap: 5px; }
       .promo-chip { font-size: 11px; padding: 5px 8px; }
       .trust-features { grid-template-columns: 1fr !important; gap: 8px !important; }
       .trust-item { padding: 8px 12px !important; }
       .testi-grid { grid-template-columns: 1fr !important; }
+      
+      .floating-container { bottom: 16px; right: 14px; gap: 10px; }
+      .float-btn { width: 48px; height: 48px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- BAGIAN: KONTAINER UTAMA -->
+  <!-- KONTAINER UTAMA -->
   <div class="container">
     
-    <!-- BAGIAN: HEADER UTAMA -->
+    <!-- DEALER STATUS BAR -->
+    <div class="dealer-status-bar">
+      <span>📍 Dealer Resmi Mitsubishi & Fuso Jakarta Barat</span>
+      <span class="status-tag">🟢 Ready Stock Unit</span>
+    </div>
+
+    <!-- HEADER UTAMA -->
     <header>
       <h1 id="catalog-title">KATALOG MITSUBISHI</h1>
       <p style="margin: 5px 0 0; color: #666; font-size: 14px;">Pilih model & varian mobil favorit kamu</p>
 
-      <!-- BAGIAN: PROMO BANNER SPESIAL -->
+      <!-- PROMO BANNER SPESIAL -->
       <div class="promo-banner">
         <span class="promo-banner-title">🔥 PROMO SPESIAL BULAN INI</span>
         <div class="promo-list">
@@ -204,7 +281,7 @@
         </div>
       </div>
 
-      <!-- BAGIAN: TRUST BADGES (KEUNGGULAN SALES) -->
+      <!-- TRUST BADGES -->
       <div class="trust-features">
         <div class="trust-item"><span>⚡</span> <div><b>Proses Kredit Cepat</b><br><small>Data dibantu sampai ACC</small></div></div>
         <div class="trust-item"><span>🚚</span> <div><b>Ready Stock Unit</b><br><small>Layanan Test Drive di rumah/kantor</small></div></div>
@@ -212,9 +289,9 @@
       </div>
     </header>
 
-    <!-- BAGIAN: KALKULATOR SIMULASI KREDIT INTERAKTIF -->
+    <!-- KALKULATOR SIMULASI KREDIT INTERAKTIF -->
     <div class="calc-card">
-      <div class="calc-title">🧮 SIMULASI KREDIT DEALER RESMI</div>
+      <div class="calc-title">🧮 SIMULASI KREDIT</div>
       
       <div class="calc-grid">
         <div class="calc-field">
@@ -227,6 +304,8 @@
             <option value="pajero">New Pajero Sport</option>
             <option value="l300">L300 Commercial</option>
             <option value="triton">Triton All New</option>
+            <option value="canter">Canter</option>
+            <option value="fighter">Fuso Fighter X</option>
           </select>
         </div>
 
@@ -258,7 +337,7 @@
             <div class="calc-result-label">Total DP Bayar Pertama</div>
             <div class="calc-result-tdp-price" id="calc-display-tdp">Rp 0</div>
           </div>
-          
+
           <div class="calc-result-divider"></div>
 
           <div class="calc-result-item">
@@ -279,24 +358,35 @@
       <a href="#" id="calc-btn-wa" target="_blank" class="btn-calc-wa">💬 Request Simulasi Fix / Custom DP via WA</a>
     </div>
 
-    <!-- BAGIAN: TOMBOL SELEKTOR MODEL MOBIL -->
-    <div class="model-selector">
-      <button class="btn-model active" onclick="muatModel('xpander-all-variants.json', this)">🚘 All New Xpander</button>
-      <button class="btn-model" onclick="muatModel('xpander-cross.json', this)">🏔️ Xpander Cross</button>
-      <button class="btn-model" onclick="muatModel('xforce.json', this)">⚡ Mitsubishi Xforce</button>
-      <button class="btn-model" onclick="muatModel('pajero-sport.json', this)">🦁 Pajero Sport</button>
-      <button class="btn-model" onclick="muatModel('destinator.json', this)">🧭 Mitsubishi Destinator</button>
-      <button class="btn-model" onclick="muatModel('l300.json', this)">🚚 Colt L300</button>
-      <button class="btn-model" onclick="muatModel('triton.json', this)">🛻 All New Triton</button>
+    <!-- SEGMENT TABS (KATEGORI UTAMA: PENUMPANG VS KOMERSIAL) -->
+    <div class="segment-tabs">
+      <button class="btn-segment active" onclick="pilihSegment('penumpang', this)">🚗 Mobil Penumpang & SUV</button>
+      <button class="btn-segment" onclick="pilihSegment('komersial', this)">🚛 Truk & Kendaraan Usaha</button>
     </div>
 
-    <!-- BAGIAN: FILTER SUB-VARIAN KATEGORI -->
+    <!-- SELEKTOR MODEL MOBIL -->
+    <div class="model-selector">
+      <!-- KELOMPOK PENUMPANG -->
+      <button class="btn-model active group-penumpang" onclick="muatModel('xpander-all-variants.json', this)">🚘 All New Xpander</button>
+      <button class="btn-model group-penumpang" onclick="muatModel('xpander-cross.json', this)">🏔️ Xpander Cross</button>
+      <button class="btn-model group-penumpang" onclick="muatModel('xforce.json', this)">⚡ Mitsubishi Xforce</button>
+      <button class="btn-model group-penumpang" onclick="muatModel('pajero-sport.json', this)">🦁 Pajero Sport</button>
+      <button class="btn-model group-penumpang" onclick="muatModel('destinator.json', this)">🧭 Mitsubishi Destinator</button>
+      
+      <!-- KELOMPOK KOMERSIAL -->
+      <button class="btn-model group-komersial hidden-model" onclick="muatModel('l300.json', this)">🚚 Colt L300</button>
+      <button class="btn-model group-komersial hidden-model" onclick="muatModel('triton.json', this)">🛻 All New Triton</button>
+      <button class="btn-model group-komersial hidden-model" onclick="muatModel('canter.json', this)">🚚 Canter</button>
+      <button class="btn-model group-komersial hidden-model" onclick="muatModel('fighter.json', this)">🚛 Fuso Fighter X</button>
+    </div>
+
+    <!-- FILTER SUB-VARIAN KATEGORI -->
     <div class="filter-group" id="filter-container"></div>
 
-    <!-- BAGIAN: GRID DISPLAY KARTU MOBIL -->
+    <!-- GRID DISPLAY KARTU MOBIL -->
     <div id="grid-mobil" class="grid-mobil"></div>
 
-    <!-- BAGIAN: TESTIMONIAL PELANGGAN -->
+    <!-- TESTIMONIAL PELANGGAN -->
     <div class="testi-section">
       <h3 style="margin: 0; color: #333; font-size: 15px;">⭐ Kata Mereka yang Beli di Kami</h3>
       <div class="testi-grid">
@@ -315,10 +405,10 @@
 
   </div> <!-- PENUTUP KONTAINER UTAMA -->
 
-  <!-- BAGIAN: FOOTER -->
+  <!-- FOOTER -->
   <footer style="text-align: center; font-size: 11.5px; color: #777; margin-top: 25px; padding-bottom: 30px;">
     <div style="max-width: 600px; margin: 0 auto 15px; background: #fff; padding: 15px; border-radius: 10px; border: 1px solid #eee; text-align: center; color: #444; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
-      <b style="color: #d00000; font-size: 13px; display: block; margin-bottom: 4px;">📍 DEALER RESMI MITSUBISHI MOTORS</b>
+      <b style="color: #d00000; font-size: 13px; display: block; margin-bottom: 4px;">📍 DEALER RESMI MITSUBISHI & FUSO</b>
       <span style="font-size: 12px; font-weight: 600; display: block; margin-bottom: 4px;">Jl. Prof. Dr. Latumeten No. 5, RT.2/RW.7, Angke, Kec. Tambora, Kota Jakarta Barat, DKI Jakarta 11330</span>
       <small style="color: #666; display: block; margin-bottom: 12px;">Layanan Penjualan Unit, Test Drive & Simulasi Kredit Resmi</small>
 
@@ -335,25 +425,37 @@
       </div>
       
       <a href="https://maps.app.goo.gl/TKZ9BeQw8v3Dp65BA" target="_blank" style="display: inline-block; margin-top: 10px; font-size: 11px; color: #1565C0; text-decoration: none; font-weight: bold;">
-        🗺️ Buka Rute Lokasi di Google Maps Apps →
+        🗺 Buka Rute Lokasi di Google Maps Apps →
       </a>
     </div>
 
-    <p>© 2026 Dealer Resmi Mitsubishi Motors Indonesia. All Rights Reserved.<br>
+    <p>© 2026 Dealer Resmi Mitsubishi & Fuso Indonesia. All Rights Reserved.<br>
     Informasi harga OTR, paket kredit & promo sewaktu-waktu dapat berubah sesuai ketentuan berlaku.</p>
   </footer>
 
-  <!-- BAGIAN: MODAL POPUP FORM LEAD GENERATION -->
+  <!-- MODAL POPUP FORM LEAD GENERATION / TEST DRIVE -->
   <div id="modal-form-lead" class="modal-overlay hidden" onclick="tutupModalForm()">
     <div class="modal-content modal-content-small" onclick="event.stopPropagation()">
       <h3 id="form-title" style="margin-top: 0; color: #d00000;">Permintaan Data</h3>
-      <p style="font-size: 13px; color: #666; margin-top: -8px;">Lengkapi data diri singkat Anda untuk dikirimkan via WhatsApp resmi Sales.</p>
+      <p style="font-size: 13px; color: #666; margin-top: -8px;">Lengkapi data singkat Anda untuk dikirimkan via WhatsApp resmi Sales.</p>
 
       <form onsubmit="kirimFormKeWA(event)">
         <input type="hidden" id="form-tipe-request" value="" />
         <input type="hidden" id="form-varian-mobil" value="" />
 
-        <div class="form-group">
+        <div class="form-group" id="group-select-model-testdrive" style="display:none;">
+          <label>Pilih Unit Mobil *</label>
+          <select id="form-select-mobil">
+            <option value="New Xpander">New Xpander</option>
+            <option value="New Xpander Cross">New Xpander Cross</option>
+            <option value="New Xforce">New Xforce</option>
+            <option value="Destinator">Mitsubishi Destinator</option>
+            <option value="New Pajero Sport">New Pajero Sport</option>
+            <option value="Fuso Fighter X">Fuso Fighter X</option>
+          </select>
+        </div>
+
+        <div class="form-group" id="group-display-mobil">
           <label>Varian Mobil Pilihan</label>
           <input type="text" id="form-display-mobil" disabled style="background: #eee;" />
         </div>
@@ -368,6 +470,14 @@
           <input type="text" id="form-kota-user" placeholder="Contoh: Jakarta Barat" required />
         </div>
 
+        <div class="form-group" id="group-lokasi-testdrive" style="display:none;">
+          <label>Lokasi Test Drive yang Diinginkan</label>
+          <select id="form-lokasi-testdrive">
+            <option value="Rumah / Kantor Saya (Jabodetabek)">Rumah / Kantor Saya (Jabodetabek)</option>
+            <option value="Dealer Resmi Mitsubishi Latumeten">Dealer Resmi Mitsubishi (Latumeten)</option>
+          </select>
+        </div>
+
         <div style="display: flex; gap: 8px; margin-top: 20px;">
           <button type="submit" class="btn btn-wa" style="flex: 2;">Kirim via WhatsApp</button>
           <button type="button" class="btn" style="background: #ccc; color: #333; flex: 1;" onclick="tutupModalForm()">Batal</button>
@@ -376,7 +486,7 @@
     </div>
   </div>
 
-  <!-- BAGIAN: MODAL POPUP DETAIL SPESIFIKASI BROSUR -->
+  <!-- MODAL POPUP DETAIL SPESIFIKASI BROSUR -->
   <div id="modal-detail" class="modal-overlay hidden" onclick="tutupModal()">
     <div class="modal-content" onclick="event.stopPropagation()">
       <h2 id="modal-nama" style="margin-top: 0; color: #d00000;"></h2>
@@ -440,15 +550,26 @@
     </div>
   </div>
 
-  <!-- BAGIAN: FLOATING STICKY BUTTON WA -->
-  <a href="https://wa.me/6285169669017?text=Halo%20Lusel,%20saya%20ingin%20tanya%20promo%20mobil%20Mitsubishi" class="btn-wa-float" target="_blank">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-      <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.763.459 3.483 1.332 5.002L2 22l5.122-1.336c1.464.798 3.111 1.218 4.887 1.218h.004c5.505 0 9.988-4.478 9.989-9.985 0-2.668-1.038-5.176-2.925-7.063C17.189 3.039 14.68 2 12.012 2zm5.836 14.162c-.244.688-1.428 1.312-1.988 1.393-.523.076-1.196.108-3.414-.808-2.839-1.173-4.664-4.047-4.805-4.237-.142-.19-1.148-1.528-1.148-2.914 0-1.386.726-2.068.983-2.348.257-.281.56-.351.747-.351.187 0 .374.001.538.009.175.008.409-.066.64.488.244.588.831 2.028.902 2.172.072.145.118.316.024.505-.094.19-.142.308-.282.473-.141.166-.296.371-.423.498-.142.142-.29.297-.124.582.166.285.736 1.213 1.58 1.964 1.085.966 2.001 1.266 2.286 1.408.285.142.451.118.618-.071.167-.189.715-.833.903-1.118.188-.285.375-.237.633-.142.258.095 1.637.771 1.917.91.281.142.468.213.538.332.07.118.07.688-.174 1.376z"/>
-    </svg>
-    Hubungi Whatsapp Kami
-  </a>
+  <!-- FLOATING ACTION BUTTONS DI SEBELAH KANAN (ATAS-BAWAH) -->
+  <div class="floating-container">
+    <!-- ATAS: TOMBOL TEST DRIVE (MERAH) -->
+    <button class="float-btn float-btn-testdrive" onclick="bukaModalForm('testdrive', 'Mobil Mitsubishi')" aria-label="Booking Test Drive">
+      <span class="tooltip">Booking Test Drive</span>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+      </svg>
+    </button>
 
-  <!-- BAGIAN: LOGIKA JAVASCRIPT -->
+    <!-- BAWAH: TOMBOL WHATSAPP (HIJAU) -->
+    <a href="https://wa.me/6285169669017?text=Halo%20Lusel,%20saya%20ingin%20tanya%20promo%20mobil%20Mitsubishi" class="float-btn float-btn-wa" target="_blank" aria-label="Chat WhatsApp">
+      <span class="tooltip">Chat WhatsApp</span>
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
+        <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.763.459 3.483 1.332 5.002L2 22l5.122-1.336c1.464.798 3.111 1.218 4.887 1.218h.004c5.505 0 9.988-4.478 9.989-9.985 0-2.668-1.038-5.176-2.925-7.063C17.189 3.039 14.68 2 12.012 2zm5.836 14.162c-.244.688-1.428 1.312-1.988 1.393-.523.076-1.196.108-3.414-.808-2.839-1.173-4.664-4.047-4.805-4.237-.142-.19-1.148-1.528-1.148-2.914 0-1.386.726-2.068.983-2.348.257-.281.56-.351.747-.351.187 0 .374.001.538.009.175.008.409-.066.64.488.244.588.831 2.028.902 2.172.072.145.118.316.024.505-.094.19-.142.308-.282.473-.141.166-.296.371-.423.498-.142.142-.29.297-.124.582.166.285.736 1.213 1.58 1.964 1.085.966 2.001 1.266 2.286 1.408.285.142.451.118.618-.071.167-.189.715-.833.903-1.118.188-.285.375-.237.633-.142.258.095 1.637.771 1.917.91.281.142.468.213.538.332.07.118.07.688-.174 1.376z"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- LOGIKA JAVASCRIPT -->
   <script>
     const nomorWaSales = "6285169669017";
 
@@ -458,7 +579,7 @@
     const selectedState = {};
     let globalCalcData = null;
 
-    // INITAL LOAD KALKULATOR DATA
+    // INITIAL LOAD KALKULATOR DATA
     fetch('simulasi-kredit.json?v=' + new Date().getTime())
       .then(res => {
         if (!res.ok) throw new Error("Gagal mengambil simulasi-kredit.json");
@@ -482,13 +603,17 @@
       const tGroup = document.getElementById("calc-tenor-group");
       const displayArea = document.getElementById("calc-display-area");
 
-      // 1. TAMPILAN KHUSUS UNIT KOMERSIAL (L300 & TRITON)
-      if (carKey === 'l300' || carKey === 'triton') {
+      // 1. TAMPILAN KHUSUS UNIT KOMERSIAL (L300, TRITON, CANTER, & FIGHTER)
+      if (carKey === 'l300' || carKey === 'triton' || carKey === 'canter' || carKey === 'fighter') {
         vGroup.style.display = "none";
         sGroup.style.display = "none";
         tGroup.style.display = "none";
 
-        const namaCommercial = carKey === 'l300' ? 'Colt L300 Commercial' : 'All New Triton';
+        let namaCommercial = 'Colt L300 Commercial';
+        if (carKey === 'triton') namaCommercial = 'All New Triton';
+        if (carKey === 'canter') namaCommercial = 'Canter Commercial';
+        if (carKey === 'fighter') namaCommercial = 'Fuso Fighter X';
+
         displayArea.innerHTML = `
           <div class="commercial-calc-notice">
             <b>Unit Komersial (${namaCommercial})</b><br>
@@ -505,7 +630,6 @@
       sGroup.style.display = "block";
       tGroup.style.display = "block";
 
-      // Reset & bangun ulang elemen HTML area hasil (DP dibuat menonjol & terpisah)
       displayArea.innerHTML = `
         <div class="calc-result-box">
           <div id="calc-badge-status" class="calc-badge" style="display:none;"></div>
@@ -529,7 +653,6 @@
           💡 <b>Mau Penyesuaian Budget?</b> DP & Angsuran bisa di-custom sesuai kebutuhan Anda via WA.
         </div>`;
 
-      // Populate varian dari JSON
       variantSelect.innerHTML = "";
       const modelObj = globalCalcData.models[carKey];
 
@@ -543,7 +666,6 @@
         variantSelect.selectedIndex = 0;
       }
 
-      // Lanjutkan update tenor & hitung angsuran
       calcUpdateTenors();
     }
 
@@ -551,7 +673,7 @@
       if (!globalCalcData || !globalCalcData.models) return;
       
       const carKey = document.getElementById("calc-model").value;
-      if (carKey === 'l300' || carKey === 'triton') return;
+      if (carKey === 'l300' || carKey === 'triton' || carKey === 'canter' || carKey === 'fighter') return;
 
       const variantSelect = document.getElementById("calc-variant");
       const variantIdx = parseInt(variantSelect.value) || 0;
@@ -590,7 +712,7 @@
       if (!globalCalcData || !globalCalcData.models) return;
       
       const carKey = document.getElementById("calc-model").value;
-      if (carKey === 'l300' || carKey === 'triton') return;
+      if (carKey === 'l300' || carKey === 'triton' || carKey === 'canter' || carKey === 'fighter') return;
 
       const variantSelect = document.getElementById("calc-variant");
       const variantIdx = parseInt(variantSelect.value) || 0;
@@ -606,13 +728,18 @@
       const badgeStatus = document.getElementById("calc-badge-status");
 
       if (pkg) {
-        const diskonDealer = (globalCalcData.diskon_dealer && globalCalcData.diskon_dealer[carKey]) ? globalCalcData.diskon_dealer[carKey] : 0;
+        const variantKey = selectedVariant.id;
+
+        const diskonDealer = (globalCalcData.diskon_dealer && globalCalcData.diskon_dealer[variantKey]) 
+          ? globalCalcData.diskon_dealer[variantKey] 
+          : 0;
+
         const nettTdp = Math.max(0, pkg.tdpDipo - diskonDealer);
 
         if (badgeStatus) {
           badgeStatus.style.display = "inline-block";
           if (skemaKey === 'dp_ringan') badgeStatus.innerText = "⭐ Program DP Ringan Jabodetabek";
-          else if (skemaKey === 'bunga_hemat') badgeStatus.innerText = "🏷️ Program Suku Bunga Spesial Dealer";
+          else if (skemaKey === 'bunga_hemat') badgeStatus.innerText = "🏷 Program Suku Bunga Spesial Dealer";
           else badgeStatus.innerText = "🔥 Program Bunga 0% (Bebas Bunga)";
         }
 
@@ -630,6 +757,31 @@
                        `Boleh bantu konsultasi & rincian resminya?`;
 
         document.getElementById("calc-btn-wa").href = `https://wa.me/${nomorWaSales}?text=${encodeURIComponent(textWA)}`;
+      }
+    }
+
+    // FUNGSI GANTI KATEGORI SEGMENT TABS (PENUMPANG VS KOMERSIAL)
+    function pilihSegment(kategori, btnEl) {
+      document.querySelectorAll('.btn-segment').forEach(b => b.classList.remove('active'));
+      btnEl.classList.add('active');
+
+      const groupPenumpang = document.querySelectorAll('.group-penumpang');
+      const groupKomersial = document.querySelectorAll('.group-komersial');
+
+      if (kategori === 'penumpang') {
+        groupPenumpang.forEach(el => el.classList.remove('hidden-model'));
+        groupKomersial.forEach(el => el.classList.add('hidden-model'));
+        
+        // Otomatis load model pertama di tab penumpang (Xpander)
+        const firstPenumpang = document.querySelector('.group-penumpang');
+        if (firstPenumpang) firstPenumpang.click();
+      } else {
+        groupPenumpang.forEach(el => el.classList.add('hidden-model'));
+        groupKomersial.forEach(el => el.classList.remove('hidden-model'));
+        
+        // Otomatis load model pertama di tab komersial (L300)
+        const firstKomersial = document.querySelector('.group-komersial');
+        if (firstKomersial) firstKomersial.click();
       }
     }
 
@@ -665,27 +817,34 @@
         return;
       }
 
-      const uniqueTypes = [...new Set(dataVariants.map(item => {
-        const name = item.nama.toLowerCase();
-        if (name.includes('single cabin') || name.includes('single cab')) return 'Single Cabin';
-        if (name.includes('double cabin') || name.includes('double cab')) return 'Double Cabin';
-        if (name.includes('pick up')) return 'Pick Up';
-        if (name.includes('chassis')) return 'Chassis';
-        if (name.includes('ultimate')) return 'Ultimate';
-        if (name.includes('exceed')) return 'Exceed';
-        if (name.includes('gls')) return 'GLS';
-        if (name.includes('hdx')) return 'HDX';
-        if (name.includes('glx')) return 'GLX';
-        if (name.includes('dakar')) return 'Dakar';
-        if (name.includes('cross')) return 'Cross';
-        
-        const words = item.nama.split(' ');
-        return words[1] || words[0];
-      }))];
-      
+      const isKaroseri = dataVariants.some(item => item.kategori);
+      let uniqueTypes = [];
+
+      if (isKaroseri) {
+        uniqueTypes = [...new Set(dataVariants.map(item => item.kategori).filter(Boolean))];
+      } else {
+        uniqueTypes = [...new Set(dataVariants.map(item => {
+          const name = item.nama.toLowerCase();
+          if (name.includes('single cabin') || name.includes('single cab')) return 'Single Cabin';
+          if (name.includes('double cabin') || name.includes('double cab')) return 'Double Cabin';
+          if (name.includes('pick up')) return 'Pick Up';
+          if (name.includes('chassis')) return 'Chassis';
+          if (name.includes('ultimate')) return 'Ultimate';
+          if (name.includes('exceed')) return 'Exceed';
+          if (name.includes('gls')) return 'GLS';
+          if (name.includes('hdx')) return 'HDX';
+          if (name.includes('glx')) return 'GLX';
+          if (name.includes('dakar')) return 'Dakar';
+          if (name.includes('cross')) return 'Cross';
+          
+          const words = item.nama.split(' ');
+          return words[1] || words[0];
+        }))];
+      }
+
       let html = `<button class="btn-filter active" onclick="setFilter('ALL', this)">Semua Varian (${dataVariants.length})</button>`;
       uniqueTypes.forEach(type => {
-        html += `<button class="btn-filter" onclick="setFilter('${type}', this)">Varian ${type}</button>`;
+        html += `<button class="btn-filter" onclick="setFilter('${type}', this)">${type}</button>`;
       });
       container.innerHTML = html;
     }
@@ -705,6 +864,9 @@
             const search = currentFilter.toLowerCase();
             const nama = item.nama.toLowerCase();
             const id = item.id.toLowerCase();
+            const kategori = (item.kategori || '').toLowerCase();
+
+            if (kategori === search) return true;
 
             if (search.includes('single cabin') || search.includes('single cab')) {
               return nama.includes('single cabin') || nama.includes('single cab') || id.includes('sc');
@@ -712,7 +874,7 @@
             if (search.includes('double cabin') || search.includes('double cab')) {
               return nama.includes('double cabin') || nama.includes('double cab') || id.includes('dc');
             }
-            return nama.includes(search) || id.includes(search);
+            return nama.includes(search) || id.includes(search) || kategori.includes(search);
           });
 
       filteredData.forEach(mobil => {
@@ -729,12 +891,20 @@
         const isHev = mobil.id.includes('hev');
         const isL300 = mobil.id.includes('l300');
         const isTriton = mobil.id.includes('triton');
+        const isCanter = mobil.id.includes('fe') || mobil.nama.toLowerCase().includes('canter');
+        const isFighter = mobil.id.includes('fn') || mobil.id.includes('fm') || mobil.nama.toLowerCase().includes('fighter');
         const isTurbo = mobil.mesin && mobil.mesin.toLowerCase().includes('turbo');
         
         let badgeClass = 'badge';
         let badgeText = `⛽ Transmisi ${mobil.transmisi ? mobil.transmisi.split(' ')[0] : 'AT/MT'}`;
         
-        if (isTriton) {
+        if (isFighter) {
+          badgeClass = 'badge badge-turbo';
+          badgeText = `🚛 ${mobil.kategori || 'Fighter X Heavy Duty'}`;
+        } else if (isCanter) {
+          badgeClass = 'badge badge-turbo';
+          badgeText = `🚚 ${mobil.kategori || 'Commercial Truck'}`;
+        } else if (isTriton) {
           badgeClass = is4x4 ? 'badge badge-4x4' : 'badge badge-turbo';
           badgeText = is4x4 ? '🏔️ 4WD Drive System' : '🚚 2WD Commercial Cargo';
         } else if (isL300) {
@@ -751,7 +921,9 @@
           badgeText = '🏎️ 1.5L Turbo Engine';
         }
 
-        const infoMesinRingkas = isTriton
+        const infoMesinRingkas = isFighter || isCanter
+          ? `<b>Mesin:</b> ${mobil.powerEngine || mobil.mesin || 'Common Rail Euro 4'}`
+          : isTriton
           ? `<b>Mesin:</b> 2.4L Clean Diesel Euro 4 (${mobil.powerEngine || ''})`
           : isHev 
           ? '<b>Mesin:</b> 1.6L Hybrid + Motor Listrik (Torsi 255 Nm)' 
@@ -890,7 +1062,21 @@
       document.getElementById('form-display-mobil').value = namaVarian;
 
       const titleEl = document.getElementById('form-title');
-      titleEl.innerText = jenisRequest === 'brosur' ? "Download Brosur PDF" : "Minta Simulasi Kredit";
+      const groupDisplay = document.getElementById('group-display-mobil');
+      const groupSelectModel = document.getElementById('group-select-model-testdrive');
+      const groupLokasi = document.getElementById('group-lokasi-testdrive');
+
+      if (jenisRequest === 'testdrive') {
+        titleEl.innerText = "🚗 Booking Layanan Test Drive";
+        groupDisplay.style.display = "none";
+        groupSelectModel.style.display = "block";
+        groupLokasi.style.display = "block";
+      } else {
+        groupDisplay.style.display = "block";
+        groupSelectModel.style.display = "none";
+        groupLokasi.style.display = "none";
+        titleEl.innerText = jenisRequest === 'brosur' ? "Download Brosur PDF" : "Minta Simulasi Kredit";
+      }
 
       document.getElementById('modal-form-lead').classList.remove('hidden');
     }
@@ -902,13 +1088,21 @@
     function kirimFormKeWA(e) {
       e.preventDefault();
       const jenis = document.getElementById('form-tipe-request').value;
-      const varian = document.getElementById('form-varian-mobil').value;
       const nama = document.getElementById('form-nama-user').value;
       const kota = document.getElementById('form-kota-user').value;
 
-      let pesan = jenis === 'brosur'
-        ? `Halo Lusel, saya ${nama} dari ${kota}. Boleh minta dikirimkan file Brosur PDF resmi untuk ${varian}? Terima kasih!`
-        : `Halo Lusel, saya ${nama} dari ${kota}. Saya berminat dengan ${varian}, boleh tolong dibuatkan perincian Simulasi Kredit DP/Angsurannya? Terima kasih!`;
+      let pesan = "";
+
+      if (jenis === 'testdrive') {
+        const modelPilihan = document.getElementById('form-select-mobil').value;
+        const lokasi = document.getElementById('form-lokasi-testdrive').value;
+        pesan = `Halo Lusel, saya ${nama} dari ${kota}. Saya ingin mengajukan *Booking Test Drive* untuk unit *${modelPilihan}*.\n- Lokasi: ${lokasi}\nBoleh diaturkan jadwalnya? Terima kasih!`;
+      } else {
+        const varian = document.getElementById('form-varian-mobil').value;
+        pesan = jenis === 'brosur'
+          ? `Halo Lusel, saya ${nama} dari ${kota}. Boleh minta dikirimkan file Brosur PDF resmi untuk ${varian}? Terima kasih!`
+          : `Halo Lusel, saya ${nama} dari ${kota}. Saya berminat dengan ${varian}, boleh tolong dibuatkan perincian Simulasi Kredit DP/Angsurannya? Terima kasih!`;
+      }
 
       window.open(`https://wa.me/${nomorWaSales}?text=${encodeURIComponent(pesan)}`, '_blank');
       tutupModalForm();
@@ -967,7 +1161,7 @@
     }
 
     // DEFAULT INITIAL LOAD ALL NEW XPANDER
-    const btnXpander = document.querySelector('.btn-model');
+    const btnXpander = document.querySelector('.group-penumpang');
     muatModel('xpander-all-variants.json', btnXpander);
   </script>
 </body>
